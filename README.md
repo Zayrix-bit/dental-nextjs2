@@ -59,10 +59,39 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ```text
 /src
-  /app          # Next.js App Router (pages and layouts)
-  /components   # Reusable UI components (Hero, Services, etc.)
-  /data         # Centralized site configurations and content
-/public         # Static assets (images, icons)
+├── app/                    # Next.js App Router (Pages & Layouts)
+│   ├── about/              # About Us page
+│   ├── api/                # Backend API routes
+│   ├── blog/               # Blog listing and articles
+│   ├── contact/            # Contact Us page
+│   ├── gallery/            # Smile gallery / portfolio
+│   ├── services/           # Detailed dental services
+│   ├── testimonials/       # Patient reviews page
+│   ├── globals.css         # Global Tailwind styles & design tokens
+│   ├── layout.js           # Root layout with Header & Footer
+│   ├── page.js             # Homepage (Hero, Services, Testimonials, etc.)
+│   ├── robots.js           # SEO Crawler instructions
+│   └── sitemap.js          # Dynamic sitemap generation
+├── components/             # Reusable React Components
+│   ├── layout/             # Core structural components
+│   │   ├── Header.jsx      # Navigation & Mobile Menu
+│   │   └── Footer.jsx      # Multi-column professional footer
+│   ├── sections/           # High-level page sections
+│   │   ├── Hero.jsx        # First impact area with CTAs
+│   │   ├── Services.jsx    # Feature grid for dental services
+│   │   ├── WhyChooseUs.jsx # Value propositions & trust signals
+│   │   ├── BeforeAfter.jsx # Interactive transformation slider
+│   │   ├── Testimonials.jsx# Patient feedback display
+│   │   └── LocationMap.jsx  # Embedded Google Maps integration
+│   ├── ui/                 # Atomic UI elements & utilities
+│   │   ├── AnimatedCounter.jsx # Stats & numbers animation
+│   │   ├── WhatsAppButton.jsx  # Floating interactive chat
+│   │   ├── PageHeader.jsx      # Consistent header for subpages
+│   │   └── ScrollReveal.jsx    # Scroll-triggered animations
+├── data/                   # Centralized Content Management
+│   ├── siteData.js         # Site info, navigation, & service details
+│   └── blogData.js         # Blog articles and metadata
+└── public/                 # Static Assets (Images, Icons, Fonts)
 ```
 
 ## 📄 License
