@@ -47,6 +47,7 @@ function ServicesDropdown({ scrolled }) {
         type="button"
         onKeyDown={handleKeyDown}
         onClick={() => setOpen((prev) => !prev)}
+        suppressHydrationWarning
         className={`flex items-center gap-1 text-[0.85rem] lg:text-[0.9rem] font-medium relative py-1 bg-transparent border-none cursor-pointer transition-colors duration-300 hover:after:w-full after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-0.5 after:bg-[var(--color-accent)] after:transition-all after:duration-300 ${
           scrolled
             ? 'text-[var(--color-text-light)] hover:text-[var(--color-accent)]'
@@ -233,6 +234,7 @@ export default function Header() {
         {/* Mobile Toggle */}
         <button
           onClick={toggleMobile}
+          suppressHydrationWarning
           className={`flex md:hidden flex-col gap-[4px] cursor-pointer z-[1001] bg-transparent border-none p-1 ${
             mobileOpen ? 'hamburger-active' : ''
           }`}

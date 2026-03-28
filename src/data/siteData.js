@@ -1,6 +1,6 @@
 import { 
   Stethoscope, Sparkles, Activity, HeartPulse, ShieldPlus, ClockAlert, 
-  Microscope, Users, Smile, CreditCard 
+  Microscope, Users, Smile, CreditCard, Baby
 } from 'lucide-react';
 
 export const siteInfo = {
@@ -46,10 +46,11 @@ export const services = [
     id: 'general',
     slug: 'general-dentistry',
     icon: Stethoscope,
-    image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2070&auto=format&fit=crop',
+    image: '/images/services/general_dentistry.png',
+    altText: 'Professional dental checkup in a high-tech modern clinic environment.',
     title: 'General Dentistry',
-    shortDescription: 'Maintain perfect oral health with comprehensive exams, cleanings, and proactive preventive care.',
-    description: 'Our general dentistry services provide the foundation for a lifetime of optimal oral health. We focus on comprehensive exams, professional cleanings, and early detection of dental issues to prevent future complications. Utilizing state-of-the-art diagnostic technology, we ensure every aspect of your oral health is monitored and maintained.',
+    shortDescription: 'Foundational care including advanced diagnostics, professional prophylaxis, and precision-guided preventive measures.',
+    description: 'Our general dentistry services provide the absolute foundation for a lifetime of elite oral health. We focus on comprehensive clinical exams, micro-ultrasonic cleanings, and early detection of dental issues using state-of-the-art diagnostic technology.',
     longDescription: [
       "Regular dental check-ups are essential for preventing decay, gum disease, and other oral health issues. Our comprehensive general dentistry services are designed to keep your smile bright and healthy.",
       "During your visit, our experienced team will perform a thorough examination, including digital X-rays if necessary, to assess your oral health. We will also provide a professional cleaning to remove plaque and tartar build-up.",
@@ -87,10 +88,11 @@ export const services = [
     id: 'cosmetic',
     slug: 'cosmetic-dentistry',
     icon: Sparkles,
-    image: 'https://images.unsplash.com/photo-1590664095641-7fa05f689813?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80&w=800',
+    altText: 'Bespoke smile transformation featuring high-end porcelain veneers for a natural, radiant aesthetic.',
     title: 'Cosmetic Dentistry',
-    shortDescription: "Transform your smile and boost your confidence with premium veneers, bonding, and total smile makeovers.",
-    description: "Our cosmetic dentistry solutions are designed to address imperfections and enhance the natural beauty of your smile. From porcelain veneers to full smile makeovers, we blend art and science to deliver stunning, life-changing results.",
+    shortDescription: "Bespoke smile transformations featuring hand-crafted porcelain veneers and precision aesthetic bonding.",
+    description: "Our cosmetic solutions are engineered to harmonize with your facial structure. From porcelain veneers to complex smile architecture, we blend clinical precision with artistic mastery to deliver life-changing results.",
     longDescription: [
       "A beautiful smile can significantly impact your self-esteem and how others perceive you. Our cosmetic dentistry treatments are tailored to your unique facial structure and aesthetic goals.",
       "Whether you're looking to correct chipped, stained, or misaligned teeth, our expert cosmetic dentists utilize the latest materials and techniques to create a flawless, natural-looking smile.",
@@ -128,10 +130,11 @@ export const services = [
     id: 'orthodontics',
     slug: 'orthodontics-invisalign',
     icon: Activity,
-    image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2070&auto=format&fit=crop',
+    image: '/images/services/orthodontics_invisalign.png',
+    altText: 'Discreet clear aligners correctly positioned on a beautiful, healthy set of teeth.',
     title: 'Orthodontics & Invisalign',
-    shortDescription: 'Achieve perfectly straight teeth with discreet Invisalign and modern alignment solutions.',
-    description: 'Straight teeth not only look better but are also easier to keep clean and healthy. Our modern orthodontic solutions, including clear aligners like Invisalign, offer discreet and comfortable ways to achieve a perfectly aligned smile.',
+    shortDescription: 'Advanced alignment through discreet clear aligners and modern bio-functional orthodontic solutions.',
+    description: 'Precision alignment ensures both aesthetic harmony and optimal functional health. We utilize digital intraoral scanning and 3D treatment planning to deliver virtually invisible correction with Invisalign and clear aligner therapy.',
     longDescription: [
       "Misaligned teeth can lead to a variety of dental issues, including increased risk of decay, gum disease, and jaw pain. Our orthodontic treatments address both aesthetic concerns and functional problems.",
       "We specialize in clear aligner therapy, providing a virtually invisible alternative to traditional metal braces. Using advanced 3D imaging, we map out your entire treatment plan from start to finish.",
@@ -169,10 +172,11 @@ export const services = [
     id: 'whitening',
     slug: 'teeth-whitening',
     icon: HeartPulse,
-    image: 'https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&q=80&w=800',
+    altText: 'Professional clinical teeth whitening procedure delivering a radiant, luminous smile transformation.',
     title: 'Teeth Whitening',
-    shortDescription: 'Unlock a radiant, brilliant smile in just one single visit with our professional-grade whitening treatments.',
-    description: 'Professional teeth whitening is one of the fastest and most effective ways to enhance your smile. Our advanced whitening systems safely remove years of stains and discoloration, revealing a significantly whiter, brighter smile.',
+    shortDescription: 'Professional clinical whitening systems that deliver a radiant, luminous smile in a single session.',
+    description: 'Unlock a brilliant, healthy smile using our advanced clinical bleaching systems. Our treatments safely lift deep-set stains and discoloration, providing immediate, predictable, and exceptionally radiant results.',
     longDescription: [
       "Over time, teeth can become stained from coffee, tea, wine, smoking, and certain foods. Our professional whitening treatments penetrate deep into the enamel to lift stubborn stains that over-the-counter products cannot reach.",
       "We offer both fast-acting in-office whitening for immediate results and custom-fitted take-home kits for your convenience. Our treatments use professional-grade whitening agents that are safe for your enamel.",
@@ -210,10 +214,11 @@ export const services = [
     id: 'implants',
     slug: 'dental-implants',
     icon: ShieldPlus,
-    image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop',
+    image: '/images/services/dental_implants.png',
+    altText: 'Realistic dental implant supporting a lifelike porcelain crown for a permanent restoration.',
     title: 'Dental Implants',
-    shortDescription: 'Restore complete function and esthetics permanently with our state-of-the-art implant technology.',
-    description: 'Dental implants are the gold standard for replacing missing teeth. Acting as artificial tooth roots, they provide a permanent, stable foundation for lifelike crowns, bridges, or dentures, restoring both the aesthetics and full functionality of your smile.',
+    shortDescription: 'Permanent restorative architecture that restores full functional integrity and aesthetic vitality.',
+    description: 'Dental implants represent the pinnacle of restorative science. Using high-grade titanium posts and zirconia crowns, we provide a permanent solution that preserves jawbone structure and restores your natural biomechanical function.',
     longDescription: [
       "Missing teeth can lead to a host of problems, including difficulty chewing, speech issues, and bone loss in the jaw. Dental implants are the only tooth replacement option that preserves jawbone health by simulating natural bone stimulation.",
       "Our practice utilizes advanced 3D imaging and surgical planning software to ensure precise and minimally invasive implant placement. From single tooth replacements to full arch restorations (All-on-4), we offer comprehensive implant solutions.",
@@ -251,10 +256,11 @@ export const services = [
     id: 'emergency',
     slug: 'emergency-dentistry',
     icon: ClockAlert,
-    image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop',
+    image: '/images/services/emergency_care.png',
+    altText: 'Compassionate and professional emergency dental care provided in a modern clinic.',
     title: 'Emergency Care',
-    shortDescription: 'Experience immediate relief with our 24/7 priority emergency services when you need us most.',
-    description: 'Dental emergencies can be stressful and painful. Our team is dedicated to providing prompt, compassionate care to alleviate your pain and comprehensively address the underlying issue as quickly as possible.',
+    shortDescription: 'Immediate clinical intervention and priority relief for urgent dental trauma and acute pain management.',
+    description: 'Dental crises require prompt, expert attention. Our clinic provides priority access for acute pain, trauma, and urgent restorations, ensuring immediate comfort and definitive clinical solutions when you need them most.',
     longDescription: [
       "Whether you've experienced dental trauma, severe toothache, a broken restoration, or sudden swelling, fast professional attention is crucial to saving your tooth and preventing further complications.",
       "Our practice offers priority scheduling and after-hours availability for severe emergencies. We utilize advanced diagnostic tools to quickly identify the source of your pain and formulate an effective treatment plan.",
@@ -287,20 +293,102 @@ export const services = [
       { question: 'Do you accept walk-in emergencies?', answer: 'While we highly recommend calling ahead so we can prepare for your arrival, we do accept severe walk-in emergencies during business hours.' }
     ],
     relatedTreatments: ['general-dentistry', 'dental-implants']
+  },
+  {
+    id: 'pediatric',
+    slug: 'pediatric-dentistry',
+    icon: Baby,
+    image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=800',
+    altText: 'A friendly dentist interacting with a happy child in a warm, colorful pediatric clinic.',
+    title: 'Pediatric Dentistry',
+    shortDescription: 'Specialized, compassionate dental care for infants, children, and teens in a nurturing environment.',
+    description: 'Our pediatric specialists focus on creating positive dental experiences for our youngest patients. We combine expert clinical care with a fun, educational approach to build a lifetime of healthy dental habits.',
+    longDescription: [
+      "A positive start is crucial for a lifetime of healthy smiles. Our pediatric dentistry service is designed to be fun, engaging, and completely stress-free for both children and parents.",
+      "We provide comprehensive care including regular checkups, dental sealants, fluoride treatments, and early orthodontic assessments. Our team is specially trained to manage the unique dental needs of developing mouths.",
+      "Our office features a child-friendly atmosphere to help alleviate any anxiety. We believe that by making dental visits enjoyable, we can empower children to take pride in their oral health from an early age."
+    ],
+    isHighlighted: false,
+    tags: ['Child Friendly', 'Preventive', 'Gentle'],
+    benefits: [
+      'Stress-free environment for kids',
+      'Specialized care for developing teeth',
+      'Focus on long-term preventive education',
+      'Early detection of orthodontic needs',
+      'Positive association with dental care'
+    ],
+    procedure: [
+      { step: '1', title: 'Friendly Meet-&-Greet', description: 'Orienting the child to the dental environment with gentle play.' },
+      { step: '2', title: 'Gentle Clinical Exam', description: 'Thorough but swift assessment of teeth and gum health.' },
+      { step: '3', title: 'Preventive Cleaning', description: 'Removal of plaque and a professional polish for a bright smile.' },
+      { step: '4', title: 'Oral Health Coaching', description: 'Fun, age-appropriate instruction on brushing and flossing.' }
+    ],
+    highlights: {
+      duration: '30-45 Minutes',
+      painLevel: 'None',
+      recovery: 'Immediate',
+      frequency: 'Every 6 Months'
+    },
+    faqs: [
+      { question: 'When should my child first visit the dentist?', answer: 'We recommend scheduling the first visit when the first tooth appears or by their first birthday.' },
+      { question: 'What are dental sealants?', answer: 'Sealants are thin, protective coatings applied to the chewing surfaces of back teeth to prevent cavities.' },
+      { question: 'Can you help with thumb sucking?', answer: 'Yes, we can provide gentle guidance and strategies to help your child transition away from thumb sucking.' }
+    ],
+    relatedTreatments: ['general-dentistry', 'orthodontics-invisalign']
+  },
+  {
+    id: 'root-canal',
+    slug: 'root-canal-therapy',
+    icon: Microscope,
+    image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800',
+    altText: 'High-precision microscopic root canal therapy ensuring sterile clinical excellence and pain relief.',
+    title: 'Root Canal Therapy',
+    shortDescription: 'Advanced endodontic treatment designed to save infected teeth and provide immediate pain relief.',
+    description: 'Root canal therapy is a highly effective procedure to save a natural tooth that has been severely damaged or infected. Using modern microscopic technology, we ensure precision and patient comfort throughout the process.',
+    longDescription: [
+      "Saving your natural tooth is always our priority. Root canal therapy allows us to treat the infection inside the tooth while preserving its external structure and functional integrity.",
+      "Modern endodontics has transformed this procedure into one that is no more uncomfortable than getting a standard filling. We utilize advanced anesthesia and micro-surgical tools for a painless experience.",
+      "Once the infection is removed and the canals are sealed, we typically place a custom crown to restore the tooth's strength and natural appearance, allowing you to smile and chew with ease."
+    ],
+    isHighlighted: false,
+    tags: ['Painless', 'Definitive Relief', 'Advanced Tech'],
+    benefits: [
+      'Saves the natural tooth from extraction',
+      'Provides immediate relief from severe pain',
+      'Restores full dental functionality and strength',
+      'Prevents the spread of infection to other teeth',
+      'Cost-effective compared to tooth replacement'
+    ],
+    procedure: [
+      { step: '1', title: 'Digital Diagnostics', description: 'High-resolution imaging to map the internal structure of the tooth.' },
+      { step: '2', title: 'Precision Access', description: 'Creating a small opening to reach the infected pulp chamber.' },
+      { step: '3', title: 'Canal Cleaning', description: 'Meticulous removal of infected tissue and disinfection under microscopic view.' },
+      { step: '4', title: 'Definitive Sealing', description: 'Filling and sealing the canals followed by the placement of a functional restoration.' }
+    ],
+    highlights: {
+      duration: '60-90 Minutes',
+      painLevel: 'Minimal (Local Anesthesia)',
+      recovery: '1-2 Days',
+      successRate: '95%+'
+    },
+    faqs: [
+      { question: 'Does a root canal hurt?', answer: 'Contrary to popular belief, modern root canals are virtually painless due to effective local anesthesia and advanced techniques.' },
+      { question: 'How long does the recovery take?', answer: 'Most patients return to normal activities the next day, though some mild sensitivity is common for a few days.' },
+      { question: 'Wait, can an infected tooth heal on its own?', answer: 'No, a dental infection will not heal without professional intervention and can lead to more serious health issues if ignored.' }
+    ],
+    relatedTreatments: ['general-dentistry', 'dental-implants']
   }
 ];
 
 export const ALL_SERVICES = [
-  { label: "General Checkup & Cleaning", href: "/services#checkup" },
-  { label: "Teeth Whitening", href: "/services#whitening" },
-  { label: "Root Canal Treatment (RCT)", href: "/services#rct" },
-  { label: "Dental Implants", href: "/services#implants" },
-  { label: "Braces / Invisalign", href: "/services#braces" },
-  { label: "Veneers & Cosmetic Dentistry", href: "/services#veneers" },
-  { label: "Pediatric Dentistry", href: "/services#pediatric" },
-  { label: "Tooth Extraction", href: "/services#extraction" },
-  { label: "Emergency Dental Care", href: "/services#emergency" },
-  { label: "Other", href: "/services#other" }
+  { label: "General Checkup & Cleaning", href: "/services/general-dentistry" },
+  { label: "Pediatric Dentistry", href: "/services/pediatric-dentistry" },
+  { label: "Teeth Whitening", href: "/services/teeth-whitening" },
+  { label: "Root Canal Therapy", href: "/services/root-canal-therapy" },
+  { label: "Dental Implants", href: "/services/dental-implants" },
+  { label: "Braces / Invisalign", href: "/services/orthodontics-invisalign" },
+  { label: "Cosmetic Dentistry", href: "/services/cosmetic-dentistry" },
+  { label: "Emergency Dental Care", href: "/services/emergency-dentistry" },
 ];
 
 export const features = [

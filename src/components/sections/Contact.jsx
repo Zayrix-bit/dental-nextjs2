@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { siteInfo, ALL_SERVICES } from "@/data/siteData";
 
 /* ── Static Data ── */
@@ -130,8 +130,11 @@ export default function Contact({ className = "" }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState("");
+  const [today, setToday] = useState("");
 
-  const today = new Date().toISOString().split("T")[0];
+  useEffect(() => {
+    setToday(new Date().toISOString().split("T")[0]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -318,6 +321,7 @@ export default function Contact({ className = "" }) {
                 value={form.name}
                 onChange={handleChange}
                 disabled={loading}
+                suppressHydrationWarning
                 className={`${inputBase} ${errors.name ? inputError : ""}`}
               />
             </Field>
@@ -329,6 +333,7 @@ export default function Contact({ className = "" }) {
                 value={form.phone}
                 onChange={handleChange}
                 disabled={loading}
+                suppressHydrationWarning
                 className={`${inputBase} ${errors.phone ? inputError : ""}`}
               />
             </Field>
@@ -345,6 +350,7 @@ export default function Contact({ className = "" }) {
                 value={form.email}
                 onChange={handleChange}
                 disabled={loading}
+                suppressHydrationWarning
                 className={`${inputBase} ${errors.email ? inputError : ""}`}
               />
             </Field>
@@ -356,6 +362,7 @@ export default function Contact({ className = "" }) {
                   value={form.service}
                   onChange={handleChange}
                   disabled={loading}
+                  suppressHydrationWarning
                   className={`${inputBase} appearance-none cursor-pointer pr-8 ${errors.service ? inputError : ""}`}
                 >
                   <option value="">Select a service</option>
@@ -381,6 +388,7 @@ export default function Contact({ className = "" }) {
                 onChange={handleChange}
                 min={today}
                 disabled={loading}
+                suppressHydrationWarning
                 className={`${inputBase} ${errors.date ? inputError : ""}`}
               />
             </Field>
@@ -392,6 +400,7 @@ export default function Contact({ className = "" }) {
                   value={form.time}
                   onChange={handleChange}
                   disabled={loading}
+                  suppressHydrationWarning
                   className={`${inputBase} appearance-none cursor-pointer pr-8 ${errors.time ? inputError : ""}`}
                 >
                   <option value="">Select a time</option>
@@ -465,6 +474,7 @@ export default function Contact({ className = "" }) {
             <button
               type="submit"
               disabled={loading}
+              suppressHydrationWarning
               className="inline-flex items-center justify-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] disabled:opacity-70 disabled:cursor-not-allowed disabled:translate-y-0 text-white text-[13px] lg:text-[14px] font-semibold py-2.5 lg:py-3 px-6 rounded-lg transition-all duration-200 hover:-translate-y-0.5 shadow-sm border border-transparent cursor-pointer whitespace-nowrap"
             >
               {loading ? (
