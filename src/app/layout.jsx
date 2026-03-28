@@ -33,6 +33,8 @@ export const metadata = {
   },
 };
 
+import SmoothScrollProvider from '@/components/ui/SmoothScrollProvider';
+
 export default function RootLayout({ children }) {
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -74,7 +76,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={roboto.variable}>
       <body className={roboto.className}>
-        {children}
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
         <SpeedInsights />
         <script
           type="application/ld+json"

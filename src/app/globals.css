@@ -18,7 +18,6 @@
 
 /* ====== Base Styles ====== */
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
   scroll-padding-top: 80px;
 }
@@ -250,7 +249,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 .animate-infinite-scroll {
   display: flex;
   width: max-content;
-  animation: infinite-scroll 60s linear infinite;
+  animation: infinite-scroll 90s linear infinite;
 }
 
 .mask-edges {
