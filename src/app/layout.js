@@ -1,6 +1,7 @@
 import { siteInfo } from '@/data/siteData';
 import { Roboto } from 'next/font/google';
 import './globals.css';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],
@@ -74,6 +75,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={roboto.variable}>
       <body className={roboto.className}>
         {children}
+        <SpeedInsights />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
