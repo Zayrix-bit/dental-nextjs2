@@ -44,58 +44,250 @@ export const heroStats = [
 export const services = [
   {
     id: 'general',
+    slug: 'general-dentistry',
     icon: Stethoscope,
+    image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2070&auto=format&fit=crop',
     title: 'General Dentistry',
-    description:
-      'Maintain perfect oral health with comprehensive exams, cleanings, and proactive preventive care.',
+    shortDescription: 'Maintain perfect oral health with comprehensive exams, cleanings, and proactive preventive care.',
+    description: 'Our general dentistry services provide the foundation for a lifetime of optimal oral health. We focus on comprehensive exams, professional cleanings, and early detection of dental issues to prevent future complications. Utilizing state-of-the-art diagnostic technology, we ensure every aspect of your oral health is monitored and maintained.',
+    longDescription: [
+      "Regular dental check-ups are essential for preventing decay, gum disease, and other oral health issues. Our comprehensive general dentistry services are designed to keep your smile bright and healthy.",
+      "During your visit, our experienced team will perform a thorough examination, including digital X-rays if necessary, to assess your oral health. We will also provide a professional cleaning to remove plaque and tartar build-up.",
+      "We believe in patient education and will work with you to develop a personalized oral hygiene routine that fits your lifestyle. Our goal is to empower you to take control of your dental health."
+    ],
     isHighlighted: false,
     tags: ['Preventive', 'Family Care'],
+    benefits: [
+      'Early detection of dental issues',
+      'Prevention of cavities and gum disease',
+      'Fresher breath and a brighter smile',
+      'Personalized oral hygiene guidance',
+      'Long-term cost savings on dental care'
+    ],
+    procedure: [
+      { step: '1', title: 'Comprehensive Exam', description: 'Thorough evaluation of your teeth, gums, and oral tissues.' },
+      { step: '2', title: 'Digital Diagnostics', description: 'Low-radiation X-rays and 3D imaging for precise assessment.' },
+      { step: '3', title: 'Professional Cleaning', description: 'Removal of hardened plaque and professional polishing.' },
+      { step: '4', title: 'Treatment Plan', description: 'Detailed discussion of findings and personalized recommendations.' }
+    ],
+    highlights: {
+      duration: '45-60 Minutes',
+      painLevel: 'None',
+      recovery: 'Immediate',
+      frequency: 'Every 6 Months'
+    },
+    faqs: [
+      { question: 'How often should I get a dental checkup?', answer: 'We recommend visiting us every 6 months for a routine checkup and professional cleaning to maintain optimal oral health.' },
+      { question: 'Do professional cleanings hurt?', answer: 'No, professional cleanings are generally painless. Our hygienists use gentle techniques to ensure your comfort.' },
+      { question: 'What if you find a cavity during my exam?', answer: 'If we detect a cavity, we will discuss the best treatment options, which typically involves a simple, tooth-colored filling.' }
+    ],
+    relatedTreatments: ['teeth-whitening', 'cosmetic-dentistry']
   },
   {
     id: 'cosmetic',
+    slug: 'cosmetic-dentistry',
     icon: Sparkles,
+    image: 'https://images.unsplash.com/photo-1590664095641-7fa05f689813?q=80&w=2070&auto=format&fit=crop',
     title: 'Cosmetic Dentistry',
-    description:
-      "Transform your smile and boost your confidence with premium veneers, bonding, and total smile makeovers.",
+    shortDescription: "Transform your smile and boost your confidence with premium veneers, bonding, and total smile makeovers.",
+    description: "Our cosmetic dentistry solutions are designed to address imperfections and enhance the natural beauty of your smile. From porcelain veneers to full smile makeovers, we blend art and science to deliver stunning, life-changing results.",
+    longDescription: [
+      "A beautiful smile can significantly impact your self-esteem and how others perceive you. Our cosmetic dentistry treatments are tailored to your unique facial structure and aesthetic goals.",
+      "Whether you're looking to correct chipped, stained, or misaligned teeth, our expert cosmetic dentists utilize the latest materials and techniques to create a flawless, natural-looking smile.",
+      "We begin with a comprehensive digital smile design consultation, allowing you to preview your new smile before any treatment begins. We believe in conservative approaches that preserve your natural tooth structure whenever possible."
+    ],
     isHighlighted: true,
-    tags: ['Smile Design', 'Aesthetic'],
+    tags: ['Smile Design', 'Aesthetic', 'Veneers'],
+    benefits: [
+      'Dramatically improved appearance',
+      'Increased self-confidence',
+      'Correction of chips, cracks, and stains',
+      'Customized treatments for your unique face',
+      'Long-lasting, natural-looking results'
+    ],
+    procedure: [
+      { step: '1', title: 'Smile Consultation', description: 'In-depth discussion of your goals and digital smile analysis.' },
+      { step: '2', title: 'Custom Treatment Plan', description: 'Selection of procedures (veneers, bonding, etc.) tailored to you.' },
+      { step: '3', title: 'Preparation & Impressions', description: 'Gentle preparation of the teeth and highly accurate digital impressions.' },
+      { step: '4', title: 'Final Placement', description: 'Bonding of the final restorations for a flawless, brilliant smile.' }
+    ],
+    highlights: {
+      duration: 'Varies by procedure',
+      painLevel: 'Minimal to None',
+      recovery: '1-3 Days',
+      lifespan: '10-15+ Years (Veneers)'
+    },
+    faqs: [
+      { question: 'Are porcelain veneers permanent?', answer: 'Veneers are considered permanent as a thin layer of enamel is removed to place them. With proper care, they can last 10-15 years or longer.' },
+      { question: 'Will cosmetic treatments look natural?', answer: 'Absolutely. We use high-quality, translucent materials that closely mimic the appearance of natural teeth to ensure a seamless blend.' },
+      { question: 'Can I combine different cosmetic treatments?', answer: 'Yes, a "Smile Makeover" often combines multiple treatments like whitening, veneers, and bonding to achieve the desired result.' }
+    ],
+    relatedTreatments: ['teeth-whitening', 'orthodontics-invisalign']
   },
   {
     id: 'orthodontics',
+    slug: 'orthodontics-invisalign',
     icon: Activity,
-    title: 'Orthodontics',
-    description:
-      'Achieve perfectly straight teeth with discreet Invisalign and modern alignment solutions.',
+    image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2070&auto=format&fit=crop',
+    title: 'Orthodontics & Invisalign',
+    shortDescription: 'Achieve perfectly straight teeth with discreet Invisalign and modern alignment solutions.',
+    description: 'Straight teeth not only look better but are also easier to keep clean and healthy. Our modern orthodontic solutions, including clear aligners like Invisalign, offer discreet and comfortable ways to achieve a perfectly aligned smile.',
+    longDescription: [
+      "Misaligned teeth can lead to a variety of dental issues, including increased risk of decay, gum disease, and jaw pain. Our orthodontic treatments address both aesthetic concerns and functional problems.",
+      "We specialize in clear aligner therapy, providing a virtually invisible alternative to traditional metal braces. Using advanced 3D imaging, we map out your entire treatment plan from start to finish.",
+      "Whether you're a teenager or an adult seeking to improve your smile, our orthodontic solutions are tailored to fit seamlessly into your lifestyle with minimal disruption."
+    ],
     isHighlighted: false,
-    tags: ['Invisalign', 'Braces'],
+    tags: ['Invisalign', 'Clear Aligners', 'Braces'],
+    benefits: [
+      'Straighter, more attractive smile',
+      'Improved oral hygiene and reduced decay risk',
+      'Correction of bite and jaw alignment issues',
+      'Discreet treatment with clear aligners',
+      'Enhanced long-term dental health'
+    ],
+    procedure: [
+      { step: '1', title: '3D Scanning', description: 'Digital impression of your teeth using intraoral scanners.' },
+      { step: '2', title: 'Digital Treatment Plan', description: 'A virtual model showing your teeth moving into their final positions.' },
+      { step: '3', title: 'Aligner Fitting', description: 'Receiving your custom aligners and instructions for wear.' },
+      { step: '4', title: 'Progress Checks', description: 'Brief appointments every 6-8 weeks to monitor your progress.' }
+    ],
+    highlights: {
+      duration: '6-18 Months typically',
+      painLevel: 'Mild discomfort initially',
+      recovery: 'Immediate',
+      visits: 'Every 6-8 Weeks'
+    },
+    faqs: [
+      { question: 'Is Invisalign really invisible?', answer: 'Invisalign aligners are made of clear medical-grade plastic and are virtually unnoticeable when worn.' },
+      { question: 'How many hours a day must I wear aligners?', answer: 'For optimal results, aligners should be worn 20-22 hours a day, removing them only to eat, drink, brush, and floss.' },
+      { question: 'Are clear aligners painful?', answer: 'You may experience slight pressure or discomfort for the first few days of each new aligner set, which indicates your teeth are moving.' }
+    ],
+    relatedTreatments: ['cosmetic-dentistry', 'general-dentistry']
   },
   {
     id: 'whitening',
+    slug: 'teeth-whitening',
     icon: HeartPulse,
+    image: 'https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=2070&auto=format&fit=crop',
     title: 'Teeth Whitening',
-    description:
-      'Unlock a radiant, brilliant smile in just one single visit with our professional-grade whitening treatments.',
+    shortDescription: 'Unlock a radiant, brilliant smile in just one single visit with our professional-grade whitening treatments.',
+    description: 'Professional teeth whitening is one of the fastest and most effective ways to enhance your smile. Our advanced whitening systems safely remove years of stains and discoloration, revealing a significantly whiter, brighter smile.',
+    longDescription: [
+      "Over time, teeth can become stained from coffee, tea, wine, smoking, and certain foods. Our professional whitening treatments penetrate deep into the enamel to lift stubborn stains that over-the-counter products cannot reach.",
+      "We offer both fast-acting in-office whitening for immediate results and custom-fitted take-home kits for your convenience. Our treatments use professional-grade whitening agents that are safe for your enamel.",
+      "For patients with sensitive teeth, we adjust the concentration of the whitening gel and incorporate desensitizing agents to ensure a comfortable and pain-free experience."
+    ],
     isHighlighted: true,
-    tags: ['Instant Results', 'Safe & Painless'],
+    tags: ['Instant Results', 'Safe & Painless', 'Zoom'],
+    benefits: [
+      'Noticeably whiter teeth in one session',
+      'Removal of stubborn, deep-set stains',
+      'Safe, professional-grade ingredients',
+      'Customized treatments for sensitive teeth',
+      'Immediate boost in confidence'
+    ],
+    procedure: [
+      { step: '1', title: 'Shade Assessment', description: 'Evaluating your current shade and determining your goal shade.' },
+      { step: '2', title: 'Gum Protection', description: 'Applying a protective barrier to your gums and soft tissues.' },
+      { step: '3', title: 'Whitening Application', description: 'Applying the professional-grade whitening gel to your teeth.' },
+      { step: '4', title: 'Activation', description: 'Using a specialized LED light to accelerate the whitening process (for in-office treatments).' }
+    ],
+    highlights: {
+      duration: '45-90 Minutes (In-Office)',
+      painLevel: 'None to Mild Sensitivity',
+      recovery: 'Immediate',
+      results: 'Up to 8 shades whiter'
+    },
+    faqs: [
+      { question: 'Is teeth whitening safe for my enamel?', answer: 'Yes, our professional whitening treatments are completely safe and formulated to protect your enamel while lifting stains.' },
+      { question: 'Will I experience tooth sensitivity?', answer: 'Some patients experience temporary sensitivity. We use special desensitizing gels to minimize any discomfort during and after the procedure.' },
+      { question: 'How long do the whitening results last?', answer: 'Results can last anywhere from six months to two years, depending on your diet and oral hygiene habits. Touch-up kits can prolong the effects.' }
+    ],
+    relatedTreatments: ['cosmetic-dentistry', 'general-dentistry']
   },
   {
     id: 'implants',
+    slug: 'dental-implants',
     icon: ShieldPlus,
+    image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop',
     title: 'Dental Implants',
-    description:
-      'Restore complete function and esthetics permanently with our state-of-the-art implant technology.',
+    shortDescription: 'Restore complete function and esthetics permanently with our state-of-the-art implant technology.',
+    description: 'Dental implants are the gold standard for replacing missing teeth. Acting as artificial tooth roots, they provide a permanent, stable foundation for lifelike crowns, bridges, or dentures, restoring both the aesthetics and full functionality of your smile.',
+    longDescription: [
+      "Missing teeth can lead to a host of problems, including difficulty chewing, speech issues, and bone loss in the jaw. Dental implants are the only tooth replacement option that preserves jawbone health by simulating natural bone stimulation.",
+      "Our practice utilizes advanced 3D imaging and surgical planning software to ensure precise and minimally invasive implant placement. From single tooth replacements to full arch restorations (All-on-4), we offer comprehensive implant solutions.",
+      "Implants look, feel, and function just like natural teeth. With proper care, they are designed to last a lifetime, giving you the freedom to eat, speak, and smile with absolute confidence."
+    ],
     isHighlighted: true,
-    tags: ['Permanent Solution', 'Advanced Tech'],
+    tags: ['Permanent Solution', 'Advanced Tech', 'All-on-4'],
+    benefits: [
+      'Permanent replacement for missing teeth',
+      'Preserves jawbone density and facial structure',
+      'Functions like natural teeth for eating and speaking',
+      'No need to alter adjacent healthy teeth',
+      'Exceptionally high long-term success rate'
+    ],
+    procedure: [
+      { step: '1', title: '3D Imaging & Planning', description: 'Assessing bone density and precise surgical planning using CBCT scans.' },
+      { step: '2', title: 'Implant Placement', description: 'Surgical placement of the titanium implant post into the jawbone.' },
+      { step: '3', title: 'Osseointegration', description: 'A healing period (typically 3-6 months) where the bone fuses to the implant.' },
+      { step: '4', title: 'Restoration', description: 'Attaching the custom-made, lifelike crown to the fully integrated implant.' }
+    ],
+    highlights: {
+      duration: 'Varies based on healing',
+      painLevel: 'Mild to Moderate (during recovery)',
+      recovery: '3-7 Days',
+      lifespan: 'Lifetime (with proper care)'
+    },
+    faqs: [
+      { question: 'Am I a candidate for dental implants?', answer: 'Most adults with healthy gums and adequate jawbone density are good candidates. We will perform a comprehensive evaluation to determine your suitability.' },
+      { question: 'Is the implant procedure painful?', answer: 'The procedure is performed under local anesthesia or sedation, ensuring you are comfortable and pain-free. Post-operative discomfort is usually manageable with over-the-counter medication.' },
+      { question: 'Do you offer All-on-4 full arch implants?', answer: 'Yes, we provide full mouth restoration options, including the All-on-4 technique, which can replace an entire arch of teeth in a single day.' }
+    ],
+    relatedTreatments: ['general-dentistry', 'cosmetic-dentistry']
   },
   {
     id: 'emergency',
+    slug: 'emergency-dentistry',
     icon: ClockAlert,
+    image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop',
     title: 'Emergency Care',
-    description:
-      'Experience immediate relief with our 24/7 priority emergency services when you need us most.',
+    shortDescription: 'Experience immediate relief with our 24/7 priority emergency services when you need us most.',
+    description: 'Dental emergencies can be stressful and painful. Our team is dedicated to providing prompt, compassionate care to alleviate your pain and comprehensively address the underlying issue as quickly as possible.',
+    longDescription: [
+      "Whether you've experienced dental trauma, severe toothache, a broken restoration, or sudden swelling, fast professional attention is crucial to saving your tooth and preventing further complications.",
+      "Our practice offers priority scheduling and after-hours availability for severe emergencies. We utilize advanced diagnostic tools to quickly identify the source of your pain and formulate an effective treatment plan.",
+      "Don't wait if you're experiencing severe dental pain. Contact us immediately for instructions and priority care. We are committed to getting you out of pain and restoring your oral health immediately."
+    ],
     isHighlighted: false,
-    tags: ['Immediate Relief', '24/7 Access'],
-  },
+    tags: ['Immediate Relief', '24/7 Access', 'Priority'],
+    benefits: [
+      'Rapid pain relief and diagnosis',
+      'Prevention of severe complications',
+      'Priority scheduling for urgent cases',
+      'Expert management of dental trauma',
+      'Compassionate, anxiety-reducing environment'
+    ],
+    procedure: [
+      { step: '1', title: 'Immediate Contact', description: 'Call our emergency line for priority triaging and instructions.' },
+      { step: '2', title: 'Urgent Assessment', description: 'Fast diagnostic X-rays and examination to identify the problem.' },
+      { step: '3', title: 'Pain Management', description: 'Administering appropriate anesthesia or medication for immediate relief.' },
+      { step: '4', title: 'Definitive Treatment', description: 'Performing the necessary procedure (e.g., extraction, RCT) to resolve the issue.' }
+    ],
+    highlights: {
+      duration: 'Priority Scheduling',
+      painLevel: 'Varies',
+      recovery: 'Depends on treatment',
+      availability: '24/7 Emergency Line'
+    },
+    faqs: [
+      { question: 'What counts as a dental emergency?', answer: 'Severe pain, knocked-out teeth, excessive bleeding, severe swelling, and sudden trauma to the mouth all qualify as dental emergencies requiring immediate attention.' },
+      { question: 'What should I do if a tooth gets knocked out?', answer: 'Handle the tooth by the crown (top part), gentle rinse it without scrubbing, and try to place it back in the socket. If not possible, keep it in a glass of milk and get to us immediately.' },
+      { question: 'Do you accept walk-in emergencies?', answer: 'While we highly recommend calling ahead so we can prepare for your arrival, we do accept severe walk-in emergencies during business hours.' }
+    ],
+    relatedTreatments: ['general-dentistry', 'dental-implants']
+  }
 ];
 
 export const ALL_SERVICES = [
