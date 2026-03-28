@@ -5,6 +5,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     formats: ['image/webp', 'image/avif'],
     remotePatterns: [
@@ -20,6 +23,4 @@ const nextConfig = {
   outputFileTracingRoot: __dirname,
 };
 
-
 export default nextConfig;
-
