@@ -1,17 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { siteInfo, ALL_SERVICES } from "@/data/siteData";
+import { siteInfo, ALL_SERVICES, TIME_SLOTS } from "@/data/siteData";
 
 /* ── Static Data ── */
-const TIME_SLOTS = [
-  "09:00 AM – 10:00 AM",
-  "10:00 AM – 11:00 AM",
-  "11:00 AM – 12:00 PM",
-  "02:00 PM – 03:00 PM",
-  "03:00 PM – 04:00 PM",
-  "05:00 PM – 06:00 PM",
-];
 
 const CONTACT_METHODS = [
   {
@@ -157,27 +149,31 @@ export default function Contact({ className = "" }) {
 
     setLoading(true);
     try {
-      const nameParts = form.name.trim().split(/\s+/);
       const payload = {
-        firstName: nameParts[0],
-        lastName: nameParts.slice(1).join(" "),
-        email: form.email,
-        phone: form.phone,
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
         service: form.service,
         date: form.date,
-        message: `Preferred Time: ${form.time}\nPreferred Contact Method: ${form.contactMethod}\n\nNotes:\n${form.message}`,
+        time: form.time,
+        message: form.message.trim(),
       };
 
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data?.message || "Failed to send");
+      if (!res.ok) {
+        throw new Error(data?.error || data?.message || "Failed to send email");
+      }
+
       setSubmitted(true);
     } catch (err) {
-      setApiError(err.message || "Unable to submit. Please try again.");
+      console.error("Submission Error:", err);
+      setApiError(err.message || "Unable to submit appointment. Please try again.");
     } finally {
       setLoading(false);
     }

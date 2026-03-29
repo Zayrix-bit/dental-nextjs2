@@ -1,30 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { siteInfo } from "@/data/siteData";
+import { useState, useEffect } from "react";
+import { siteInfo, ALL_SERVICES, TIME_SLOTS } from "@/data/siteData";
 
 /* ── Static Data ── */
-const SERVICES = [
-  "General Checkup & Cleaning",
-  "Teeth Whitening",
-  "Root Canal Treatment (RCT)",
-  "Dental Implants",
-  "Braces / Invisalign",
-  "Tooth Extraction",
-  "Veneers & Cosmetic Dentistry",
-  "Pediatric Dentistry",
-  "Emergency Dental Care",
-  "Other",
-];
-
-const TIME_SLOTS = [
-  "09:00 AM – 10:00 AM",
-  "10:00 AM – 11:00 AM",
-  "11:00 AM – 12:00 PM",
-  "02:00 PM – 03:00 PM",
-  "03:00 PM – 04:00 PM",
-  "05:00 PM – 06:00 PM",
-];
 
 const CONTACT_METHODS = [
   {
@@ -142,8 +121,11 @@ export default function ExtendedContact({ className = "" }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState("");
+  const [today, setToday] = useState("");
 
-  const today = new Date().toISOString().split("T")[0];
+  useEffect(() => {
+    setToday(new Date().toISOString().split("T")[0]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -166,27 +148,31 @@ export default function ExtendedContact({ className = "" }) {
 
     setLoading(true);
     try {
-      const nameParts = form.name.trim().split(/\s+/);
       const payload = {
-        firstName: nameParts[0],
-        lastName: nameParts.slice(1).join(" "),
-        email: form.email,
-        phone: form.phone,
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
         service: form.service,
         date: form.date,
-        message: `Preferred Time: ${form.time}\nPreferred Contact Method: ${form.contactMethod}\n\nNotes:\n${form.message}`,
+        time: form.time,
+        message: form.message.trim(),
       };
 
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data?.message || "Failed to send");
+      if (!res.ok) {
+        throw new Error(data?.error || data?.message || "Failed to send email");
+      }
+
       setSubmitted(true);
     } catch (err) {
-      setApiError(err.message || "Unable to submit. Please try again.");
+      console.error("Submission Error:", err);
+      setApiError(err.message || "Unable to submit appointment. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -313,6 +299,7 @@ export default function ExtendedContact({ className = "" }) {
                 value={form.name}
                 onChange={handleChange}
                 disabled={loading}
+                suppressHydrationWarning
                 className={`${inputBase} ${errors.name ? inputError : ""}`}
               />
             </Field>
@@ -323,6 +310,7 @@ export default function ExtendedContact({ className = "" }) {
                 value={form.phone}
                 onChange={handleChange}
                 disabled={loading}
+                suppressHydrationWarning
                 className={`${inputBase} ${errors.phone ? inputError : ""}`}
               />
             </Field>
@@ -338,6 +326,7 @@ export default function ExtendedContact({ className = "" }) {
                 value={form.email}
                 onChange={handleChange}
                 disabled={loading}
+                suppressHydrationWarning
                 className={`${inputBase} ${errors.email ? inputError : ""}`}
               />
             </Field>
@@ -348,11 +337,12 @@ export default function ExtendedContact({ className = "" }) {
                   value={form.service}
                   onChange={handleChange}
                   disabled={loading}
+                  suppressHydrationWarning
                   className={`${inputBase} appearance-none cursor-pointer pr-10 ${errors.service ? inputError : ""}`}
                 >
                   <option value="">Select a service</option>
-                  {SERVICES.map((s) => (
-                    <option key={s}>{s}</option>
+                  {ALL_SERVICES.map((s) => (
+                    <option key={s.label} value={s.label}>{s.label}</option>
                   ))}
                 </select>
                 <span className="absolute right-3.5 top-1/2 -translate-y-1/2">
@@ -372,6 +362,7 @@ export default function ExtendedContact({ className = "" }) {
                 onChange={handleChange}
                 min={today}
                 disabled={loading}
+                suppressHydrationWarning
                 className={`${inputBase} ${errors.date ? inputError : ""}`}
               />
             </Field>
@@ -382,11 +373,12 @@ export default function ExtendedContact({ className = "" }) {
                   value={form.time}
                   onChange={handleChange}
                   disabled={loading}
+                  suppressHydrationWarning
                   className={`${inputBase} appearance-none cursor-pointer pr-10 ${errors.time ? inputError : ""}`}
                 >
                   <option value="">Select a time</option>
                   {TIME_SLOTS.map((t) => (
-                    <option key={t}>{t}</option>
+                    <option key={t} value={t}>{t}</option>
                   ))}
                 </select>
                 <span className="absolute right-3.5 top-1/2 -translate-y-1/2">
