@@ -210,6 +210,28 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   80% { transform: translateX(2px) scale(1.01); }
 }
 
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 2s infinite linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer {
+    animation: none;
+    background: transparent;
+  }
+}
+
 /* Professional WhatsApp Shake/Giggle */
 @keyframes whatsapp-giggle {
   0%, 100% { transform: scale(1) rotate(0); }

@@ -191,7 +191,7 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-5 lg:gap-8">
-          {navLinks.filter(l => l.label !== 'Testimonials').map((link) => {
+          {navLinks.filter(l => !['Testimonials', 'Contact'].includes(l.label)).map((link) => {
             if (link.label === 'Services') {
               return <ServicesDropdown key={link.href} scrolled={effectiveScrolled} />;
             }
@@ -263,7 +263,7 @@ export default function Header() {
                <a href={`tel:${siteInfo.phoneRaw}`} className="text-rose-500 text-xl font-bold">{siteInfo.phone}</a>
             </div>
 
-            {navLinks.filter(l => l.label !== 'Testimonials').map((link) => {
+            {navLinks.filter(l => !['Testimonials', 'Contact'].includes(l.label)).map((link) => {
               if (link.label === 'Services') {
                 return (
                   <MobileServicesAccordion key={link.href} onClose={closeMobile} />
