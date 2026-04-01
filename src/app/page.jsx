@@ -18,6 +18,11 @@ const BeforeAfter = dynamic(() => import('@/components/sections/BeforeAfter'), {
   ssr: true,
 });
 
+const FAQ = dynamic(() => import('@/components/sections/FAQ'), {
+  loading: () => <SectionSkeleton height="600px" />,
+  ssr: true,
+});
+
 const Contact = dynamic(() => import('@/components/sections/Contact'), {
   loading: () => <SectionSkeleton height="800px" />,
   ssr: true,
@@ -47,6 +52,7 @@ export default function Home() {
         <WhyChooseUs />
         <Testimonials />
         <BeforeAfter />
+        <FAQ />
         <Contact />
         <LocationMap />
       </main>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { siteInfo, ALL_SERVICES, TIME_SLOTS } from "@/data/siteData";
 
 /* ── Static Data ── */
@@ -125,6 +125,38 @@ export default function Contact({ className = "" }) {
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState("");
   const [today, setToday] = useState("");
+  
+  /* ── Premium High-End Micro-Interaction Logic ── */
+  const [hasTriggered, setHasTriggered] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) return;
+
+    let timeoutId;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasTriggered) {
+          // Refined delay (150ms) as per UX motion guidelines
+          timeoutId = setTimeout(() => {
+            setHasTriggered(true);
+          }, 150);
+          
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.6 } // Subtle trigger point at 60% visibility
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [hasTriggered]);
 
   useEffect(() => {
     setToday(new Date().toISOString().split("T")[0]);
@@ -215,19 +247,19 @@ export default function Contact({ className = "" }) {
   }
 
   return (
-    <section id="appointment" className="py-12 lg:py-24 bg-bg-section px-4 overflow-hidden">
-      <div className="max-w-[1200px] mx-auto text-center mb-10 lg:mb-14">
-        <span className="inline-block text-[11px] font-black tracking-[0.2em] uppercase text-accent mb-3 lg:mb-4">
-          Personalized Care
-        </span>
+    <section id="appointment" className="py-10 lg:py-16 bg-bg-section px-4 overflow-hidden">
+      <div className="max-w-[1200px] mx-auto text-center mb-8 lg:mb-10">
         <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-black text-text-dark tracking-tighter leading-[1.1]">
-           Reserve Your <span className="text-primary italic font-medium">Bespoke Experience.</span>
+           Schedule Your Private <span className="text-primary italic font-medium">Consultation.</span>
         </h2>
       </div>
 
-      <div className={`max-w-[1000px] mx-auto grid grid-cols-1 lg:grid-cols-[320px_1fr] bg-white rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-slate-100 transition-all duration-500 ${className}`}>
+      <div 
+        ref={sectionRef}
+        className={`max-w-[1000px] mx-auto grid grid-cols-1 lg:grid-cols-[320px_1fr] bg-white rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-slate-100 transition-all duration-500 ${hasTriggered ? 'animate-attention-nudge' : ''} ${className}`}
+      >
 
-        <aside className="relative bg-linear-to-br from-primary to-primary-dark p-8 lg:p-10 flex flex-col">
+        <aside className="relative bg-linear-to-br from-primary to-primary-dark p-8 flex flex-col">
           <div className="absolute -bottom-20 -right-20 w-48 h-48 rounded-full bg-accent opacity-20 blur-[50px] pointer-events-none" />
           
           <h3 className="relative z-10 text-2xl lg:text-[26px] font-black text-white leading-tight mb-3">
@@ -278,14 +310,14 @@ export default function Contact({ className = "" }) {
           </div>
         </aside>
 
-        <form className="p-8 lg:p-12 flex flex-col gap-6" onSubmit={handleSubmit} noValidate>
+        <form className="p-8 lg:p-10 flex flex-col gap-5" onSubmit={handleSubmit} noValidate>
           {apiError && (
             <div className="bg-red-50 text-red-800 text-[13px] font-bold px-4 py-3 rounded-xl border-l-4 border-red-500 mb-2 shadow-sm">
               {apiError}
             </div>
           )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <Field label="Patient Name" htmlFor="name" required error={errors.name}>
               <input
                 id="name"
@@ -310,7 +342,7 @@ export default function Contact({ className = "" }) {
             </Field>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <Field label="Email Address" htmlFor="email" required error={errors.email}>
               <input
                 id="email"
@@ -345,7 +377,7 @@ export default function Contact({ className = "" }) {
             </Field>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <Field label="Consultation Date" htmlFor="date" required error={errors.date}>
               <input
                 id="date"

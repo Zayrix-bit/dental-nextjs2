@@ -201,6 +201,38 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   to { opacity: 1; transform: none; }
 }
 
+/* ====== Refined Premium Notification Nudge ====== */
+@keyframes premium-attention-nudge {
+  0%, 100% { transform: translateX(0) scale(1); }
+  20% { transform: translateX(-3px) scale(1.01); }
+  40% { transform: translateX(3px) scale(1.01); }
+  60% { transform: translateX(-2px) scale(1.01); }
+  80% { transform: translateX(2px) scale(1.01); }
+}
+
+/* Reduced motion for smaller screens */
+@media (max-width: 640px) {
+  @keyframes premium-attention-nudge {
+    0%, 100% { transform: translateX(0) scale(1); }
+    20% { transform: translateX(-2px) scale(1.005); }
+    40% { transform: translateX(2px) scale(1.005); }
+    60% { transform: translateX(-1px) scale(1.005); }
+    80% { transform: translateX(1px) scale(1.005); }
+  }
+}
+
+.animate-attention-nudge {
+  animation: premium-attention-nudge 450ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-attention-nudge {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 /* ====== Blog Article Typography ====== */
 .prose-dental h2 {
   font-size: 1.55rem; font-weight: 700;
