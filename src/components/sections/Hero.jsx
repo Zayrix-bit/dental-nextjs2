@@ -20,7 +20,7 @@ export default function Hero() {
           src="/images/hero-bg.png"
           alt="Modern dental clinic interior"
           fill
-          className="object-cover opacity-20"
+          className="object-cover opacity-15"
           priority={true}
           sizes="100vw"
           quality={75}
