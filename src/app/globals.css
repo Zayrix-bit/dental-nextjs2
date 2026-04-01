@@ -210,6 +210,13 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   80% { transform: translateX(2px) scale(1.01); }
 }
 
+/* Professional WhatsApp Shake/Giggle */
+@keyframes whatsapp-giggle {
+  0%, 100% { transform: scale(1) rotate(0); }
+  10%, 30%, 50%, 70%, 90% { transform: scale(1.08) rotate(-4deg); }
+  20%, 40%, 60%, 80% { transform: scale(1.08) rotate(4deg); }
+}
+
 /* Reduced motion for smaller screens */
 @media (max-width: 640px) {
   @keyframes premium-attention-nudge {
@@ -219,6 +226,11 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     60% { transform: translateX(-1px) scale(1.005); }
     80% { transform: translateX(1px) scale(1.005); }
   }
+  @keyframes whatsapp-giggle {
+    0%, 100% { transform: scale(1) rotate(0); }
+    25%, 75% { transform: scale(1.05) rotate(-2deg); }
+    50% { transform: scale(1.05) rotate(2deg); }
+  }
 }
 
 .animate-attention-nudge {
@@ -226,8 +238,14 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   will-change: transform;
 }
 
+.animate-whatsapp-giggle {
+  animation: whatsapp-giggle 800ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  animation-delay: 1800ms; /* Increased delay for a 'settled' attention grab */
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-attention-nudge {
+  .animate-attention-nudge, .animate-whatsapp-giggle {
     animation: none !important;
     transform: none !important;
   }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { siteInfo, ALL_SERVICES, TIME_SLOTS } from "@/data/siteData";
 
 /* ── Static Data ── */
@@ -8,18 +8,18 @@ import { siteInfo, ALL_SERVICES, TIME_SLOTS } from "@/data/siteData";
 const CONTACT_METHODS = [
   {
     id: "phone",
-    label: "Call",
+    label: "Voice Call",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px]">
         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.2 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
       </svg>
     ),
   },
   {
     id: "whatsapp",
-    label: "WhatsApp",
+    label: "WhatsApp Chat",
     icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .006 5.408 0 12.045c0 2.12.554 4.189 1.605 6.006L0 24l6.117-1.605A11.803 11.803 0 0012.05 24c6.604 0 12.003-5.402 12.006-12.007a11.93 11.93 0 00-3.614-8.471" />
       </svg>
     ),
@@ -29,31 +29,39 @@ const CONTACT_METHODS = [
 /* ── Validation ── */
 function validate(form) {
   const errors = {};
-  if (!form.name.trim()) errors.name = "Full name is required";
-  if (!form.email.trim()) errors.email = "Email is required";
+  if (!form.name.trim()) errors.name = "Please enter your full name.";
+  if (!form.email.trim()) errors.email = "We need your email to send the confirmation.";
   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-    errors.email = "Enter a valid email address";
-  if (!form.phone.trim()) errors.phone = "Phone number is required";
+    errors.email = "That doesn't look like a valid email address.";
+  if (!form.phone.trim()) errors.phone = "A valid phone number is required.";
   else if (!/^\+?[0-9\s\-()]{7,20}$/.test(form.phone))
-    errors.phone = "Enter a valid phone number";
-  if (!form.service) errors.service = "Please select a service";
-  if (!form.date) errors.date = "Please pick a preferred date";
-  if (!form.time) errors.time = "Please select a preferred time";
+    errors.phone = "Please enter a standard phone number (7+ digits).";
+  if (!form.service) errors.service = "Selecting a service helps us prepare for your visit.";
+  if (!form.date) errors.date = "Please choose a date from our calendar.";
+  if (!form.time) errors.time = "Choosing a time slot is mandatory for scheduling.";
   return errors;
 }
 
 /* ── Reusable Input Wrapper ── */
-function Field({ label, required, optional, error, children }) {
+function Field({ label, htmlFor, required, optional, error, children }) {
+  const LabelTag = htmlFor ? 'label' : 'div';
   return (
-    <div className="flex flex-col gap-1.5">
-      <label className="text-[13px] font-semibold text-text-dark">
+    <div className="flex flex-col gap-1">
+      <LabelTag {...(htmlFor ? { htmlFor } : {})} className="text-xs font-bold text-text-dark mb-0.5 block tracking-tight uppercase opacity-85">
         {label}
         {required && <span className="text-accent ml-0.5">*</span>}
-        {optional && <span className="text-text-light font-normal ml-1">(optional)</span>}
-      </label>
+        {optional && <span className="text-slate-400 font-normal ml-1 lowercase">(optional)</span>}
+      </LabelTag>
       {children}
       {error && (
-        <span className="text-[12px] text-red-500 font-medium animate-[fadeIn_0.2s_ease]">{error}</span>
+        <span className="text-[11px] text-red-500 font-bold animate-[fadeInUp_0.2s_ease] mt-0.5 flex items-center gap-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="w-2.5 h-2.5">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          {error}
+        </span>
       )}
     </div>
   );
@@ -102,10 +110,10 @@ const ChevronDownIcon = () => (
 
 /* ── Shared input styles ── */
 const inputBase =
-  "w-full text-[15px] font-normal text-text-dark bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none transition-all duration-300 placeholder:text-gray-400 hover:border-slate-300 focus:bg-white focus:border-primary focus:shadow-[0_4px_20px_rgba(10,58,92,0.08)]";
+  "w-full text-[13px] lg:text-[14px] font-medium text-text-dark bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none transition-all duration-300 placeholder:text-slate-400 hover:border-slate-300 focus:bg-white focus:border-primary focus:shadow-[0_0_0_1px_rgba(10,58,92,0.1)]";
 
 const inputError =
-  "border-red-400 bg-red-50/60 shadow-[0_0_0_3px_rgba(239,68,68,0.08)]";
+  "border-red-300 bg-red-50/40 shadow-sm focus:border-red-400";
 
 /* ════════════════════════════════════════════════
    EXTENDED CONTACT COMPONENT  (for /contact page)
@@ -123,6 +131,38 @@ export default function ExtendedContact({ className = "" }) {
   const [apiError, setApiError] = useState("");
   const [today, setToday] = useState("");
 
+  /* ── Premium High-End Micro-Interaction Logic ── */
+  const [hasTriggered, setHasTriggered] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) return;
+
+    let timeoutId;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasTriggered) {
+          // Refined delay (150ms) as per UX motion guidelines
+          timeoutId = setTimeout(() => {
+            setHasTriggered(true);
+          }, 150);
+
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.6 } // Subtle trigger point at 60% visibility
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [hasTriggered]);
+
   useEffect(() => {
     setToday(new Date().toISOString().split("T")[0]);
   }, []);
@@ -138,11 +178,11 @@ export default function ExtendedContact({ className = "" }) {
     setApiError("");
 
     const errs = validate(form);
-    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
-
-    const selectedDateTime = new Date(`${form.date} ${form.time}`);
-    if (selectedDateTime < new Date()) {
-      setErrors((prev) => ({ ...prev, time: "Please select a future time" }));
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      // Scroll to first error for better UX
+      const firstErr = Object.keys(errs)[0];
+      document.getElementById(firstErr)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
@@ -193,23 +233,23 @@ export default function ExtendedContact({ className = "" }) {
   /* ── Success State ── */
   if (submitted) {
     return (
-      <section className="py-20 lg:py-28 bg-transparent px-4">
-        <div className={`max-w-lg mx-auto bg-white rounded-3xl shadow-[0_20px_50px_rgba(13,39,51,0.08)] border border-[rgba(160,210,235,0.25)] p-12 lg:p-16 flex flex-col items-center text-center animate-[fadeInUp_0.4s_ease] ${className}`}>
-          <div className="w-[72px] h-[72px] rounded-full bg-emerald-50 border-2 border-emerald-200 flex items-center justify-center mb-7 text-emerald-500">
+      <section className="py-12 lg:py-20 bg-bg-section px-4">
+        <div className={`max-w-md mx-auto bg-white rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100 p-10 flex flex-col items-center text-center animate-[fadeInUp_0.5s_ease] ${className}`}>
+          <div className="w-16 h-16 rounded-full bg-emerald-50 border-2 border-emerald-100 flex items-center justify-center mb-6 text-emerald-500">
             <CheckCircleIcon />
           </div>
-          <h3 className="text-2xl lg:text-3xl font-extrabold text-text-dark mb-3 tracking-tight">
-            Appointment Request Sent!
+          <h3 className="text-2xl lg:text-3xl font-black text-text-dark mb-3 tracking-tight">
+            Consultation Scheduled!
           </h3>
-          <p className="text-base text-text-light leading-relaxed mb-8">
-            Thank you, <strong className="text-primary-dark font-semibold">{form.name}</strong>. We&apos;ll contact you via{" "}
-            <strong className="text-primary-dark font-semibold capitalize">{form.contactMethod}</strong> within 24 hours to confirm.
+          <p className="text-[15px] text-text-light leading-relaxed mb-8">
+            Thank you, <strong className="text-primary-dark font-bold">{form.name}</strong>. We will reach out via{" "}
+            <strong className="text-secondary-dark font-bold underline decoration-accent/30">{form.contactMethod}</strong> shortly to finalize your visit.
           </p>
           <button
             onClick={resetForm}
-            className="bg-primary hover:bg-primary-dark text-white font-semibold text-sm tracking-wide uppercase px-8 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+            className="btn-primary w-full py-4 rounded-xl font-bold tracking-wide uppercase transition-all duration-200"
           >
-            Book Another Appointment
+            Start New Booking
           </button>
         </div>
       </section>
@@ -218,198 +258,189 @@ export default function ExtendedContact({ className = "" }) {
 
   /* ── Main Form ── */
   return (
-    <section className="py-16 lg:py-24 bg-transparent px-4">
-      {/* Card Wrapper */}
-      <div className={`max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[340px_1fr] bg-white rounded-3xl overflow-hidden shadow-premium border border-slate-100 ${className}`}>
+    <section className="py-10 lg:py-16 bg-bg-section px-4 overflow-hidden">
+      <div className="max-w-[1000px] mx-auto px-4 md:px-6 mb-10 lg:mb-14 text-left">
+        <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark leading-[1.1] tracking-tight mb-6">
+          Schedule Your Private <span className="text-primary">Consultation.</span>
+        </h2>
+        <p className="text-slate-500 text-[0.9rem] md:text-[1rem] leading-relaxed font-medium mb-8 max-w-2xl">
+          Begin your journey towards a clinical masterpiece. Our coordinators will contact you within 12 hours.
+        </p>
+      </div>
 
-        {/* ── Left Panel ── */}
-        <aside className="relative bg-linear-to-br from-primary to-primary-dark p-10 lg:p-11 flex flex-col overflow-hidden">
-          {/* Decorative blurs */}
-          <div className="absolute -bottom-16 -right-16 w-48 h-48 rounded-full bg-accent opacity-20 blur-2xl pointer-events-none" />
-          <div className="absolute -top-10 -left-10 w-32 h-32 rounded-full bg-white opacity-10 blur-[25px] pointer-events-none" />
+      <div
+        id="appointment"
+        ref={sectionRef}
+        className={`scroll-mt-5 max-w-[1000px] mx-auto grid grid-cols-1 lg:grid-cols-[320px_1fr] bg-white rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-slate-100 transition-all duration-500 ${className}`}
+      >
 
-          <span className="relative z-10 inline-block text-[11px] font-semibold tracking-[0.16em] uppercase text-[#7DD3F8] mb-3">
-            Book Your Visit
-          </span>
-          <h3 className="relative z-10 text-[28px] lg:text-[32px] font-bold text-white leading-tight mb-3">
-            Your <em className="italic text-accent">Perfect Smile</em> Starts&nbsp;Here
+        <aside className="relative bg-linear-to-br from-primary to-primary-dark p-8 flex flex-col">
+          <div className="absolute -bottom-20 -right-20 w-48 h-48 rounded-full bg-accent opacity-20 blur-[50px] pointer-events-none" />
+
+          <h3 className="relative z-10 text-2xl lg:text-[26px] font-black text-white leading-tight mb-3">
+            Premium Consultation.
           </h3>
-          <p className="relative z-10 text-[14px] text-white/85 leading-relaxed mb-10">
-            Schedule your appointment in minutes. Our team will confirm within 24 hours.
+          <p className="relative z-10 text-[13px] lg:text-[14px] text-white/75 leading-relaxed mb-10 font-medium">
+            Entrust your smile to experts. Select your preferred slot and we will handle the rest.
           </p>
 
-          {/* Info Items */}
           <div className="relative z-10 flex flex-col gap-6 flex-1">
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 rounded-[10px] bg-white/12 border border-white/20 flex items-center justify-center shrink-0">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 shadow-inner">
                 <MapPinIcon />
               </div>
-              <div>
-                <strong className="block text-[12px] font-semibold text-[#7DD3F8] tracking-wide uppercase mb-1">Location</strong>
-                <span className="text-[14px] text-white leading-snug">{siteInfo.address.street}<br />{siteInfo.address.city}</span>
+              <div className="pt-0.5">
+                <strong className="block text-[11px] font-black text-accent tracking-widest uppercase mb-1">Our Studio</strong>
+                <span className="text-[13px] lg:text-[14px] text-white/95 leading-relaxed font-medium">{siteInfo.address.street}, {siteInfo.address.city}</span>
               </div>
             </div>
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 rounded-[10px] bg-white/12 border border-white/20 flex items-center justify-center shrink-0">
-                <PhoneIcon />
+            <div className="flex items-start gap-4 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 shadow-inner text-white">
+                <PhoneIcon className="w-5 h-5" />
               </div>
-              <div>
-                <strong className="block text-[12px] font-semibold text-[#7DD3F8] tracking-wide uppercase mb-1">Phone</strong>
-                <span className="text-[14px] text-white">{siteInfo.phone}</span>
+              <div className="pt-0.5">
+                <strong className="block text-[11px] font-black text-accent tracking-widest uppercase mb-1">Inquiries</strong>
+                <span className="text-[14px] lg:text-[15px] text-white font-bold">{siteInfo.phone}</span>
               </div>
             </div>
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 rounded-[10px] bg-white/12 border border-white/20 flex items-center justify-center shrink-0">
-                <ClockIcon />
-              </div>
-              <div>
-                <strong className="block text-[12px] font-semibold text-[#7DD3F8] tracking-wide uppercase mb-1">Hours</strong>
-                <span className="text-[14px] text-white leading-snug">{siteInfo.hours.weekdays}<br />{siteInfo.hours.saturday}</span>
-              </div>
+
+            {/* Compact Professional WhatsApp CTA */}
+            <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-1.5">
+              <p className="text-[11px] text-white/50 font-medium tracking-wide leading-snug">
+                Quick inquiry? <span className="text-white/80">Skip the form</span> and chat now.
+              </p>
+              <a
+                href={siteInfo.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group relative flex items-center justify-center gap-2.5 bg-emerald-500 hover:bg-emerald-600 text-white py-2.5 rounded-xl text-[13px] font-bold tracking-tight shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 overflow-hidden ${hasTriggered ? 'animate-whatsapp-giggle' : ''}`}
+              >
+                <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite] pointer-events-none" />
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                WhatsApp Chat
+              </a>
             </div>
           </div>
-
-          {/* WhatsApp CTA */}
-          <a
-            href={siteInfo.whatsappUrl || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative z-10 flex items-center justify-center gap-2.5 mt-10 bg-[#25D366] hover:bg-[#20ba56] text-white text-[14px] font-semibold py-3.5 px-5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,211,102,0.3)]"
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .006 5.408 0 12.045c0 2.12.554 4.189 1.605 6.006L0 24l6.117-1.605A11.803 11.803 0 0012.05 24c6.604 0 12.003-5.402 12.006-12.007a11.93 11.93 0 00-3.614-8.471" />
-            </svg>
-            Chat on WhatsApp
-          </a>
         </aside>
 
         {/* ── Right Panel (Form) ── */}
-        <form className="p-8 lg:p-12 flex flex-col gap-5" onSubmit={handleSubmit} noValidate aria-busy={loading}>
+        <form className="p-8 lg:p-10 flex flex-col gap-5" onSubmit={handleSubmit} noValidate>
           {apiError && (
-            <div className="bg-red-50 text-red-800 text-[13px] px-4 py-3 rounded-xl border border-red-200 mb-1">
+            <div className="bg-red-50 text-red-800 text-[13px] font-bold px-4 py-3 rounded-xl border-l-4 border-red-500 mb-2 shadow-sm">
               {apiError}
             </div>
           )}
 
-          {/* Row: Name + Phone */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <Field label="Full Name" required error={errors.name}>
+            <Field label="Patient Name" htmlFor="name" required error={errors.name}>
               <input
+                id="name"
                 name="name"
-                placeholder="John Doe"
+                placeholder="Ex. Alexander Hamilton"
                 value={form.name}
                 onChange={handleChange}
                 disabled={loading}
-                suppressHydrationWarning
                 className={`${inputBase} ${errors.name ? inputError : ""}`}
               />
             </Field>
-            <Field label="Phone Number" required error={errors.phone}>
+            <Field label="Secure Phone" htmlFor="phone" required error={errors.phone}>
               <input
+                id="phone"
                 name="phone"
                 placeholder="+1 (555) 000-0000"
                 value={form.phone}
                 onChange={handleChange}
                 disabled={loading}
-                suppressHydrationWarning
                 className={`${inputBase} ${errors.phone ? inputError : ""}`}
               />
             </Field>
           </div>
 
-          {/* Row: Email + Service */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <Field label="Email Address" required error={errors.email}>
+            <Field label="Email Address" htmlFor="email" required error={errors.email}>
               <input
+                id="email"
                 name="email"
                 type="email"
-                placeholder="john@example.com"
+                placeholder="client@concierge.com"
                 value={form.email}
                 onChange={handleChange}
                 disabled={loading}
-                suppressHydrationWarning
                 className={`${inputBase} ${errors.email ? inputError : ""}`}
               />
             </Field>
-            <Field label="Service" required error={errors.service}>
+            <Field label="Service Selection" htmlFor="service" required error={errors.service}>
               <div className="relative">
                 <select
+                  id="service"
                   name="service"
                   value={form.service}
                   onChange={handleChange}
                   disabled={loading}
-                  suppressHydrationWarning
                   className={`${inputBase} appearance-none cursor-pointer pr-10 ${errors.service ? inputError : ""}`}
                 >
-                  <option value="">Select a service</option>
+                  <option value="">Choose a treatment...</option>
                   {ALL_SERVICES.map((s) => (
                     <option key={s.label} value={s.label}>{s.label}</option>
                   ))}
                 </select>
-                <span className="absolute right-3.5 top-1/2 -translate-y-1/2">
+                <span className="absolute right-4 top-1/2 -translate-y-1/2">
                   <ChevronDownIcon />
                 </span>
               </div>
             </Field>
           </div>
 
-          {/* Row: Date + Time */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <Field label="Preferred Date" required error={errors.date}>
+            <Field label="Consultation Date" htmlFor="date" required error={errors.date}>
               <input
+                id="date"
                 type="date"
                 name="date"
                 value={form.date}
                 onChange={handleChange}
                 min={today}
                 disabled={loading}
-                suppressHydrationWarning
                 className={`${inputBase} ${errors.date ? inputError : ""}`}
               />
             </Field>
-            <Field label="Preferred Time" required error={errors.time}>
+            <Field label="Available Time" htmlFor="time" required error={errors.time}>
               <div className="relative">
                 <select
+                  id="time"
                   name="time"
                   value={form.time}
                   onChange={handleChange}
                   disabled={loading}
-                  suppressHydrationWarning
                   className={`${inputBase} appearance-none cursor-pointer pr-10 ${errors.time ? inputError : ""}`}
                 >
-                  <option value="">Select a time</option>
+                  <option value="">Pick a slot...</option>
                   {TIME_SLOTS.map((t) => (
                     <option key={t} value={t}>{t}</option>
                   ))}
                 </select>
-                <span className="absolute right-3.5 top-1/2 -translate-y-1/2">
+                <span className="absolute right-4 top-1/2 -translate-y-1/2">
                   <ChevronDownIcon />
                 </span>
               </div>
             </Field>
           </div>
 
-          {/* Contact Method */}
-          <Field label="Preferred Contact Method">
-            <div className="flex gap-3">
+          <Field label="Messenger Preferences">
+            <div className="flex gap-4">
               {CONTACT_METHODS.map((m) => (
                 <label
                   key={m.id}
-                  className={`flex-1 flex flex-col items-center gap-2 py-3.5 px-2.5 rounded-xl border-[1.5px] cursor-pointer transition-all duration-200 text-[13px] font-medium select-none text-center
+                  className={`flex-1 flex flex-col justify-center items-center gap-2 py-3 px-2 rounded-xl border-2 cursor-pointer transition-all duration-300 text-[12px] font-bold select-none text-center
                     ${form.contactMethod === m.id
-                      ? "border-accent bg-[rgba(79,195,247,0.05)] text-primary-dark font-semibold"
-                      : "border-transparent bg-bg-section text-text-light hover:border-[rgba(79,195,247,0.3)]"
+                      ? "border-accent bg-accent/5 text-primary-dark"
+                      : "border-slate-100 bg-slate-50/50 text-slate-500 hover:border-slate-200 hover:bg-slate-50"
                     }`}
                 >
-                  <input
-                    type="radio"
-                    name="contactMethod"
-                    value={m.id}
-                    checked={form.contactMethod === m.id}
-                    onChange={handleChange}
-                    className="sr-only"
-                  />
-                  <span className={`transition-colors duration-200 ${form.contactMethod === m.id ? "text-accent" : "text-gray-400"}`}>
+                  <input type="radio" name="contactMethod" value={m.id} checked={form.contactMethod === m.id} onChange={handleChange} className="sr-only" />
+                  <span className={`transition-colors duration-300 ${form.contactMethod === m.id ? "text-accent" : "text-slate-400"}`}>
                     {m.icon}
                   </span>
                   {m.label}
@@ -418,50 +449,35 @@ export default function ExtendedContact({ className = "" }) {
             </div>
           </Field>
 
-          {/* Message */}
-          <Field label="Message" optional>
-            <textarea
-              name="message"
-              placeholder="Tell us about any specific concerns or requests..."
-              value={form.message}
-              onChange={handleChange}
-              disabled={loading}
-              rows={2}
-              className={`${inputBase} resize-vertical min-h-[80px]`}
-            />
-          </Field>
-
-          {/* Submit row */}
-          <div className="flex items-center justify-between gap-4 flex-wrap mt-3">
-            <div className="flex items-center gap-2 flex-1 min-w-[170px]">
-              <div className="flex items-center justify-center w-7 h-7 rounded-full bg-emerald-50 border border-emerald-100/50 text-emerald-600 shrink-0 shadow-[0_2px_10px_-4px_rgba(16,185,129,0.3)]">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-[14px] h-[14px]">
+          <footer className="flex items-center justify-between gap-6 flex-wrap mt-4">
+            <div className="flex items-center gap-3 flex-1 min-w-[200px]">
+              <div className="w-8 h-8 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent shrink-0 shadow-sm">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="w-[14px] h-[14px]">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  <path d="M9 12l2 2 4-4" />
                 </svg>
               </div>
-              <span className="text-[12px] lg:text-[13px] font-medium text-slate-500">
-                Your information is <strong>secure & never shared</strong>.
-              </span>
+              <p className="text-[12px] font-semibold text-slate-500 leading-tight">
+                Encrypted & <strong>Client-Confidential</strong>.
+              </p>
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center justify-center gap-2.5 bg-primary hover:bg-primary-dark disabled:opacity-70 disabled:cursor-not-allowed disabled:translate-y-0 text-white text-[15px] font-semibold py-4 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(15,54,71,0.25)] cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2.5 bg-primary hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 text-white text-[14px] font-bold py-4 px-10 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-primary/20 active:scale-[0.98]"
             >
               {loading ? (
                 <>
-                  <span className="w-5 h-5 rounded-full border-[2.5px] border-white/30 border-t-white animate-spin" />
-                  Booking...
+                  <span className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+                  Confirming...
                 </>
               ) : (
                 <>
                   <SendIcon />
-                  Book Appointment
+                  Confirm Appointment
                 </>
               )}
             </button>
-          </div>
+          </footer>
         </form>
       </div>
     </section>

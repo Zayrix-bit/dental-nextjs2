@@ -38,7 +38,7 @@ export default function Testimonials() {
             {[...testimonials, ...testimonials].map((t, idx) => (
             <div
               key={`${t.name}-${idx}`}
-              className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 flex-shrink-0 w-[85vw] sm:w-[420px] shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col"
+              className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shrink-0 w-[85vw] sm:w-[420px] shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col"
             >
               {/* Header: Avatar, Name, Role, Google Logo */}
               <div className="flex justify-between items-start mb-4">
