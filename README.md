@@ -11,7 +11,7 @@
 
 A high-performance, agency-grade dental clinic website built with **Next.js 15**, featuring premium aesthetics, buttery-smooth animations, and a conversion-optimized design system.
 
-[Live Preview](#-quick-share) · [Getting Started](#-getting-started) · [Tech Stack](#-tech-stack) · [Project Structure](#-project-structure)
+[Live Preview](#quick-share) · [Getting Started](#getting-started) · [Tech Stack](#tech-stack) · [Project Structure](#project-structure)
 
 </div>
 
@@ -157,6 +157,8 @@ dental-nextjs/
 │       └── blogData.js             # Blog articles & metadata
 │
 ├── .env.example                    # Environment variable template
+├── eslint.config.mjs               # ESLint configuration
+├── jsconfig.json                   # Path aliases and JS settings
 ├── package.json
 ├── next.config.mjs
 └── postcss.config.mjs
