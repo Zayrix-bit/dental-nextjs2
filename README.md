@@ -1,103 +1,199 @@
-# 🦷 DentalCare — Premium Dental Solution
+<div align="center">
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)
-![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
+# 🦷 DentalCare
 
-**DentalCare** is a modern, high-end, and fully responsive dental clinic website built with **Next.js 15**. It features a premium "Dark Luxury" aesthetic designed to build trust and provide a seamless booking experience for patients.
+### Premium Dental Clinic Website
 
-## ✨ Key Features
+[![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
-- 💎 **Premium UI/UX**: Sophisticated dark-themed design with smooth micro-animations and professional typography.
-- 📱 **Fully Responsive**: Optimized for all devices, from mobile phones to large desktop screens.
-- ⚡ **Performance Optimized**: Built using Next.js 15 Server Components and optimized font/image loading.
-- 🛠️ **Comprehensive Services**: Dedicated sections for General Dentistry, Cosmetic Dentistry, Orthodontics, and more.
-- 🕒 **24/7 Emergency Support**: Integrated priority emergency care signals.
-- 📅 **Patient Trust**: Featured testimonials, "Before & After" transformations, and detailed team expertise.
-- 🗺️ **Interactive Contact**: Google Maps integration and direct WhatsApp booking.
+A high-performance, agency-grade dental clinic website built with **Next.js 15**, featuring premium aesthetics, buttery-smooth animations, and a conversion-optimized design system.
+
+[Live Preview](#-quick-share) · [Getting Started](#-getting-started) · [Tech Stack](#-tech-stack) · [Project Structure](#-project-structure)
+
+</div>
+
+---
+
+## ✨ Highlights
+
+| Feature | Description |
+|---|---|
+| 🎨 **Premium Design System** | Navy/Teal/Emerald clinical palette with glassmorphism, gradient overlays, and editorial typography |
+| ⚡ **Blazing Fast** | Server Components, dynamic imports with skeleton loading, optimized images & fonts |
+| 📱 **Fully Responsive** | Pixel-perfect layouts from 320px mobile to ultra-wide desktop |
+| 🎬 **Micro-Animations** | Scroll-reveal effects, CTA jiggle, infinite testimonial scroll, smooth page transitions |
+| 🔍 **SEO Optimized** | Dynamic sitemap, robots.txt, semantic HTML, structured metadata on every page |
+| 📞 **Conversion Focused** | Floating WhatsApp CTA, emergency call button, strategic booking prompts |
+| 🧩 **Config-Driven** | Swap clinic branding, images, and content from a single config file — zero code changes |
+
+---
 
 ## 🚀 Tech Stack
 
-- **Framework**: [Next.js 15 (App Router)](https://nextjs.org/)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Typography**: Optimized Google Fonts (Inter, Outfit)
-- **Deployment**: Vercel ready
+| Category | Technology |
+|---|---|
+| **Framework** | Next.js 15 (App Router, Server Components) |
+| **UI Library** | React 19 |
+| **Styling** | Tailwind CSS 4 (CSS-first config) |
+| **Animations** | CSS keyframes + Lenis smooth scroll |
+| **Icons** | Lucide React |
+| **Email** | Resend API |
+| **Analytics** | Vercel Speed Insights |
+| **Fonts** | Google Fonts (Inter, Outfit) |
+| **Linting** | ESLint with Next.js plugin |
+
+---
 
 ## 🛠️ Getting Started
 
 ### Prerequisites
 
-- Node.js 18.x or later
-- npm or yarn
+- **Node.js** 18.x or later
+- **npm** 9+ (or yarn / pnpm)
 
 ### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Riteshx01/dental-nextjs.git
-   ```
+```bash
+# 1. Clone the repository
+git clone https://github.com/Zayrix-bit/dental-nextjs.git
 
-2. Navigate to the project directory:
-   ```bash
-   cd dental-nextjs
-   ```
+# 2. Navigate to the project
+cd dental-nextjs
 
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
+# 3. Install dependencies
+npm install
 
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
+# 4. Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your API keys (Resend, etc.)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## 📁 Project Structure
-
-```text
-/src
-├── app/                    # Next.js App Router (Pages & Layouts)
-│   ├── about/              # About Us page
-│   ├── api/                # Backend API routes
-│   ├── blog/               # Blog listing and articles
-│   ├── contact/            # Contact Us page
-│   ├── gallery/            # Smile gallery / portfolio
-│   ├── services/           # Detailed dental services
-│   ├── testimonials/       # Patient reviews page
-│   ├── globals.css         # Global Tailwind styles & design tokens
-│   ├── layout.js           # Root layout with Header & Footer
-│   ├── page.js             # Homepage (Hero, Services, Testimonials, etc.)
-│   ├── robots.js           # SEO Crawler instructions
-│   └── sitemap.js          # Dynamic sitemap generation
-├── components/             # Reusable React Components
-│   ├── layout/             # Core structural components
-│   │   ├── Header.jsx      # Navigation & Mobile Menu
-│   │   └── Footer.jsx      # Multi-column professional footer
-│   ├── sections/           # High-level page sections
-│   │   ├── Hero.jsx        # First impact area with CTAs
-│   │   ├── Services.jsx    # Feature grid for dental services
-│   │   ├── WhyChooseUs.jsx # Value propositions & trust signals
-│   │   ├── BeforeAfter.jsx # Interactive transformation slider
-│   │   ├── Testimonials.jsx# Patient feedback display
-│   │   └── LocationMap.jsx  # Embedded Google Maps integration
-│   ├── ui/                 # Atomic UI elements & utilities
-│   │   ├── AnimatedCounter.jsx # Stats & numbers animation
-│   │   ├── WhatsAppButton.jsx  # Floating interactive chat
-│   │   ├── PageHeader.jsx      # Consistent header for subpages
-│   │   └── ScrollReveal.jsx    # Scroll-triggered animations
-├── data/                   # Centralized Content Management
-│   ├── siteData.js         # Site info, navigation, & service details
-│   └── blogData.js         # Blog articles and metadata
-└── public/                 # Static Assets (Images, Icons, Fonts)
+# 5. Start the development server
+npm run dev
 ```
 
-## 📄 License
+Open **[http://localhost:3000](http://localhost:3000)** to view the site.
 
-This project is private and for internal use.
+### Available Scripts
+
+| Command | Description |
+|---|---|
+| `npm run dev` | Start development server on port 3000 |
+| `npm run build` | Create an optimized production build |
+| `npm run start` | Run the production server |
+| `npm run lint` | Run ESLint checks |
+| `npm run share` | Dev server + Cloudflare Tunnel (public link) |
+| `npm run preview-share` | Production build + Cloudflare Tunnel |
 
 ---
 
-Built with ❤️ for Dental Excellence.
+## 🔗 Quick Share
+
+Generate a public Cloudflare link to share your local site instantly:
+
+```bash
+npm run share
+```
+
+This spins up the dev server and a [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/) simultaneously, giving you a shareable `*.trycloudflare.com` URL.
+
+> **Tip:** For a production-quality preview, use `npm run preview-share` instead.
+
+---
+
+## 📁 Project Structure
+
+```
+dental-nextjs/
+├── public/                         # Static assets (images, icons, fonts)
+│
+├── src/
+│   ├── app/                        # Next.js App Router
+│   │   ├── about/                  # About Us page
+│   │   ├── api/                    # Backend API routes (contact form)
+│   │   ├── blog/                   # Blog listing & article pages
+│   │   ├── contact/                # Contact page
+│   │   ├── gallery/                # Smile transformation gallery
+│   │   ├── services/               # Service listing & dynamic [slug] pages
+│   │   ├── testimonials/           # Patient reviews page
+│   │   ├── globals.css             # Design tokens, animations & utilities
+│   │   ├── layout.jsx              # Root layout (Header, Footer, providers)
+│   │   ├── page.jsx                # Homepage
+│   │   ├── robots.js               # SEO crawler config
+│   │   └── sitemap.js              # Dynamic sitemap generation
+│   │
+│   ├── components/
+│   │   ├── layout/                 # Structural components
+│   │   │   ├── Header.jsx          # Glassmorphism nav + mobile menu
+│   │   │   └── Footer.jsx          # Multi-column footer
+│   │   ├── sections/               # Page-level sections
+│   │   │   ├── Hero.jsx            # Full-bleed hero with CTA jiggle
+│   │   │   ├── Services.jsx        # Animated service cards grid
+│   │   │   ├── WhyChooseUs.jsx     # Trust signals & value props
+│   │   │   ├── BeforeAfter.jsx     # Interactive transformation slider
+│   │   │   ├── Testimonials.jsx    # Infinite-scroll patient reviews
+│   │   │   ├── FAQ.jsx             # Accordion FAQ section
+│   │   │   ├── Contact.jsx         # Contact form with Resend
+│   │   │   ├── ExtendedContact.jsx # Full-page contact layout
+│   │   │   └── LocationMap.jsx     # Static map with premium overlay
+│   │   └── ui/                     # Atomic UI components
+│   │       ├── AnimatedCounter.jsx # Number count-up animation
+│   │       ├── FloatingCallCTA.jsx # Emergency call floating button
+│   │       ├── PageHeader.jsx      # Reusable subpage header
+│   │       ├── SectionSkeletons.jsx# Loading skeletons per section
+│   │       ├── Skeleton.jsx        # Base skeleton primitives
+│   │       ├── SmoothScrollProvider.jsx # Lenis scroll wrapper
+│   │       └── WhatsAppButton.jsx  # Floating WhatsApp with giggle
+│   │
+│   ├── config/                     # Centralized site configuration
+│   │   ├── clinics/                # Clinic-specific branding configs
+│   │   ├── index.js                # Main config export
+│   │   └── iconMap.js              # Dynamic icon resolver
+│   │
+│   └── data/                       # Content & data sources
+│       ├── siteData.js             # Services, stats, navigation
+│       └── blogData.js             # Blog articles & metadata
+│
+├── .env.example                    # Environment variable template
+├── package.json
+├── next.config.mjs
+└── postcss.config.mjs
+```
+
+---
+
+## 🎨 Design Philosophy
+
+- **Clinical Elegance** — Navy (`#0A3A5C`) and Teal (`#00B4DB`) palette conveys trust and professionalism
+- **Performance First** — Dynamic imports with shimmer skeletons ensure instant perceived load
+- **Conversion Driven** — Every scroll position has a strategically placed CTA
+- **Zero Clutter** — Hidden scrollbars, subtle noise textures, and radial glows for a premium feel
+- **Accessibility** — `prefers-reduced-motion` support, semantic HTML, proper heading hierarchy
+
+---
+
+## 🤝 Configuration
+
+DentalCare is **config-driven**. To rebrand for a different clinic:
+
+1. Create a new config file in `src/config/clinics/`
+2. Update clinic name, phone, address, images, and colors
+3. Point `src/config/index.js` to your new config
+
+No component code changes required.
+
+---
+
+## 📄 License
+
+This project is **private** and proprietary. All rights reserved.
+
+---
+
+<div align="center">
+
+Built with precision for **Dental Excellence** 🦷
+
+</div>
