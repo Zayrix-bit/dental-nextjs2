@@ -1,3 +1,4 @@
+import config from '@/config';
 import PageHeader from '@/components/ui/PageHeader';
 import BeforeAfter from '@/components/sections/BeforeAfter';
 import Footer from '@/components/layout/Footer';
@@ -5,8 +6,8 @@ import Header from '@/components/layout/Header';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
 
 export const metadata = {
-  title: 'Smile Gallery | Dental Before & After Photos NY',
-  description: 'View real results from our patients. See stunning before and after transformations achieved by our expert dental team in New York.',
+  title: config.pages.gallery.title,
+  description: config.pages.gallery.description,
   alternates: {
     canonical: '/gallery',
   }
@@ -18,8 +19,8 @@ export default function GalleryPage() {
       <Header />
       <main>
         <PageHeader 
-          title="Smile Gallery" 
-          description="Transformations that bring confidence. See the stunning results achieved by our expert team." 
+          title={config.pages.gallery.pageHeader.title}
+          description={config.pages.gallery.pageHeader.description}
         />
         <div className="pt-20">
           <BeforeAfter />

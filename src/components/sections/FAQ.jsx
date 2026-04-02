@@ -2,30 +2,8 @@
 
 import { useState } from "react";
 import { Plus, MessageCircle } from "lucide-react";
-import { siteInfo } from "@/data/siteData";
-
-const FAQ_DATA = [
-  {
-    question: "Is dental treatment at your clinic truly pain-free?",
-    answer: "Patient comfort is our absolute priority. We utilize advanced localized anesthesia and minimally invasive techniques to ensure a virtually pain-free experience. For highly anxious patients, we also offer specialized sedation options to provide a completely stress-free visit from start to finish."
-  },
-  {
-    question: "How much should I expect to invest in my dental care?",
-    answer: "We believe in transparent, value-driven pricing. Since every smile is unique, we provide a detailed, itemized treatment plan during your initial consultation. We also offer flexible payment arrangements and work with major insurance providers to make elite dental care accessible to all our patients."
-  },
-  {
-    question: "How long do procedures like porcelain veneers or implants take?",
-    answer: "Timeline varies by treatment complexity. A professional whitening session takes about 90 minutes, while complex restorative work like dental implants involves a healing period of 3-6 months. We design each project schedule to ensure the highest biological success and aesthetic perfection without rushing the process."
-  },
-  {
-    question: "Do you accept my specific dental insurance plan?",
-    answer: "Yes, we are an insurance-friendly practice. Our dedicated administrative team will handle all the paperwork and coordinate directly with your provider to maximize your benefits. We recommend bringing your latest insurance details to your first appointment for a real-time benefits assessment."
-  },
-  {
-    question: "What if I have a dental emergency outside of regular hours?",
-    answer: "We provide 24/7 priority emergency support for our registered patients. If you experience acute pain or dental trauma during the weekend or late at night, our dedicated emergency line is always active to provide immediate clinical guidance and urgent scheduling."
-  }
-];
+import { siteInfo, faqData } from "@/data/siteData";
+import config from "@/config";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -43,16 +21,16 @@ export default function FAQ() {
         {/* Header Section */}
         <div className="mb-10 lg:mb-14 max-w-3xl text-left">
           <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark leading-[1.1] tracking-tight mb-6">
-            Frequently Asked <span className="text-primary">Questions.</span>
+            {config.faq.heading} <span className="text-primary">{config.faq.headingAccent}</span>
           </h2>
           <p className="text-slate-500 text-[0.9rem] md:text-[1rem] leading-relaxed font-medium mb-8 max-w-2xl">
-            Everything you need to know about our clinical procedures, elite membership options, and concierge patient care.
+            {config.faq.subtitle}
           </p>
         </div>
 
         {/* FAQ List */}
         <div className="flex flex-col gap-2.5">
-          {FAQ_DATA.map((item, index) => (
+          {faqData.map((item, index) => (
             <FAQItem 
               key={index} 
               item={item} 

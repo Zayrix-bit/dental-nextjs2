@@ -1,5 +1,7 @@
+import config from '@/config';
+
 export default function sitemap() {
-  const baseUrl = 'https://dentalclinic.com';
+  const baseUrl = config.seo.siteUrl;
 
   // In a real app, dynamic routes (like blog posts) would be fetched here
   // and added to the routes array.

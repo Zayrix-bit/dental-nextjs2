@@ -1,4 +1,5 @@
 import { siteInfo } from '@/data/siteData';
+import config from '@/config';
 import { Roboto } from 'next/font/google';
 import './globals.css';
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -13,12 +14,12 @@ const roboto = Roboto({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://dental-nextjs-agency.vercel.app'),
+  metadataBase: new URL(config.seo.metadataBase),
   title: {
-    default: `${siteInfo.name} — ${siteInfo.tagline}`,
-    template: `%s | ${siteInfo.name}`,
+    default: `${config.name} — ${config.tagline}`,
+    template: `%s | ${config.name}`,
   },
-  description: 'Providing exceptional dental care with modern technology and compassionate service.',
+  description: config.seo.defaultDescription,
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
@@ -27,17 +28,17 @@ export const metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: `${siteInfo.name} — ${siteInfo.tagline}`,
-    description: 'Providing exceptional dental care with modern technology and compassionate service.',
+    title: `${config.name} — ${config.tagline}`,
+    description: config.seo.defaultDescription,
     url: '/',
-    siteName: siteInfo.name,
+    siteName: config.name,
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${siteInfo.name} — ${siteInfo.tagline}`,
-    description: 'Providing exceptional dental care with modern technology.',
+    title: `${config.name} — ${config.tagline}`,
+    description: config.seo.defaultDescription,
   },
 };
 
@@ -47,23 +48,21 @@ export default function RootLayout({ children }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': ['Dentist', 'LocalBusiness'],
-    name: siteInfo.name,
-    image: 'https://dentalclinic.com/images/hero-bg.png',
-    '@id': 'https://dentalclinic.com',
-    url: 'https://dentalclinic.com',
-    telephone: siteInfo.phone,
+    name: config.name,
+    image: `${config.seo.siteUrl}/images/hero-bg.png`,
+    '@id': config.seo.siteUrl,
+    url: config.seo.siteUrl,
+    telephone: config.contact.phone,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '123 Dental Street, Medical District',
-      addressLocality: 'New York',
-      addressRegion: 'NY',
-      postalCode: '10001',
+      streetAddress: config.contact.address.street,
+      addressLocality: config.contact.address.city,
       addressCountry: 'US'
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 40.7484405,
-      longitude: -73.9878531
+      latitude: config.geo.latitude,
+      longitude: config.geo.longitude
     },
     openingHoursSpecification: [
       {

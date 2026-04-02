@@ -5,33 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Star, ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
-
-const galleryData = [
-  {
-    id: 1,
-    category: 'Veneers & Whitening',
-    highlight: 'Noticeably whiter teeth with a perfectly natural, translucent finish. Complete smile transformation in just two visits.',
-    beforeSrc: '/images/before.png',
-    afterSrc: '/images/after.png',
-    href: '/services/cosmetic-dentistry'
-  },
-  {
-    id: 2,
-    category: 'Full Arch Restoration',
-    highlight: 'Complete bite correction and aesthetic restoration using dental implants. Restored full function and aesthetic confidence.',
-    beforeSrc: '/images/before.png',
-    afterSrc: '/images/after.png',
-    href: '/services/dental-implants'
-  },
-  {
-    id: 3,
-    category: 'Invisalign & Alignment',
-    highlight: 'Perfectly straight teeth with discreet, modern alignment solutions. Corrected moderate crowding over 12 months.',
-    beforeSrc: '/images/before.png',
-    afterSrc: '/images/after.png',
-    href: '/services/orthodontics-invisalign'
-  }
-];
+import { galleryData } from '@/data/siteData';
 
 function GalleryCard({ item, onInteractionStart, onInteractionEnd }) {
   const [position, setPosition] = useState(50);

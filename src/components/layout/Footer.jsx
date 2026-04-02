@@ -6,6 +6,7 @@ import {
   ArrowRight 
 } from 'lucide-react';
 import { siteInfo, footerQuickLinks, services } from '@/data/siteData';
+import config from '@/config';
 import Link from 'next/link';
 import ScrollReveal from '@/components/ScrollReveal';
 
@@ -45,10 +46,10 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center border-b border-white/10 pb-10 mb-10 gap-8">
           <div>
             <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-3">
-              Ready for a Brighter Smile?
+              {config.footer.ctaHeading}
             </h3>
             <p className="text-white/60 max-w-md text-[0.95rem] leading-relaxed">
-              Join thousands of satisfied patients. Book your comprehensive consultation today and experience premium dental care.
+              {config.footer.ctaDescription}
             </p>
           </div>
           <div className="shrink-0 flex items-center gap-4">
@@ -78,17 +79,17 @@ export default function Footer() {
               <span className="tracking-tight">{siteInfo.name}<span className="text-accent">.</span></span>
             </Link>
             <p className="text-white/50 text-[0.9rem] leading-relaxed mb-6 max-w-sm">
-              Redefining modern dentistry with advanced technology, compassionate staff, and a commitment to your lifelong oral health.
+              {config.brandDescription}
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-3">
-              <a href="#" className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all duration-300 group">
+              <a href={config.social.facebook} className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all duration-300 group">
                 <FacebookIcon className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
               </a>
-              <a href="#" className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all duration-300 group">
+              <a href={config.social.instagram} className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all duration-300 group">
                 <InstagramIcon className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
               </a>
-              <a href="#" className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all duration-300 group">
+              <a href={config.social.twitter} className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all duration-300 group">
                 <TwitterIcon className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
               </a>
             </div>

@@ -1,110 +1,123 @@
+'use client';
 import Image from 'next/image';
-import { Sparkles, Star } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, Play } from 'lucide-react';
 import { heroStats } from '@/data/siteData';
-import AnimatedCounter from '@/components/ui/AnimatedCounter';
+import config from '@/config';
 import ScrollReveal from '@/components/ScrollReveal';
 
-const TRUST_AVATARS = [
-  'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=100&h=100',
-  'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=100&h=100',
-  'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=100&h=100',
-  'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=100&h=100',
-];
+const TRUST_AVATARS = config.images.trustAvatars;
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-[65svh] lg:min-h-[78svh] flex items-center overflow-hidden bg-clinical-noise bg-linear-to-br from-[#1a3a4a] via-[#0d2733] to-[#1a3a4a]">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/hero-bg.png"
-          alt="Modern dental clinic interior"
-          fill
-          className="object-cover opacity-15"
-          priority={true}
-          sizes="100vw"
-          quality={75}
-        />
+    <section className="relative h-dvh flex flex-col overflow-hidden">
+
+      {/* ── Full-Bleed Background Image ── */}
+      <Image
+        src={config.images.heroBg}
+        alt={`${config.name} — ${config.hero.title}`}
+        fill
+        priority
+        className="object-cover object-[center_25%] sm:object-center"
+        sizes="100vw"
+        quality={90}
+      />
+
+      {/* ── Dark Gradient Overlay ── */}
+      <div className="absolute inset-0 bg-linear-to-r from-black/75 via-black/55 to-black/30" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-black/20" />
+
+      {/* ── Accent Glow ── */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute bottom-0 left-0 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-accent/8 rounded-full blur-[100px]" />
       </div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 z-1 bg-linear-to-br from-[rgba(13,39,51,0.85)] via-[rgba(26,58,74,0.7)] to-[rgba(79,195,247,0.2)] bg-radial-hero" />
+      {/* ── Content ── */}
+      <div className="relative z-10 flex-1 flex flex-col justify-start sm:justify-center max-w-[1300px] mx-auto w-full px-6 md:px-8 lg:px-12 pt-22 pb-6 sm:pt-20 sm:pb-8">
+        <div className="max-w-2xl xl:max-w-[680px]">
 
-      {/* Content */}
-      <div className="relative z-2 max-w-[1200px] mx-auto px-6 w-full">
-        <div className="max-w-[700px] py-16 md:py-24 mt-8 md:mt-0">
-
-          {/* Trust Badge & Avatars */}
-          <div className="flex flex-wrap items-center gap-4 mb-6 lg:mb-8 animate-[fadeInUp_0.6s_ease]">
-            {/* Badge */}
-
-            {/* Google Rating */}
-            <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 px-4 py-1.5 rounded-full">
-              <div className="flex -space-x-2">
+          {/* Social Proof Badge */}
+          <ScrollReveal>
+            <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-lg border border-white/15 rounded-full px-3.5 py-2 shadow-lg">
+              <div className="flex -space-x-2.5">
                 {TRUST_AVATARS.map((src, i) => (
-                  <div key={i} className="relative w-6 h-6 rounded-full border-2 border-[#0d2733] overflow-hidden">
-                    <Image src={src} alt="Patient Avatar" fill className="object-cover" quality={75} sizes="24px" />
-                  </div>
+                  <Image
+                    key={i}
+                    src={src}
+                    alt={`Trusted patient ${i + 1}`}
+                    width={28}
+                    height={28}
+                    className="w-7 h-7 rounded-full border-2 border-white/30 object-cover"
+                  />
                 ))}
               </div>
-              <div className="flex items-center gap-1.5">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-2.5 h-2.5 fill-accent text-accent" />
-                  ))}
-                </div>
-                <span className="text-[11px] font-bold text-white tracking-wide">4.9/5 Rating</span>
+              <div className="flex items-center gap-1.5 text-xs font-bold text-white/90">
+                <svg className="w-3.5 h-3.5 text-amber-400 fill-amber-400" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                </svg>
+                {config.hero.rating}
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Heading */}
-          <ScrollReveal eager={true}>
-            <h1 className="text-4xl md:text-6xl lg:text-[4.5rem] font-bold text-white mb-6 leading-[1.1] tracking-tight">
-              Advanced Dental Excellence
+          <ScrollReveal>
+            <h1 className="text-[2.5rem] sm:text-[2.75rem] md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-black tracking-[-0.02em] leading-[1.05] mt-7 md:mt-7 text-white">
+              {config.hero.title.split(' ').slice(0, -1).join(' ')}{' '}
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-accent to-emerald-300">
+                {config.hero.title.split(' ').pop()}
+              </span>
             </h1>
           </ScrollReveal>
 
           {/* Subtitle */}
-          <ScrollReveal eager={true} delay={80}>
-            <p className="text-white/85 text-base md:text-lg lg:text-[1.1rem] mb-8 lg:mb-10 max-w-[560px] leading-relaxed font-light text-pretty">
-              Experience the perfect synthesis of advanced technology and compassionate care. We design smiles that inspire confidence and promote lifelong health.
+          <ScrollReveal>
+            <p className="text-[0.9rem] md:text-base lg:text-lg text-white/60 leading-[1.7] mt-5 md:mt-5 max-w-[320px] sm:max-w-md md:max-w-xl">
+              {config.hero.subtitle}
             </p>
           </ScrollReveal>
 
-          {/* Buttons */}
-          <ScrollReveal eager={true} delay={160}>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="#appointment"
-                aria-label="Book your dental appointment"
-                className="btn-primary px-8 py-4 rounded-full font-bold text-sm inline-flex items-center justify-center gap-2 shadow-sm transition-all hover:scale-[1.02] hover:-translate-y-0.5 animate-whatsapp-giggle"
+          {/* CTA Buttons */}
+          <ScrollReveal>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mt-8 md:mt-9">
+              <Link
+                href={config.hero.ctaPrimary.href}
+                className="btn-primary animate-btn-jiggle flex items-center justify-center gap-2.5 px-8 py-4 sm:py-3.5 rounded-2xl sm:rounded-xl font-bold text-[0.95rem] sm:text-[0.9rem] shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-0.5 transition-all"
               >
-                Book Appointment
-              </a>
-              <a
-                href="#services"
-                aria-label="Explore our dental services"
-                className="btn-outline-hero px-8 py-4 rounded-full font-bold text-sm inline-flex items-center justify-center gap-2 transition-all hover:scale-[1.02] hover:-translate-y-0.5"
+                {config.hero.ctaPrimary.text}
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href={config.hero.ctaSecondary.href}
+                className="flex items-center justify-center gap-2.5 px-8 py-4 sm:py-3.5 rounded-2xl sm:rounded-xl font-bold text-[0.95rem] sm:text-[0.9rem] text-white bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:-translate-y-0.5 transition-all"
               >
-                Explore Services
-              </a>
+                <Play className="w-4 h-4 fill-white" />
+                {config.hero.ctaSecondary.text}
+              </Link>
             </div>
           </ScrollReveal>
 
-          {/* Stats */}
-          <div className="grid grid-cols-4 md:flex md:flex-wrap gap-2 sm:gap-4 md:gap-10 mt-12 pt-8 border-t border-white/10 w-full overflow-hidden">
-            {heroStats.map((stat) => (
-              <div key={stat.label} className="text-center md:text-left">
-                <AnimatedCounter target={stat.number} suffix={stat.suffix} />
-                <span className="text-[0.6rem] sm:text-[0.7rem] md:text-[0.8rem] text-white/70 mt-0.5 block leading-tight tracking-wider uppercase font-medium">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
-          </div>
+          {/* Stats Bar */}
+          <ScrollReveal>
+            <div className="grid grid-cols-4 gap-x-4 md:gap-x-8 mt-8 md:mt-10 pt-6 md:pt-7 border-t border-white/15 max-w-lg lg:max-w-none">
+              {heroStats.map((stat, idx) => (
+                <div key={idx}>
+                  <div className="text-base sm:text-lg md:text-2xl lg:text-[1.75rem] font-black text-white tracking-tight">
+                    {stat.number}{stat.suffix}
+                  </div>
+                  <div className="text-[0.55rem] sm:text-[0.6rem] md:text-[0.7rem] text-white/50 font-semibold mt-0.5 uppercase tracking-wider">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </div>
+
+      {/* ── Clean bottom edge ── */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
     </section>
   );
 }

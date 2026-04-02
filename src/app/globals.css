@@ -225,6 +225,27 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   100% { transform: translateX(100%); }
 }
 
+/* ── Premium Skeleton Shimmer ── */
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(110deg, #e8ecf1 8%, #f0f3f6 18%, #e8ecf1 33%);
+  background-size: 200% 100%;
+  animation: skeleton-wave 1.8s ease-in-out infinite;
+}
+
+@keyframes skeleton-wave {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Dark variant (for use on dark backgrounds like Hero) */
+.skeleton-shimmer-dark {
+  background: linear-gradient(110deg, rgba(255,255,255,0.06) 8%, rgba(255,255,255,0.12) 18%, rgba(255,255,255,0.06) 33%);
+  background-size: 200% 100%;
+  animation: skeleton-wave 1.8s ease-in-out infinite;
+}
+
 .animate-shimmer {
   background: linear-gradient(
     90deg,
@@ -236,9 +257,14 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer,
+  .skeleton-shimmer-dark,
   .animate-shimmer {
     animation: none;
-    background: transparent;
+    background: #e8ecf1;
+  }
+  .skeleton-shimmer-dark {
+    background: rgba(255, 255, 255, 0.08);
   }
 }
 
@@ -281,6 +307,23 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     animation: none !important;
     transform: none !important;
   }
+}
+
+/* ====== Professional Button Jiggle (4.5s Loop) ====== */
+@keyframes btn-jiggle {
+  0%, 18%, 100% { transform: scale(1) rotate(0); }
+  3%, 11% { transform: scale(1.02) rotate(-2deg); }
+  7%, 15% { transform: scale(1.02) rotate(2deg); }
+}
+
+.animate-btn-jiggle {
+  animation: btn-jiggle 4.5s infinite cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  will-change: transform;
+}
+
+.animate-btn-jiggle:hover {
+  /* Pause animation so native hover transforms and transitions apply cleanly */
+  animation: none !important;
 }
 
 /* ====== Blog Article Typography ====== */

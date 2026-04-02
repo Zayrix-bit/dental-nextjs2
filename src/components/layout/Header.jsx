@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { Activity, ChevronDown, Phone } from 'lucide-react';
 import { navLinks, ALL_SERVICES, siteInfo } from '@/data/siteData';
+import config from '@/config';
 import Link from 'next/link';
 
 /* ── Services Dropdown (desktop) ── */
@@ -185,7 +186,7 @@ export default function Header() {
           <div className="w-8.5 h-8.5 lg:w-8.5 lg:h-8.5 bg-linear-to-br from-accent to-primary rounded-full flex items-center justify-center shadow-lg shadow-accent/20">
             <Activity className="w-5 h-5 lg:w-4.5 lg:h-4.5 text-white" strokeWidth={3} />
           </div>
-          <span className="tracking-tighter">DentalCare</span>
+          <span className="tracking-tighter">{config.logoText}</span>
         </Link>
 
         {/* Desktop Nav */}

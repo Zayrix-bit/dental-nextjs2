@@ -1,3 +1,4 @@
+import config from '@/config';
 import PageHeader from '@/components/ui/PageHeader';
 import Testimonials from '@/components/sections/Testimonials';
 import Footer from '@/components/layout/Footer';
@@ -5,8 +6,8 @@ import Header from '@/components/layout/Header';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
 
 export const metadata = {
-  title: 'Patient Reviews | Top Rated Dentist in NY',
-  description: 'Read what our patients have to say about their experience. Discover the difference our premium care has made in our patients\' lives and smiles.',
+  title: config.pages.testimonials.title,
+  description: config.pages.testimonials.description,
   alternates: {
     canonical: '/testimonials',
   }
@@ -18,8 +19,8 @@ export default function TestimonialsPage() {
       <Header />
       <main>
         <PageHeader 
-          title="Patient Stories" 
-          description="Don't just take our word for it. Hear from those who have experienced our care." 
+          title={config.pages.testimonials.pageHeader.title}
+          description={config.pages.testimonials.pageHeader.description}
         />
         <div className="pt-20">
           <Testimonials />

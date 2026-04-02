@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { siteInfo, ALL_SERVICES, TIME_SLOTS } from "@/data/siteData";
+import config from "@/config";
 
 /* ── Static Data ── */
 
@@ -261,10 +262,10 @@ export default function ExtendedContact({ className = "" }) {
     <section className="py-10 lg:py-16 bg-bg-section px-4 overflow-hidden">
       <div className="max-w-[1000px] mx-auto px-4 md:px-6 mb-10 lg:mb-14 text-left">
         <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark leading-[1.1] tracking-tight mb-6">
-          Schedule Your Private <span className="text-primary">Consultation.</span>
+          {config.booking.heading} <span className="text-primary">{config.booking.headingAccent}</span>
         </h2>
         <p className="text-slate-500 text-[0.9rem] md:text-[1rem] leading-relaxed font-medium mb-8 max-w-2xl">
-          Begin your journey towards a clinical masterpiece. Our coordinators will contact you within 12 hours.
+          {config.booking.subtitle}
         </p>
       </div>
 
@@ -278,10 +279,10 @@ export default function ExtendedContact({ className = "" }) {
           <div className="absolute -bottom-20 -right-20 w-48 h-48 rounded-full bg-accent opacity-20 blur-[50px] pointer-events-none" />
 
           <h3 className="relative z-10 text-2xl lg:text-[26px] font-black text-white leading-tight mb-3">
-            Premium Consultation.
+            {config.booking.sidebarHeading}
           </h3>
           <p className="relative z-10 text-[13px] lg:text-[14px] text-white/75 leading-relaxed mb-10 font-medium">
-            Entrust your smile to experts. Select your preferred slot and we will handle the rest.
+            {config.booking.sidebarSubtitle}
           </p>
 
           <div className="relative z-10 flex flex-col gap-6 flex-1">

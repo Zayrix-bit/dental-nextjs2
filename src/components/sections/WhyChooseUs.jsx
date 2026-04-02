@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { features } from '@/data/siteData';
+import config from '@/config';
 import ScrollReveal from '@/components/ScrollReveal';
 
 export default function WhyChooseUs() {
@@ -16,11 +17,11 @@ export default function WhyChooseUs() {
             <div className="order-2 lg:order-1 flex flex-col justify-center">
               <div className="mb-6 lg:mb-8">
                 <h2 className="text-3xl md:text-4xl lg:text-[3.25rem] font-bold text-text-dark mb-6 tracking-tight leading-[1.1]">
-                  Modern Dentistry, <br />
-                  <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">Elevated.</span>
+                  {config.about.heading} <br />
+                  <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">{config.about.headingAccent}</span>
                 </h2>
                 <p className="text-text-light text-sm lg:text-base max-w-lg leading-relaxed font-medium mb-8">
-                  Experience a new standard of dental care where cutting-edge technology meets unparalleled comfort in a thoughtfully designed space.
+                  {config.about.description}
                 </p>
               </div>
 
@@ -54,8 +55,8 @@ export default function WhyChooseUs() {
             <div className="order-1 lg:order-2 relative w-full aspect-video lg:h-[min(480px,65vh)] rounded-2xl lg:rounded-4xl overflow-hidden shadow-[0_15px_40px_-10px_rgba(0,0,0,0.15)] group">
               <div className="absolute inset-0 bg-linear-to-tr from-black/50 via-transparent to-transparent z-10" />
               <Image
-                src="/images/team.png"
-                alt="Our expert dental team"
+                src={config.images.teamPhoto}
+                alt={`${config.name} expert dental team`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-out"
@@ -66,11 +67,11 @@ export default function WhyChooseUs() {
               <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6 z-20">
                 <div className="bg-white/95 backdrop-blur-xl px-4 py-3 lg:px-6 lg:py-4 rounded-xl lg:rounded-2xl shadow-xl border border-white/60 flex items-center gap-3 lg:gap-4 transform group-hover:-translate-y-1 transition-transform duration-500">
                   <div className="relative w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl bg-linear-to-br from-primary to-blue-700 flex items-center justify-center text-white shadow-inner">
-                    <span className="text-lg lg:text-2xl font-black tracking-tighter">15<span className="text-base lg:text-lg">+</span></span>
+                    <span className="text-lg lg:text-2xl font-black tracking-tighter">{config.about.yearsBadge.number}<span className="text-base lg:text-lg">{config.about.yearsBadge.suffix}</span></span>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-sm lg:text-base font-extrabold text-text-dark leading-tight">Years of</span>
-                    <span className="text-[0.6rem] lg:text-[0.7rem] font-bold text-text-light uppercase tracking-widest mt-0.5">Excellence</span>
+                    <span className="text-sm lg:text-base font-extrabold text-text-dark leading-tight">{config.about.yearsBadge.label}</span>
+                    <span className="text-[0.6rem] lg:text-[0.7rem] font-bold text-text-light uppercase tracking-widest mt-0.5">{config.about.yearsBadge.sublabel}</span>
                   </div>
                 </div>
               </div>

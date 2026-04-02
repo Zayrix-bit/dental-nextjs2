@@ -32,7 +32,7 @@ export default function FloatingCallCTA() {
     <a
       href={`tel:${phoneNumber}`}
       aria-label="Call us now"
-      className={`fixed bottom-5 left-5 sm:bottom-6 sm:left-6 lg:bottom-8 lg:left-8 z-60 flex items-center justify-center gap-2.5 bg-linear-to-r from-primary to-primary-dark text-white px-4 py-3 md:px-5 md:py-3.5 rounded-full shadow-[0_8px_30px_rgba(10,58,92,0.35)] hover:-translate-y-1 hover:shadow-[0_12px_40_rgba(10,58,92,0.45)] hover:from-primary-dark hover:to-[#082a45] border border-white/10 transition-all duration-300 group ${
+      className={`fixed bottom-5 left-5 sm:bottom-6 sm:left-6 lg:bottom-8 lg:left-8 z-60 flex lg:hidden items-center justify-center gap-2.5 bg-linear-to-r from-primary to-primary-dark text-white px-4 py-3 md:px-5 md:py-3.5 rounded-full shadow-[0_8px_30px_rgba(10,58,92,0.35)] hover:-translate-y-1 hover:shadow-[0_12px_40_rgba(10,58,92,0.45)] hover:from-primary-dark hover:to-[#082a45] border border-white/10 transition-all duration-300 group ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
       }`}
     >

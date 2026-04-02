@@ -3,20 +3,6 @@ import { testimonials } from '@/data/siteData';
 import ScrollReveal from '@/components/ScrollReveal';
 
 export default function Testimonials() {
-  const userPhotos = {
-    'Sarah M.': 'women/68.jpg',
-    'James Rodriguez': 'men/32.jpg',
-    'Emily Parker': 'women/44.jpg',
-    'David W.': 'men/46.jpg',
-    'L. Kim': 'women/65.jpg',
-    'Mike H.': 'men/22.jpg',
-    'Robert G.': 'men/78.jpg',
-    'Aisha T.': 'women/89.jpg',
-    'Paul C.': 'men/12.jpg',
-    'J. Evans': 'men/60.jpg',
-    'Natalie R.': 'women/33.jpg',
-    'Marcus B.': 'men/44.jpg'
-  };
 
   return (
     <section id="testimonials" className="py-16 lg:py-24 bg-bg-light overflow-hidden">
@@ -44,10 +30,10 @@ export default function Testimonials() {
               {/* Header: Avatar, Name, Role, Google Logo */}
               <div className="flex justify-between items-start mb-4">
                 <div className="flex gap-3 items-center">
-                  {userPhotos[t.name] ? (
-                    <div className="relative w-10 h-10 shrink-0">
+                  {t.avatar ? (
+                    <div className="w-10 h-10 relative shrink-0">
                       <Image 
-                        src={`https://randomuser.me/api/portraits/${userPhotos[t.name]}`} 
+                        src={`https://randomuser.me/api/portraits/${t.avatar}`} 
                         alt={t.name} 
                         fill
                         className="rounded-full object-cover border border-slate-100" 

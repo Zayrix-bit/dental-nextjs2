@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { services } from '@/data/siteData';
+import config from '@/config';
 import Image from 'next/image';
 import Link from 'next/link';
 import { 
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }) {
   if (!service) return { title: 'Treatment Not Found' };
   
   return {
-    title: `${service.title} in NY | Premium DentalCare`,
+    title: `${service.title} in NY | ${config.name}`,
     description: service.shortDescription,
     alternates: {
       canonical: `/services/${service.slug}`,
@@ -116,7 +117,7 @@ export default async function TreatmentPage({ params }) {
                 <Link href="/contact" className="bg-white text-primary px-8 py-3.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 hover:bg-slate-50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 shrink-0">
                   Book Consultation <ArrowRight className="w-4 h-4" />
                 </Link>
-                <a href="tel:+15551234567" className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-3.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 hover:bg-white/20 transition-all shrink-0">
+                <a href={`tel:${config.contact.phoneRaw}`} className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-3.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 hover:bg-white/20 transition-all shrink-0">
                   <PhoneCall className="w-4 h-4" /> Call Now
                 </a>
               </div>
@@ -234,8 +235,8 @@ export default async function TreatmentPage({ params }) {
                   <Link href="/contact" className="block w-full bg-white text-[var(--color-primary)] text-center py-4 rounded-xl font-black mb-4 hover:bg-slate-50 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-0.5">
                     Book Appointment
                   </Link>
-                  <a href="tel:+15551234567" className="block w-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-center py-4 rounded-xl font-bold hover:bg-white/20 transition-colors">
-                    Call (555) 123-4567
+                  <a href={`tel:${config.contact.phoneRaw}`} className="block w-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-center py-4 rounded-xl font-bold hover:bg-white/20 transition-colors">
+                    Call {config.contact.phone}
                   </a>
                 </div>
 
