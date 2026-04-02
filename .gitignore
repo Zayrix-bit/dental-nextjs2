@@ -18,9 +18,8 @@
 *.pem
 
 # env files
-.env*.local
-.env
-.env.production
+.env*
+!.env.example
 
 # logs
 *.log
