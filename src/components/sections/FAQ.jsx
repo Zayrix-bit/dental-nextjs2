@@ -13,13 +13,14 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-10 lg:py-16 bg-white px-4 relative overflow-hidden">
+    <section id="faq" className="py-10 lg:py-16 bg-white relative overflow-hidden">
       {/* Subtle Background Patterns */}
       <div className="absolute inset-0 bg-dot-mesh pointer-events-none opacity-40" />
-      <div className="absolute inset-0 bg-smile-curve pointer-events-none opacity-20" />
+      <div className="absolute -bottom-20 -right-20 w-[320px] h-[320px] bg-donut-ring pointer-events-none" />
+      <div className="absolute top-8 -left-16 w-[300px] h-[300px] bg-donut-ring-lg pointer-events-none" />
       <div className="absolute inset-0 bg-radial-soft pointer-events-none" />
       
-      <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative z-10">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10">
         {/* Header Section */}
         <div className="mb-10 lg:mb-14 max-w-3xl text-left">
           <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark leading-[1.1] tracking-tight mb-6">

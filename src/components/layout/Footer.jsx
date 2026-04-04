@@ -58,7 +58,7 @@ export default function Footer() {
           TOP CTA BANNER
           ═══════════════════════════════════════════ */}
       <div className="relative z-10 border-b border-white/[0.06]">
-        <div className="max-w-[1200px] mx-auto px-6 py-8 lg:py-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 lg:gap-8">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 py-8 lg:py-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 lg:gap-8">
           <div>
             <h3 className="text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white mb-1.5 lg:mb-2">
               {config.footer.ctaHeading}
@@ -80,7 +80,7 @@ export default function Footer() {
       {/* ═══════════════════════════════════════════
           MAIN FOOTER GRID
           ═══════════════════════════════════════════ */}
-      <div className="relative z-10 max-w-[1200px] mx-auto px-6 pt-10 pb-8 lg:pt-14 lg:pb-10">
+      <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 xl:px-28 pt-10 pb-8 lg:pt-14 lg:pb-10">
         <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-8 lg:gap-8">
 
           {/* ── Brand Column ── */}
@@ -193,7 +193,7 @@ export default function Footer() {
           BOTTOM BAR
           ═══════════════════════════════════════════ */}
       <div className="relative z-10 border-t border-white/[0.06]">
-        <div className="max-w-[1200px] mx-auto px-6 py-4 lg:py-5 flex flex-col sm:flex-row justify-between items-center gap-2.5">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 py-4 lg:py-5 flex flex-col sm:flex-row justify-between items-center gap-2.5">
           <p className="text-white/30 text-[0.75rem] lg:text-[0.8rem]">
             © {year} {siteInfo.name}. All rights reserved.
           </p>

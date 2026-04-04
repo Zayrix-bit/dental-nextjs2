@@ -31,8 +31,12 @@ export default function LocationMap({ className = "" }) {
   const mapsLink = `https://www.google.com/maps/search/?api=1&query=${query}`;
 
   return (
-    <section className={`py-10 lg:py-16 bg-white ${className}`}>
-      <div className="max-w-[1200px] mx-auto px-6 overflow-hidden">
+    <section className={`py-10 lg:py-16 bg-white relative overflow-hidden ${className}`}>
+      {/* Lavender Donut Ring Accents */}
+      <div className="absolute top-1/3 -left-20 w-[320px] h-[320px] bg-donut-ring pointer-events-none" />
+      <div className="absolute -top-20 -right-16 w-[280px] h-[280px] bg-donut-ring-lg pointer-events-none" />
+
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 overflow-hidden relative z-10">
         
         {/* Header */}
         <div className="mb-10 lg:mb-14 max-w-3xl text-left">
@@ -45,7 +49,7 @@ export default function LocationMap({ className = "" }) {
         </div>
 
         {/* Content Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-6 lg:gap-8 items-stretch mx-auto max-w-[1000px]">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-6 lg:gap-8 items-stretch">
           
           {/* Map Preview (Privacy-Friendly, No Cookies) */}
           <div className="w-full h-[300px] lg:h-[420px] rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-md border border-slate-100 bg-slate-900 relative group transition-shadow duration-300">

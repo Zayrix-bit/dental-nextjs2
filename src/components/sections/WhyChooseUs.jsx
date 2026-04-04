@@ -5,12 +5,13 @@ import ScrollReveal from '@/components/ScrollReveal';
 
 export default function WhyChooseUs() {
   return (
-    <section id="about" className="flex items-center justify-center py-10 lg:py-16 bg-clinical relative overflow-hidden">
+    <section id="about" className="py-10 lg:py-16 bg-clinical relative overflow-hidden">
       {/* Subtle Background Patterns */}
       <div className="absolute inset-0 bg-svg-grid pointer-events-none opacity-40" />
-      <div className="absolute inset-0 bg-smile-curve pointer-events-none opacity-20" />
+      <div className="absolute -bottom-16 -right-16 w-[320px] h-[320px] bg-donut-ring-lg pointer-events-none" />
+      <div className="absolute -top-20 left-1/3 w-[280px] h-[280px] bg-donut-ring pointer-events-none" />
 
-      <div className="max-w-[1200px] w-full mx-auto px-6 lg:px-8 relative z-10">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10">
         <ScrollReveal>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             

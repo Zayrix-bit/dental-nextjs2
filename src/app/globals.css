@@ -395,7 +395,50 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 .bg-dot-mesh {
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='0.6' fill='rgba(10,58,92,0.03)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle%20cx='2'%20cy='2'%20r='1.2'%20fill='%230A3A5C0D'/%3E%3C/svg%3E");
+}
+
+.bg-abstract-waves {
+  background-image: url("data:image/svg+xml,%3Csvg%20width='800'%20height='800'%20viewBox='0%200%20800%20800'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M0%20400%20Q200%20300%20400%20400%20T800%20400'%20fill='none'%20stroke='%230A3A5C08'%20stroke-width='3'/%3E%3Cpath%20d='M0%20200%20Q200%20400%20400%20200%20T800%20200'%20fill='none'%20stroke='%2300B4DB0D'%20stroke-width='2.5'/%3E%3Cpath%20d='M400%200%20Q500%20200%20400%20400%20T400%20800'%20fill='none'%20stroke='%230A3A5C05'%20stroke-width='1.5'/%3E%3C/svg%3E");
+  background-size: 800px 800px;
+  background-repeat: repeat;
+}
+
+.bg-radial-ring {
+  background: radial-gradient(circle, transparent 45%, rgba(0, 180, 219, 0.08) 46%, rgba(0, 180, 219, 0.04) 50%, transparent 52%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.bg-radial-ring-sm {
+  background: radial-gradient(circle, transparent 40%, rgba(0, 180, 219, 0.1) 42%, rgba(0, 180, 219, 0.06) 50%, transparent 58%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.bg-radial-ring-md {
+  background: radial-gradient(circle, transparent 40%, rgba(0, 180, 219, 0.07) 43%, rgba(0, 180, 219, 0.03) 53%, transparent 63%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.bg-radial-ring-lg {
+  background: radial-gradient(circle, transparent 35%, rgba(0, 180, 219, 0.05) 40%, rgba(0, 180, 219, 0.02) 60%, transparent 80%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* Thick soft lavender donut ring — premium accent */
+.bg-donut-ring {
+  background: radial-gradient(circle, transparent 30%, rgba(140, 130, 220, 0.12) 32%, rgba(160, 150, 240, 0.08) 48%, transparent 50%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.bg-donut-ring-lg {
+  background: radial-gradient(circle, transparent 28%, rgba(140, 130, 220, 0.10) 30%, rgba(160, 150, 240, 0.06) 50%, transparent 52%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .bg-svg-grid {

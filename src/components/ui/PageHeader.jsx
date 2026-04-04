@@ -9,7 +9,7 @@ export default function PageHeader({ title, description }) {
         <div className="absolute bottom-[-10%] left-[-10%] w-[250px] h-[250px] bg-accent/5 rounded-full blur-[80px]" />
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-6 relative z-10 text-center flex flex-col items-center">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10 text-center flex flex-col items-center">
         {/* Subtle decorative accent line */}
         <div className="w-10 h-1 bg-accent mb-4 rounded-full opacity-80" />
         

@@ -5,8 +5,12 @@ import ScrollReveal from '@/components/ScrollReveal';
 export default function Testimonials() {
 
   return (
-    <section id="testimonials" className="py-16 lg:py-24 bg-bg-light overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <section id="testimonials" className="py-16 lg:py-24 bg-bg-light relative overflow-hidden">
+      {/* Premium Background Layer */}
+      <div className="absolute inset-0 bg-abstract-waves pointer-events-none bg-clinical-noise" />
+      <div className="absolute top-1/4 -right-20 w-[300px] h-[300px] bg-donut-ring pointer-events-none" />
+      <div className="absolute -bottom-20 left-10 w-[350px] h-[350px] bg-donut-ring-lg pointer-events-none" />
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28">
         <ScrollReveal>
           <div className="max-w-3xl mb-16 md:mb-20 text-left">
             <h2 className="text-3xl md:text-4xl lg:text-[3.25rem] font-bold text-text-dark mb-6 tracking-tight leading-[1.1]">

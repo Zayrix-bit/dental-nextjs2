@@ -247,8 +247,12 @@ export default function Contact({ className = "" }) {
   }
 
   return (
-    <section className="py-10 lg:py-16 bg-clinical px-4 overflow-hidden">
-      <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative z-10 mb-14 text-left">
+    <section className="py-10 lg:py-16 bg-clinical relative overflow-hidden">
+      {/* Lavender Donut Ring Accents */}
+      <div className="absolute -top-16 right-1/3 w-[300px] h-[300px] bg-donut-ring-lg pointer-events-none" />
+      <div className="absolute -bottom-20 -left-16 w-[350px] h-[350px] bg-donut-ring pointer-events-none" />
+
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10 mb-14 text-left">
         <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark leading-[1.1] tracking-tight mb-6">
           Schedule Your Private <span className="text-primary">Consultation.</span>
         </h2>
@@ -260,7 +264,7 @@ export default function Contact({ className = "" }) {
       <div
         id="appointment"
         ref={sectionRef}
-        className={`scroll-mt-5 max-w-[1000px] mx-auto grid grid-cols-1 lg:grid-cols-[320px_1fr] bg-white rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-slate-100 transition-all duration-500 ${className}`}
+        className={`scroll-mt-5 mx-6 md:mx-12 lg:mx-20 xl:mx-28 grid grid-cols-1 lg:grid-cols-[320px_1fr] bg-white rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-slate-100 transition-all duration-500 ${className}`}
       >
 
         <aside className="relative bg-linear-to-br from-primary to-primary-dark p-8 flex flex-col overflow-hidden">

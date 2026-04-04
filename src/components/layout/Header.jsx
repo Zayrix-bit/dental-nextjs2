@@ -181,7 +181,7 @@ export default function Header() {
           : 'py-2.5 lg:py-4 border-transparent'
       }`}
     >
-      <div className="max-w-[1240px] mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 flex items-center justify-between">
 
         {/* Logo */}
         <Link

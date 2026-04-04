@@ -191,9 +191,11 @@ export default function BeforeAfter() {
 
   return (
     <section id="gallery" className="py-10 md:py-16 bg-clinical overflow-hidden relative">
-      {/* Background Decor Removed for Minimalist Consistency */}
+      {/* Premium Background Accents */}
+      <div className="absolute -top-16 -left-16 w-[340px] h-[340px] bg-donut-ring-lg pointer-events-none" />
+      <div className="absolute -bottom-24 right-1/4 w-[280px] h-[280px] bg-donut-ring pointer-events-none" />
 
-      <div className="max-w-[1240px] mx-auto relative z-10 w-full overflow-hidden">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10 overflow-hidden">
         <ScrollReveal>
           <div className="mb-10 lg:mb-14 flex flex-col gap-6 px-4">
             <div className="max-w-3xl text-left">

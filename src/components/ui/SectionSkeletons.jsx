@@ -58,7 +58,7 @@ export function HeroSkeleton() {
 export function ServicesSkeleton() {
   return (
     <section className="py-16 lg:py-24 bg-bg-section">
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28">
         {/* Section Title */}
         <div className="mb-12">
           <Skeleton className="h-9 w-64 mb-3" />
@@ -82,7 +82,7 @@ export function ServicesSkeleton() {
 export function TestimonialsSkeleton() {
   return (
     <section className="py-16 lg:py-24 bg-white overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28">
         <Skeleton className="h-9 w-56 mb-12" />
         
         <div className="flex gap-6 overflow-hidden">
@@ -117,7 +117,7 @@ export function TestimonialsSkeleton() {
 export function BeforeAfterSkeleton() {
   return (
     <section className="py-16 lg:py-24 bg-bg-section">
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28">
         <Skeleton className="h-9 w-72 mb-12" />
         <Skeleton className="w-full aspect-video lg:aspect-[21/9]" rounded="rounded-2xl" />
       </div>
@@ -131,7 +131,7 @@ export function BeforeAfterSkeleton() {
 export function FAQSkeleton() {
   return (
     <section className="py-16 lg:py-24 bg-white">
-      <div className="max-w-[800px] mx-auto px-6">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28">
         <div className="text-center mb-12">
           <Skeleton className="h-9 w-64 mx-auto mb-3" />
           <Skeleton className="h-4 w-80 mx-auto max-w-full" />
@@ -155,7 +155,7 @@ export function FAQSkeleton() {
 export function ContactSkeleton() {
   return (
     <section className="py-16 lg:py-24 bg-bg-section">
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Form */}
           <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100">
@@ -188,7 +188,7 @@ export function ContactSkeleton() {
 export function LocationMapSkeleton() {
   return (
     <section className="py-16 lg:py-24 bg-white">
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28">
         <Skeleton className="h-9 w-48 mb-8" />
         <Skeleton className="w-full h-80 lg:h-96" rounded="rounded-2xl" />
       </div>
@@ -202,7 +202,7 @@ export function LocationMapSkeleton() {
 export function PageHeaderSkeleton() {
   return (
     <div className="bg-bg-section py-20 md:py-28">
-      <div className="max-w-[1200px] mx-auto px-6 text-center">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 text-center">
         <Skeleton className="h-10 w-64 mx-auto mb-4" />
         <Skeleton className="h-4 w-96 mx-auto max-w-full" />
       </div>

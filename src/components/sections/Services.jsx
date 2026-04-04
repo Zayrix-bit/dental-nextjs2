@@ -8,11 +8,12 @@ export default function Services({ isHomePage = false }) {
   return (
     <section id="services" className="py-16 lg:py-24 bg-white relative overflow-hidden">
       {/* Subtle Background Patterns */}
-      <div className="absolute inset-0 bg-dot-mesh pointer-events-none opacity-40" />
-      <div className="absolute inset-0 bg-smile-curve pointer-events-none opacity-20" />
+      <div className="absolute inset-0 bg-abstract-waves pointer-events-none" />
+      <div className="absolute -top-20 -right-20 w-[350px] h-[350px] bg-donut-ring pointer-events-none" />
+      <div className="absolute bottom-10 -left-28 w-[300px] h-[300px] bg-donut-ring-lg pointer-events-none" />
       <div className="absolute inset-0 bg-radial-soft pointer-events-none" />
 
-      <div className="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10 w-full">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10">
         <ScrollReveal>
           <div className="mb-10 lg:mb-14 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div className="max-w-2xl text-left">
@@ -41,7 +42,7 @@ export default function Services({ isHomePage = false }) {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8 mt-6 lg:mt-10 max-w-[1100px] mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8 mt-6 lg:mt-10">
           {[...services]
             .sort((a, b) => (b.isHighlighted ? 1 : 0) - (a.isHighlighted ? 1 : 0))
             .map((service, idx) => (

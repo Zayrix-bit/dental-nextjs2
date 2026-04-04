@@ -259,8 +259,8 @@ export default function ExtendedContact({ className = "" }) {
 
   /* ── Main Form ── */
   return (
-    <section className="py-10 lg:py-16 bg-bg-section px-4 overflow-hidden">
-      <div className="max-w-[1000px] mx-auto px-4 md:px-6 mb-10 lg:mb-14 text-left">
+    <section className="py-10 lg:py-16 bg-bg-section relative overflow-hidden">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 mb-10 lg:mb-14 text-left">
         <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark leading-[1.1] tracking-tight mb-6">
           {config.booking.heading} <span className="text-primary">{config.booking.headingAccent}</span>
         </h2>
