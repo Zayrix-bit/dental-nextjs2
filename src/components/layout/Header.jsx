@@ -145,8 +145,17 @@ export default function Header() {
 
   useEffect(() => {
     setMounted(true);
+    let ticking = false;
+
     const onScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const isScrolled = window.scrollY > 20;
+          setScrolled(prev => prev !== isScrolled ? isScrolled : prev);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     onScroll();

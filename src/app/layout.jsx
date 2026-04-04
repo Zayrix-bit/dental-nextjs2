@@ -81,7 +81,7 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en" className={roboto.variable}>
+    <html lang="en" className={roboto.variable} data-scroll-behavior="smooth">
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
