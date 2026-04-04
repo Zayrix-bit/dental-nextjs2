@@ -12,15 +12,30 @@ export default function Services({ isHomePage = false }) {
 
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10 w-full">
         <ScrollReveal>
-          <div className="mb-10 lg:mb-14 flex flex-col gap-6">
-            <div className="max-w-3xl text-left">
+          <div className="mb-10 lg:mb-14 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div className="max-w-2xl text-left">
               <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark leading-[1.1] tracking-tight mb-6">
                 Signature <span className="text-primary">Treatments.</span>
               </h2>
-              <p className="text-slate-500 text-[0.9rem] md:text-[1rem] leading-relaxed font-medium mb-8 max-w-2xl">
+              <p className="text-slate-500 text-[0.92rem] md:text-[1rem] leading-relaxed font-medium max-w-xl">
                 Bespoke dental care designed to elevate your aesthetic, restore optimal function, and prioritize your comfort.
               </p>
             </div>
+            
+            {isHomePage && (
+              <div className="flex shrink-0 pb-1">
+                <Link 
+                  href="/services" 
+                  className="group flex items-center gap-2.5 text-primary font-bold text-[0.85rem] uppercase tracking-widest transition-all hover:text-primary-dark"
+                >
+                  <span className="relative">
+                    View All Services
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
+                  </span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.5} />
+                </Link>
+              </div>
+            )}
           </div>
         </ScrollReveal>
 
@@ -107,25 +122,6 @@ export default function Services({ isHomePage = false }) {
               </ScrollReveal>
             ))}
         </div>
-
-        {isHomePage && (
-          <ScrollReveal delay={150}>
-            <div className="mt-16 flex justify-center">
-              <Link
-                href="/services"
-                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-primary px-8 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-primary-dark hover:shadow-xl active:scale-95"
-              >
-                <span className="relative z-10">View All Services</span>
-                <div className="relative z-10 transition-transform duration-300 group-hover:translate-x-1">
-                  <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-                </div>
-
-                {/* Subtle shine effect */}
-                <div className="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
-              </Link>
-            </div>
-          </ScrollReveal>
-        )}
       </div>
     </section>
   );
