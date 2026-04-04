@@ -24,9 +24,9 @@ A high-performance, agency-grade dental clinic website built with **Next.js 15**
 | 🎨 **Premium Design System** | Navy/Teal/Emerald clinical palette with glassmorphism, gradient overlays, and editorial typography |
 | ⚡ **Blazing Fast** | Server Components, dynamic imports with skeleton loading, optimized images & fonts |
 | 📱 **Fully Responsive** | Pixel-perfect layouts from 320px mobile to ultra-wide desktop |
-| 🎬 **Micro-Animations** | Scroll-reveal effects, CTA jiggle, infinite testimonial scroll, smooth page transitions |
+| 🎬 **Micro-Animations** | Scroll-reveal effects, custom preloader, infinite testimonial scroll, smooth page transitions |
 | 🔍 **SEO Optimized** | Dynamic sitemap, robots.txt, semantic HTML, structured metadata on every page |
-| 📞 **Conversion Focused** | Floating WhatsApp CTA, emergency call button, strategic booking prompts |
+| 📞 **Conversion Focused** | Refined Call-to-Action design, integrated strategic booking prompts |
 | 🧩 **Config-Driven** | Swap clinic branding, images, and content from a single config file — zero code changes |
 
 ---
@@ -147,12 +147,14 @@ dental-nextjs/
 │   │   │   └── LocationMap.jsx     # Static map with premium overlay
 │   │   └── ui/                     # Atomic UI components
 │   │       ├── AnimatedCounter.jsx # Number count-up animation
-│   │       ├── FloatingCallCTA.jsx # Emergency call floating button
+│   │       ├── BlogCTA.jsx         # Call to action for blog posts
 │   │       ├── PageHeader.jsx      # Reusable subpage header
+│   │       ├── ParallaxRing.jsx    # Parallax decorative ring
+│   │       ├── Preloader.jsx       # Initial page loading animation
 │   │       ├── SectionSkeletons.jsx# Loading skeletons per section
+│   │       ├── SectionTitle.jsx    # Animated section title
 │   │       ├── Skeleton.jsx        # Base skeleton primitives
-│   │       ├── SmoothScrollProvider.jsx # Lenis scroll wrapper
-│   │       └── WhatsAppButton.jsx  # Floating WhatsApp with giggle
+│   │       └── SmoothScrollProvider.jsx # Lenis scroll wrapper
 │   │
 │   ├── config/                     # Centralized site configuration
 │   │   ├── clinics/                # Clinic-specific branding configs
