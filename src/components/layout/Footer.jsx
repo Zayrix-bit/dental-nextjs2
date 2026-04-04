@@ -34,18 +34,18 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-[#051117] text-white/80 overflow-hidden border-t border-white/5 pt-14">
+    <footer className="relative bg-[#051117] text-white/80 overflow-hidden border-t border-white/5 pt-10 lg:pt-14">
       {/* Background Subtle Glows */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[var(--color-primary)]/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[var(--color-accent)]/10 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Main Container */}
-      <div className="max-w-[1200px] mx-auto px-6 pb-12 relative z-10">
+      <div className="max-w-[1200px] mx-auto px-6 pb-8 lg:pb-12 relative z-10">
         
         {/* Top CTA Row */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center border-b border-white/10 pb-10 mb-10 gap-8">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center border-b border-white/10 pb-7 mb-7 lg:pb-10 lg:mb-10 gap-5 lg:gap-8">
           <div>
-            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-3">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white mb-2 lg:mb-3">
               {config.footer.ctaHeading}
             </h3>
             <p className="text-white/60 max-w-md text-[0.95rem] leading-relaxed">
@@ -67,18 +67,18 @@ export default function Footer() {
         </div>
         
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-8 lg:gap-8">
           
           {/* Brand Column */}
-          <ScrollReveal className="lg:col-span-4">
-            <Link href="/" className="flex items-center gap-3 text-xl font-bold text-white mb-6 group inline-flex">
+          <ScrollReveal className="col-span-2 lg:col-span-4">
+            <Link href="/" className="flex items-center gap-3 text-xl font-bold text-white mb-4 lg:mb-6 group inline-flex">
               <div className="w-9 h-9 bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-primary)] rounded-full flex items-center justify-center relative overflow-hidden shrink-0">
                 <Activity className="w-5 h-5 text-white relative z-10" strokeWidth={2} />
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               <span className="tracking-tight">{siteInfo.name}<span className="text-accent">.</span></span>
             </Link>
-            <p className="text-white/50 text-[0.9rem] leading-relaxed mb-6 max-w-sm">
+            <p className="text-white/50 text-[0.85rem] lg:text-[0.9rem] leading-relaxed mb-4 lg:mb-6 max-w-sm">
               {config.brandDescription}
             </p>
             {/* Social Links */}
@@ -96,9 +96,9 @@ export default function Footer() {
           </ScrollReveal>
 
           {/* Navigation */}
-          <ScrollReveal delay={100} className="lg:col-span-2 lg:col-start-6">
-            <h4 className="text-white text-[13px] font-bold mb-5 tracking-widest uppercase mt-1 opacity-90">Explore</h4>
-            <ul className="space-y-3.5">
+          <ScrollReveal delay={100} className="col-span-1 lg:col-span-2 lg:col-start-6">
+            <h4 className="text-white text-[13px] font-bold mb-3 lg:mb-5 tracking-widest uppercase mt-1 opacity-90">Explore</h4>
+            <ul className="space-y-2.5 lg:space-y-3.5">
               {footerQuickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -116,9 +116,9 @@ export default function Footer() {
           </ScrollReveal>
 
           {/* Services */}
-          <ScrollReveal delay={200} className="lg:col-span-2">
-            <h4 className="text-white text-[13px] font-bold mb-5 tracking-widest uppercase mt-1 opacity-90">Services</h4>
-            <ul className="space-y-3.5">
+          <ScrollReveal delay={200} className="col-span-1 lg:col-span-2">
+            <h4 className="text-white text-[13px] font-bold mb-3 lg:mb-5 tracking-widest uppercase mt-1 opacity-90">Services</h4>
+            <ul className="space-y-2.5 lg:space-y-3.5">
               {services.slice(0, 5).map((s) => (
                 <li key={s.id}>
                   <Link
@@ -136,9 +136,9 @@ export default function Footer() {
           </ScrollReveal>
 
           {/* Contact */}
-          <ScrollReveal delay={300} className="lg:col-span-3">
-            <h4 className="text-white text-[13px] font-bold mb-5 tracking-widest uppercase mt-1 opacity-90">Connect</h4>
-            <ul className="space-y-4">
+          <ScrollReveal delay={300} className="col-span-2 lg:col-span-3">
+            <h4 className="text-white text-[13px] font-bold mb-3 lg:mb-5 tracking-widest uppercase mt-1 opacity-90">Connect</h4>
+            <ul className="space-y-3 lg:space-y-4">
               <li>
                 <div className="flex items-start gap-3">
                   <div className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center shrink-0">
@@ -173,7 +173,7 @@ export default function Footer() {
               </li>
             </ul>
             
-            <div className="mt-8 pt-6 border-t border-white/10">
+            <div className="mt-5 pt-4 lg:mt-8 lg:pt-6 border-t border-white/10">
               <p className="text-white/40 text-[0.85rem] mb-1">Emergency Care</p>
               <p className="text-[var(--color-accent)] font-medium text-[0.95rem]">
                 {siteInfo.hours.emergency}
@@ -185,7 +185,7 @@ export default function Footer() {
 
       {/* Bottom Legal Bar */}
       <div className="border-t border-white/5 bg-black/20">
-        <div className="max-w-[1200px] mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="max-w-[1200px] mx-auto px-6 py-4 lg:py-6 flex flex-col md:flex-row justify-between items-center gap-3 lg:gap-4">
           <p className="text-white/40 text-[0.85rem]">
             © {year} {siteInfo.name} Clinic. All rights reserved.
           </p>
