@@ -8,7 +8,7 @@ import ParallaxRing from '@/components/ui/ParallaxRing';
 
 export default function Services({ isHomePage = false }) {
   return (
-    <section id="services" className="py-16 lg:py-24 bg-white relative overflow-hidden">
+    <section id="services" className="pt-8 pb-16 lg:pt-6 lg:pb-24 bg-white relative overflow-hidden">
       {/* Subtle Background Patterns */}
       <div className="absolute inset-0 bg-abstract-waves pointer-events-none" />
       <ParallaxRing className="absolute -top-20 -right-20 w-[350px] h-[350px]" ringStyle="bg-donut-ring" speed={0.12} />

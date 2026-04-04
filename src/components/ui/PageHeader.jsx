@@ -10,8 +10,7 @@ export default function PageHeader({ title, description }) {
       </div>
 
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10 text-center flex flex-col items-center">
-        {/* Subtle decorative accent line */}
-        <div className="w-10 h-1 bg-accent mb-4 rounded-full opacity-80" />
+        {/* Title without the decorative accent line */}
         
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-3 tracking-tight">
           {title}

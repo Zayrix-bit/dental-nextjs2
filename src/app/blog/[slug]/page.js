@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { blogPosts } from '@/data/blogData';
+import ParallaxRing from '@/components/ui/ParallaxRing';
 
 /* Import all article content components */
 import GeneralCheckup from './articles/general-checkup-and-cleaning';
@@ -80,13 +81,17 @@ export default async function BlogPostPage({ params }) {
         </section>
 
         {/* Article Body */}
-        <section className="py-12 lg:py-16 bg-[var(--color-bg-light)] px-4">
-          <article className="max-w-3xl mx-auto prose-dental">
+        <section className="py-12 lg:py-16 bg-[var(--color-bg-light)] px-4 relative overflow-hidden">
+          {/* Lavender Donut Ring Accents */}
+          <ParallaxRing className="absolute top-40 -right-32 w-[350px] h-[350px]" ringStyle="bg-donut-ring-lg" speed={0.12} />
+          <ParallaxRing className="absolute bottom-40 -left-32 w-[300px] h-[300px]" ringStyle="bg-donut-ring" speed={0.18} />
+
+          <article className="max-w-3xl mx-auto prose-dental relative z-10">
             <ArticleContent />
           </article>
 
           {/* CTA */}
-          <div className="max-w-3xl mx-auto mt-12 p-8 bg-white rounded-2xl border border-[rgba(160,210,235,0.2)] shadow-[0_4px_20px_rgba(0,0,0,0.04)] text-center">
+          <div className="max-w-3xl mx-auto mt-12 p-8 bg-white rounded-2xl border border-[rgba(160,210,235,0.2)] shadow-[0_4px_20px_rgba(0,0,0,0.04)] text-center relative z-10">
             <h3 className="text-xl font-bold text-[var(--color-text-dark)] mb-2">Have Questions About {post.service}?</h3>
             <p className="text-[var(--color-text-light)] text-[15px] mb-5">Our team is here to help. Book a consultation and get personalized advice.</p>
             <Link

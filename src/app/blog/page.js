@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { blogPosts } from '@/data/blogData';
+import ParallaxRing from '@/components/ui/ParallaxRing';
 
 export const metadata = {
   title: 'Dental Health Blog | Expert Oral Care Tips & Guides',
@@ -36,8 +37,12 @@ export default function BlogPage() {
         </section>
 
         {/* Posts Grid */}
-        <section className="py-16 lg:py-24 bg-[var(--color-bg-light)] px-4">
-          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="py-16 lg:py-24 bg-[var(--color-bg-light)] px-4 relative overflow-hidden">
+          {/* Lavender Donut Ring Accents */}
+          <ParallaxRing className="absolute top-20 -left-20 w-[300px] h-[300px]" ringStyle="bg-donut-ring" speed={0.15} />
+          <ParallaxRing className="absolute bottom-20 -right-20 w-[400px] h-[400px]" ringStyle="bg-donut-ring-lg" speed={0.2} />
+          
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
             {blogPosts.map((post) => (
               <Link
                 key={post.slug}

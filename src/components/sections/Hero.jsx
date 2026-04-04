@@ -25,7 +25,7 @@ export default function Hero() {
 
       {/* ── Dark Gradient Overlay ── */}
       <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/65 to-black/40" />
-      <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/30" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-black/30" />
 
       {/* ── Accent Glow & Patterns ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -66,10 +66,7 @@ export default function Hero() {
           {/* Heading */}
           <ScrollReveal>
             <h1 className="text-[2.5rem] sm:text-[2.75rem] md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-black tracking-[-0.02em] leading-[1.05] mt-7 md:mt-7 text-white">
-              {config.hero.title.split(' ').slice(0, -1).join(' ')}{' '}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-accent to-emerald-300">
-                {config.hero.title.split(' ').pop()}
-              </span>
+              {config.hero.title}
             </h1>
           </ScrollReveal>
 
@@ -118,8 +115,12 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Clean bottom edge ── */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
+      {/* ── Curved transition into Services ── */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-[40px] sm:h-[50px] lg:h-[48px] block">
+          <path d="M0,80 L0,40 Q360,0 720,40 Q1080,80 1440,40 L1440,80 Z" fill="white" />
+        </svg>
+      </div>
     </section>
   );
 }

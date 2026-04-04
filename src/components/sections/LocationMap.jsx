@@ -32,13 +32,13 @@ export default function LocationMap({ className = "" }) {
   const mapsLink = `https://www.google.com/maps/search/?api=1&query=${query}`;
 
   return (
-    <section className={`py-10 lg:py-16 bg-white relative overflow-hidden ${className}`}>
+    <section className={`pt-10 pb-20 lg:pt-16 lg:pb-24 bg-white relative overflow-hidden ${className}`}>
       {/* Lavender Donut Ring Accents */}
       <ParallaxRing className="absolute top-1/3 -left-20 w-[320px] h-[320px]" ringStyle="bg-donut-ring" speed={0.18} />
       <ParallaxRing className="absolute -top-20 -right-16 w-[280px] h-[280px]" ringStyle="bg-donut-ring-lg" speed={0.1} />
 
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 overflow-hidden relative z-10">
-        
+
         {/* Header */}
         <div className="mb-10 lg:mb-14 max-w-3xl text-left">
           <h2 className="text-3xl md:text-4xl lg:text-[3.25rem] font-bold text-text-dark tracking-tight leading-[1.1] mb-6">
@@ -51,18 +51,18 @@ export default function LocationMap({ className = "" }) {
 
         {/* Content Container */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-6 lg:gap-8 items-stretch">
-          
+
           {/* Map Preview (Privacy-Friendly, No Cookies) */}
           <div className="w-full h-[300px] lg:h-[420px] rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-md border border-slate-100 bg-slate-900 relative group transition-shadow duration-300">
             {/* Background Image / Placeholder */}
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
               style={{ backgroundImage: `url('/images/hero-bg.png')`, opacity: 0.4 }}
             />
-            
+
             {/* Overlay */}
             <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-slate-900/40 to-transparent" />
-            
+
             {/* Content Over Map */}
             <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
               <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-4 transform group-hover:scale-110 transition-transform duration-500">
@@ -165,6 +165,13 @@ export default function LocationMap({ className = "" }) {
           </div>
 
         </div>
+      </div>
+
+      {/* ── Curved transition into Footer ── */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-[40px] sm:h-[50px] lg:h-[48px] block">
+          <path d="M0,80 L0,40 Q360,0 720,40 Q1080,80 1440,40 L1440,80 Z" fill="#060d12" />
+        </svg>
       </div>
     </section>
   );
