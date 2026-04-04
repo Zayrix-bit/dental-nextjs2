@@ -24,13 +24,15 @@ export default function Hero() {
       />
 
       {/* ── Dark Gradient Overlay ── */}
-      <div className="absolute inset-0 bg-linear-to-r from-black/75 via-black/55 to-black/30" />
-      <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-black/20" />
+      <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/65 to-black/40" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/30" />
 
-      {/* ── Accent Glow ── */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute bottom-0 left-0 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[120px]" />
-        <div className="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-accent/8 rounded-full blur-[100px]" />
+      {/* ── Accent Glow & Patterns ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="absolute inset-0 bg-smile-curve opacity-10" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[400px] bg-primary/20 rounded-full blur-[120px]" />
+        <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] bg-accent/15 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 bg-radial-hero opacity-30" />
       </div>
 
       {/* ── Content ── */}

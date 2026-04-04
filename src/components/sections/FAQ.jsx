@@ -14,7 +14,9 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-10 lg:py-16 bg-white px-4 relative overflow-hidden">
-      {/* Subtle Radial Glow */}
+      {/* Subtle Background Patterns */}
+      <div className="absolute inset-0 bg-dot-mesh pointer-events-none opacity-40" />
+      <div className="absolute inset-0 bg-smile-curve pointer-events-none opacity-20" />
       <div className="absolute inset-0 bg-radial-soft pointer-events-none" />
       
       <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative z-10">

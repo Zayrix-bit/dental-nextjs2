@@ -7,7 +7,9 @@ import Image from 'next/image';
 export default function Services({ isHomePage = false }) {
   return (
     <section id="services" className="py-16 lg:py-24 bg-white relative overflow-hidden">
-      {/* Subtle Radial Glow */}
+      {/* Subtle Background Patterns */}
+      <div className="absolute inset-0 bg-dot-mesh pointer-events-none opacity-40" />
+      <div className="absolute inset-0 bg-smile-curve pointer-events-none opacity-20" />
       <div className="absolute inset-0 bg-radial-soft pointer-events-none" />
 
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10 w-full">

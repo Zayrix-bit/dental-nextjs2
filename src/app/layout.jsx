@@ -43,6 +43,7 @@ export const metadata = {
 };
 
 import SmoothScrollProvider from '@/components/ui/SmoothScrollProvider';
+import Preloader from '@/components/ui/Preloader';
 
 export default function RootLayout({ children }) {
   const jsonLd = {
@@ -86,6 +87,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className={roboto.className}>
+        <Preloader />
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>

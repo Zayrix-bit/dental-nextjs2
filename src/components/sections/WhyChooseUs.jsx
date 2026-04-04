@@ -6,8 +6,9 @@ import ScrollReveal from '@/components/ScrollReveal';
 export default function WhyChooseUs() {
   return (
     <section id="about" className="flex items-center justify-center py-10 lg:py-16 bg-clinical relative overflow-hidden">
-      {/* Subtle SVG Grid Pattern */}
-      <div className="absolute inset-0 bg-svg-grid pointer-events-none opacity-[0.8]" />
+      {/* Subtle Background Patterns */}
+      <div className="absolute inset-0 bg-svg-grid pointer-events-none opacity-40" />
+      <div className="absolute inset-0 bg-smile-curve pointer-events-none opacity-20" />
 
       <div className="max-w-[1200px] w-full mx-auto px-6 lg:px-8 relative z-10">
         <ScrollReveal>
