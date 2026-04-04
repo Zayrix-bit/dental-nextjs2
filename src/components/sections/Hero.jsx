@@ -10,7 +10,7 @@ const TRUST_AVATARS = config.images.trustAvatars;
 
 export default function Hero() {
   return (
-    <section className="relative h-dvh flex flex-col overflow-hidden">
+    <section className="relative h-svh flex flex-col overflow-hidden">
 
       {/* ── Full-Bleed Background Image ── */}
       <Image

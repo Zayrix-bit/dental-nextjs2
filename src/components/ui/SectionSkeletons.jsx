@@ -11,7 +11,7 @@ import { Skeleton, SkeletonText, SkeletonCircle, SkeletonButton, SkeletonCard } 
    ═══════════════════════════════════════ */
 export function HeroSkeleton() {
   return (
-    <div className="relative h-dvh flex flex-col overflow-hidden bg-slate-900">
+    <div className="relative h-svh flex flex-col overflow-hidden bg-slate-900">
       {/* Shimmer background fill */}
       <Skeleton className="absolute inset-0 opacity-20" rounded="rounded-none" />
       
