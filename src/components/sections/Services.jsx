@@ -6,6 +6,11 @@ import Image from 'next/image';
 
 import ParallaxRing from '@/components/ui/ParallaxRing';
 
+const truncateText = (text, maxLength = 24) => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength).trim() + "...";
+};
+
 export default function Services({ isHomePage = false }) {
   return (
     <section id="services" className="pt-8 pb-16 lg:pt-6 lg:pb-24 bg-white relative overflow-hidden">
@@ -71,7 +76,7 @@ export default function Services({ isHomePage = false }) {
                     )}
 
                     {/* Image Area */}
-                    <div className="relative w-full aspect-4/3 sm:aspect-3/2 overflow-hidden bg-slate-100">
+                    <div className="relative w-full aspect-16/10 overflow-hidden bg-slate-100">
                       <div className="absolute inset-0 bg-linear-to-t from-primary/80 via-primary/10 to-transparent z-10 transition-opacity duration-500 opacity-50 group-hover:opacity-70"></div>
 
                       <Image
@@ -79,52 +84,67 @@ export default function Services({ isHomePage = false }) {
                         alt={service.altText || service.title}
                         fill
                         className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         quality={75}
                         priority={idx < 2}
-                        loading={idx < 2 ? 'eager' : 'lazy'}
                       />
 
                       {/* Floating Icon overlapping image and content */}
-                      <div className="absolute -bottom-[6px] sm:-bottom-[12px] left-2 sm:left-3 z-20">
-                        <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-md sm:rounded-lg flex items-center justify-center shadow-md border border-slate-50 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 ${service.isHighlighted ? 'bg-primary text-white' : 'bg-white text-primary'
+                      <div className="absolute -bottom-1.5 left-3 z-20">
+                        <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center shadow-md border border-slate-50 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 ${service.isHighlighted ? 'bg-primary text-white' : 'bg-white text-primary'
                           }`}>
-                          <service.icon className="w-3 h-3 sm:w-4 sm:h-4" strokeWidth={1.5} />
+                          <service.icon className="w-4 h-4" strokeWidth={1.5} />
                         </div>
                       </div>
                     </div>
 
                     {/* Text Content */}
-                    <div className="p-2 pt-3 sm:p-3 sm:pt-4 md:p-3.5 md:pt-5 lg:p-4 lg:pt-6 flex flex-col grow relative z-10 bg-white">
-                      <h3 className="text-[11px] sm:text-sm lg:text-base font-bold text-text-dark mb-1 sm:mb-1.5 group-hover:text-primary transition-colors duration-300 leading-tight">
+                    <div className="p-5 sm:p-6 flex flex-col h-full bg-white relative z-10 transition-colors duration-500 overflow-hidden">
+                      {/* Artistic Numeric Marker (Subtle background) */}
+                      <span className="absolute -top-3 -right-1 text-6xl font-black text-slate-50/50 select-none pointer-events-none group-hover:text-primary/5 transition-colors duration-500">
+                        0{idx + 1}
+                      </span>
+
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="h-px w-3 bg-primary/20" />
+                        <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">
+                          Specialist Care
+                        </span>
+                      </div>
+
+                      <h3 className="text-base sm:text-lg font-bold text-text-dark group-hover:text-primary transition-colors duration-300 leading-tight mb-4">
                         {service.title}
                       </h3>
 
-                      <p className="text-[8px] sm:text-[0.75rem] lg:text-[0.8rem] text-slate-500 leading-snug mb-2 sm:mb-3 grow line-clamp-2">
-                        {service.shortDescription || service.description}
-                      </p>
-
-                      {/* Trust Tags */}
-                      {service.tags && (
-                        <div className="hidden sm:flex flex-wrap gap-1 mb-2 sm:mb-3 relative">
-                          {service.tags.slice(0, 2).map((tag, tagIdx) => (
-                            <span key={tagIdx} className="bg-slate-50 border border-slate-100 text-slate-500 px-1 py-px sm:px-1.5 sm:py-0.5 rounded text-[7px] sm:text-[9px] font-semibold tracking-wider uppercase truncate max-w-full">
-                              {tag}
+                      {/* Scannable High-Value Benefits */}
+                      <div className="flex flex-wrap gap-x-3 gap-y-1.5 mb-auto">
+                        {(service.benefits || []).slice(0, 3).map((benefit, bIdx) => (
+                          <div key={bIdx} className="flex items-center gap-1.5 min-w-fit">
+                            <div className="w-1 h-1 rounded-full bg-primary/20" />
+                            <span className="text-[10px] font-medium text-slate-500 whitespace-nowrap">
+                              {truncateText(benefit)}
                             </span>
-                          ))}
-                        </div>
-                      )}
+                          </div>
+                        ))}
+                      </div>
 
-                      {/* Action Link */}
-                      <div className="flex items-center justify-between mt-auto relative">
-                        <div className="flex items-center text-primary font-bold text-[8px] sm:text-[9px] lg:text-[10px] group-hover:gap-1.5 transition-all duration-300 gap-1 tracking-wider uppercase">
-                          <span>Book Now</span>
-                          <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 stroke-[2.5]" />
-                        </div>
-                        {service.isHighlighted && (
-                          <span className="hidden sm:inline text-[8px] lg:text-[9px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded-md">
-                            From $99
+                      {/* Action Link - Professional & Minimal */}
+                      <div className="mt-5 flex items-center justify-between pt-3 border-t border-slate-50">
+                        <div className="inline-flex items-center gap-2.5 text-primary font-bold text-[10px] uppercase tracking-[0.12em] transition-all duration-300 group-hover:gap-4">
+                          <span className="relative text-[11px]">
+                            Details
+                            <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
                           </span>
+                          <div className="w-6 h-px bg-primary/20 transition-all duration-300 group-hover:w-10 group-hover:bg-primary" />
+                        </div>
+                        
+                        {service.isHighlighted && (
+                          <div className="flex items-center gap-1.5 text-emerald-600/70">
+                            <Star className="w-2.5 h-2.5 fill-current" />
+                            <span className="text-[8px] font-bold tracking-tighter">
+                              ELITE
+                            </span>
+                          </div>
                         )}
                       </div>
                     </div>

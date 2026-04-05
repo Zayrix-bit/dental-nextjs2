@@ -173,7 +173,7 @@ export const clinicConfig = {
       altText: 'Professional dental checkup in a high-tech modern clinic environment.',
       title: 'General Dentistry',
       shortDescription:
-        'Foundational care including advanced diagnostics, professional prophylaxis, and precision-guided preventive measures.',
+        'Comprehensive preventive and diagnostic care designed to maintain long-term oral health.',
       description:
         'Our general dentistry services provide the absolute foundation for a lifetime of elite oral health. We focus on comprehensive clinical exams, micro-ultrasonic cleanings, and early detection of dental issues using state-of-the-art diagnostic technology.',
       longDescription: [
@@ -217,7 +217,7 @@ export const clinicConfig = {
       altText: 'Bespoke smile transformation featuring high-end porcelain veneers for a natural, radiant aesthetic.',
       title: 'Cosmetic Dentistry',
       shortDescription:
-        'Bespoke smile transformations featuring hand-crafted porcelain veneers and precision aesthetic bonding.',
+        'Bespoke smile architecture utilizing precision porcelain layering for natural, radiant results.',
       description:
         'Our cosmetic solutions are engineered to harmonize with your facial structure. From porcelain veneers to complex smile architecture, we blend clinical precision with artistic mastery to deliver life-changing results.',
       longDescription: [
@@ -349,7 +349,7 @@ export const clinicConfig = {
       altText: 'Realistic dental implant supporting a lifelike porcelain crown for a permanent restoration.',
       title: 'Dental Implants',
       shortDescription:
-        'Permanent restorative architecture that restores full functional integrity and aesthetic vitality.',
+        'Advanced restorative techniques to rebuild confidence and recover complete dental functionality.',
       description:
         'Dental implants represent the pinnacle of restorative science. Using high-grade titanium posts and zirconia crowns, we provide a permanent solution that preserves jawbone structure and restores your natural biomechanical function.',
       longDescription: [
@@ -393,7 +393,7 @@ export const clinicConfig = {
       altText: 'Compassionate and professional emergency dental care provided in a modern clinic.',
       title: 'Emergency Care',
       shortDescription:
-        'Immediate clinical intervention and priority relief for urgent dental trauma and acute pain management.',
+        'Rapid response for dental emergencies including trauma, severe pain, and urgent restorations.',
       description:
         'Dental crises require prompt, expert attention. Our clinic provides priority access for acute pain, trauma, and urgent restorations, ensuring immediate comfort and definitive clinical solutions when you need them most.',
       longDescription: [
