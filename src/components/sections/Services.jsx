@@ -106,7 +106,7 @@ export default function Services({ isHomePage = false }) {
                         </p>
 
                         {/* CTA (Minimal Apple-Style) */}
-                        <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all duration-300 group-hover:gap-2.5">
+                        <div className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all duration-300 group-hover:gap-2.5">
                           View Treatment
                           <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={2.5} />
                           <div className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100" />

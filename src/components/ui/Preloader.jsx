@@ -1,23 +1,34 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import config from "@/config";
 
 export default function Preloader() {
   const [loading, setLoading] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
+  const timerRef = useRef(null);
+  const removeTimerRef = useRef(null);
+  const safetyTimerRef = useRef(null);
+  const finishedRef = useRef(false);
+
   useEffect(() => {
     const handleFinishLoading = () => {
+      if (finishedRef.current) return;
+      finishedRef.current = true;
+
+      // Immediately clear other trigger mechanisms
+      window.removeEventListener("load", handleFinishLoading);
+      if (safetyTimerRef.current) clearTimeout(safetyTimerRef.current);
+
       // Small buffer to allow the final paint to settle
-      const timer = setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         setIsFadingOut(true);
-        const removeTimer = setTimeout(() => {
+        // Wait for the fade-out animation to finish (optimized for speed)
+        removeTimerRef.current = setTimeout(() => {
           setLoading(false);
-        }, 300); // Optimized fade-out duration
-        return () => clearTimeout(removeTimer);
+        }, 300);
       }, 100); 
-      return () => clearTimeout(timer);
     };
 
     // Prevent scrolling while preloader is active
@@ -29,14 +40,18 @@ export default function Preloader() {
     } else {
       window.addEventListener("load", handleFinishLoading);
       
-      const safetyTimer = setTimeout(handleFinishLoading, 2000);
-      
-      return () => {
-        window.removeEventListener("load", handleFinishLoading);
-        clearTimeout(safetyTimer);
-        document.body.style.overflow = "unset";
-      };
+      // Safety timeout: Never keep the user waiting more than 2 seconds
+      safetyTimerRef.current = setTimeout(handleFinishLoading, 2000);
     }
+
+    // Unified Cleanup Function: Ensures all timers are cleared via refs
+    return () => {
+      window.removeEventListener("load", handleFinishLoading);
+      if (safetyTimerRef.current) clearTimeout(safetyTimerRef.current);
+      if (timerRef.current) clearTimeout(timerRef.current);
+      if (removeTimerRef.current) clearTimeout(removeTimerRef.current);
+      document.body.style.overflow = "unset";
+    };
   }, []);
 
   if (!loading) return null;
