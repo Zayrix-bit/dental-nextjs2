@@ -10,13 +10,14 @@ export default function WhyChooseUs() {
     <section id="about" className="py-10 lg:py-16 bg-clinical relative overflow-hidden">
       {/* Subtle Background Patterns */}
       <div className="absolute inset-0 bg-svg-grid pointer-events-none opacity-40" />
-      <ParallaxRing className="absolute -bottom-16 -right-16 w-[320px] h-[320px]" ringStyle="bg-donut-ring-lg" speed={0.2} />
-      <ParallaxRing className="absolute -top-20 left-1/3 w-[280px] h-[280px]" ringStyle="bg-donut-ring" speed={0.1} />
+      <ParallaxRing className="absolute -bottom-16 -right-16 w-[320px] h-[320px] opacity-60" ringStyle="bg-donut-ring-lg" speed={0.2} animation="animate-spin-extra-slow" />
+      <ParallaxRing className="absolute -top-20 left-1/3 w-[280px] h-[280px] opacity-50" ringStyle="bg-donut-ring" speed={0.1} animation="animate-float-slow" />
+      <ParallaxRing className="absolute top-1/4 -left-10 w-[200px] h-[200px] opacity-30" ringStyle="bg-donut-ring" speed={0.15} animation="animate-float-slow" />
 
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10">
         <ScrollReveal>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            
+
             {/* Left Content Column */}
             <div className="order-2 lg:order-1 flex flex-col justify-center">
               <div className="mb-6 lg:mb-8">
@@ -38,7 +39,7 @@ export default function WhyChooseUs() {
                   >
                     {/* Hover Glow */}
                     <div className="absolute inset-0 bg-linear-to-br from-primary/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
+
                     <div className="relative z-10">
                       <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-bg-section group-hover:bg-primary rounded-md sm:rounded-lg flex items-center justify-center text-primary group-hover:text-white transition-all duration-300 mb-2 lg:mb-3 shadow-sm border border-slate-100 group-hover:border-transparent">
                         <feature.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5" strokeWidth={2} />
@@ -66,11 +67,11 @@ export default function WhyChooseUs() {
                 className="object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-out"
                 priority
               />
-              
+
               {/* Premium Floating Badge (Smaller) */}
               <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6 z-20">
                 <div className="bg-white/95 backdrop-blur-xl px-4 py-3 lg:px-6 lg:py-4 rounded-xl lg:rounded-2xl shadow-xl border border-white/60 flex items-center gap-3 lg:gap-4 transform group-hover:-translate-y-1 transition-transform duration-500">
-                  <div className="relative w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl bg-linear-to-br from-primary to-blue-700 flex items-center justify-center text-white shadow-inner">
+                  <div className="relative w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl bg-primary flex items-center justify-center text-white shadow-inner">
                     <span className="text-lg lg:text-2xl font-black tracking-tighter">{config.about.yearsBadge.number}<span className="text-base lg:text-lg">{config.about.yearsBadge.suffix}</span></span>
                   </div>
                   <div className="flex flex-col">

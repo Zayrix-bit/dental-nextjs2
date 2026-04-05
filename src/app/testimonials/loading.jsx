@@ -1,11 +1,9 @@
-import Header from '@/components/layout/Header';
 import { PageHeaderSkeleton } from '@/components/ui/SectionSkeletons';
 import { Skeleton, SkeletonText, SkeletonCircle } from '@/components/ui/Skeleton';
 
 export default function TestimonialsLoading() {
   return (
     <>
-      <Header />
       <PageHeaderSkeleton />
       <section className="py-16 lg:py-24">
         <div className="max-w-[1200px] mx-auto px-6">

@@ -48,24 +48,21 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 /* ====== Custom Utilities ====== */
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  background: var(--color-primary);
   color: white;
-  box-shadow: 0 4px 15px rgba(10, 58, 92, 0.25);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(10, 58, 92, 0.4);
-  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  background: var(--color-primary-dark);
 }
 
 .btn-outline-hero {
@@ -97,7 +94,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   display: block;
   width: 60px;
   height: 4px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: var(--color-primary);
   border-radius: 2px;
   margin: 16px auto 0;
 }
@@ -110,7 +107,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: var(--color-primary);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -538,6 +535,26 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 .animate-logo-pop-out {
   animation: logo-pop-out 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ====== Decorative Background Animations ====== */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  33% { transform: translateY(-20px) translateX(10px); }
+  66% { transform: translateY(10px) translateX(-15px); }
+}
+
+@keyframes spin-extra-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float-slow {
+  animation: float-slow 15s ease-in-out infinite;
+}
+
+.animate-spin-extra-slow {
+  animation: spin-extra-slow 25s linear infinite;
 }
 
 .preloader-bg {

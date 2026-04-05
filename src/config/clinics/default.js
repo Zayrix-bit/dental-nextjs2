@@ -13,10 +13,10 @@ export const clinicConfig = {
   //  CORE IDENTITY
   // ══════════════════════════════════════
   name: 'DentalCare',
-  tagline: 'Premium Dental Care',
+  tagline: 'Expert Dental Care',
   logoText: 'DentalCare',
   brandDescription:
-    'Redefining modern dentistry with advanced technology, compassionate staff, and a commitment to your lifelong oral health.',
+    'Trusted by 10,000+ patients for comfortable, results-driven dental care with transparent pricing and flexible payment options.',
 
   // ══════════════════════════════════════
   //  CONTACT DETAILS
@@ -80,11 +80,12 @@ export const clinicConfig = {
   //  HERO SECTION
   // ══════════════════════════════════════
   hero: {
-    title: 'Advanced Dental Excellence',
+    title: 'Advanced Dental Care, Designed Around You.',
     subtitle:
-      'Experience the perfect synthesis of advanced technology and compassionate care. We design smiles that inspire confidence and promote lifelong health.',
-    ctaPrimary: { text: 'Book Appointment', href: '#appointment' },
-    ctaSecondary: { text: 'Explore Services', href: '#services' },
+      'Experience precision dentistry where your comfort and long-term results are our ultimate priority.',
+    ctaPrimary: { text: 'Schedule Your Private Consultation', href: '#appointment' },
+    ctaSecondary: { text: 'Discover Our Expertise', href: '#services' },
+    trustLine: 'Board-Certified Specialists • 15+ Years Expertise • 4.9★ Rated',
     rating: '4.9/5 Rating',
     stats: [
       { number: 15, suffix: '+', label: 'Years Experience' },
@@ -98,10 +99,10 @@ export const clinicConfig = {
   //  WHY CHOOSE US / ABOUT
   // ══════════════════════════════════════
   about: {
-    heading: 'Modern Dentistry,',
-    headingAccent: 'Elevated.',
+    heading: 'The Standard in',
+    headingAccent: 'Premium Care.',
     description:
-      'Experience a new standard of dental care where cutting-edge technology meets unparalleled comfort in a thoughtfully designed space.',
+      'We focus on what matters most: impeccable clinical standards, long-lasting results, and a completely personalized VIP experience. Over 10,000 patients have entrusted us with their smiles.',
     yearsBadge: {
       number: '15',
       suffix: '+',
@@ -111,27 +112,27 @@ export const clinicConfig = {
     features: [
       {
         iconKey: 'microscope',
-        title: 'Advanced Technology',
+        title: '10,000+ Successful Treatments',
         description:
-          'State-of-the-art equipment including 3D imaging and laser dentistry.',
+          'Proven track record with thousands of happy, returning patients.',
       },
       {
         iconKey: 'users',
-        title: 'Experienced Team',
+        title: 'Certified & Experienced Dentists',
         description:
-          'Board-certified dentists with decades of combined expertise.',
+          'Board-certified specialists with 15+ years of hands-on experience.',
       },
       {
         iconKey: 'smile',
-        title: 'Patient Comfort',
+        title: 'Pain-Free Procedures',
         description:
-          'Spa-like atmosphere with sedation options for anxiety-free visits.',
+          'Advanced anesthesia and sedation so you feel nothing during treatment.',
       },
       {
         iconKey: 'credit-card',
-        title: 'Affordable Care',
+        title: 'State-of-the-Art Technology',
         description:
-          'Flexible payment plans and insurance-friendly pricing.',
+          'Utilizing 3D imaging and precision diagnostics to craft the perfect treatment plan.',
       },
     ],
   },
@@ -648,37 +649,36 @@ export const clinicConfig = {
 
   // ══════════════════════════════════════
   //  FAQ
-  // ══════════════════════════════════════
   faq: {
-    heading: 'Frequently Asked',
-    headingAccent: 'Questions.',
+    heading: 'Your Journey,',
+    headingAccent: 'Explained.',
     subtitle:
-      'Everything you need to know about our clinical procedures, elite membership options, and concierge patient care.',
+      'Clear, honest insights into our process. We believe informed patients make the best decisions.',
     items: [
       {
-        question: 'Is dental treatment at your clinic truly pain-free?',
+        question: 'Does dental treatment hurt?',
         answer:
-          'Patient comfort is our absolute priority. We utilize advanced localized anesthesia and minimally invasive techniques to ensure a virtually pain-free experience. For highly anxious patients, we also offer specialized sedation options to provide a completely stress-free visit from start to finish.',
+          'Not at our clinic. We use advanced numbing techniques and gentle sedation options so you feel completely at ease. Most patients tell us their procedures were entirely painless. If you experience dental anxiety, our team provides specific VIP protocols to ensure total comfort.',
       },
       {
-        question: 'How much should I expect to invest in my dental care?',
+        question: 'How do you handle treatment pricing?',
         answer:
-          'We believe in transparent, value-driven pricing. Since every smile is unique, we provide a detailed, itemized treatment plan during your initial consultation. We also offer flexible payment arrangements and work with major insurance providers to make elite dental care accessible to all our patients.',
+          'We believe in absolute transparency. Because every smile is unique, we provide bespoke treatment plans rather than generic guesses. During your private consultation, you\'ll receive a precise timeline and comprehensive cost breakdown with zero hidden fees.',
       },
       {
-        question: 'How long do procedures like porcelain veneers or implants take?',
+        question: 'How long does each treatment take?',
         answer:
-          'Timeline varies by treatment complexity. A professional whitening session takes about 90 minutes, while complex restorative work like dental implants involves a healing period of 3-6 months. We design each project schedule to ensure the highest biological success and aesthetic perfection without rushing the process.',
+          'A whitening session takes about 60-90 minutes with instant results. Invisalign typically runs 6-18 months. Dental implants need 3-6 months for complete healing. During your consultation, we\'ll give you a clear timeline specific to your treatment plan.',
       },
       {
-        question: 'Do you accept my specific dental insurance plan?',
+        question: 'Do you accept my insurance?',
         answer:
-          'Yes, we are an insurance-friendly practice. Our dedicated administrative team will handle all the paperwork and coordinate directly with your provider to maximize your benefits. We recommend bringing your latest insurance details to your first appointment for a real-time benefits assessment.',
+          'Most likely, yes! We work with all major insurance providers and our team handles the paperwork for you. Bring your insurance details to your first visit and we\'ll verify your coverage on the spot — no waiting, no guesswork.',
       },
       {
-        question: 'What if I have a dental emergency outside of regular hours?',
+        question: 'What if I have a dental emergency?',
         answer:
-          'We provide 24/7 priority emergency support for our registered patients. If you experience acute pain or dental trauma during the weekend or late at night, our dedicated emergency line is always active to provide immediate clinical guidance and urgent scheduling.',
+          'Call us immediately — we offer 24/7 emergency support. Whether it\'s severe pain, a knocked-out tooth, or sudden swelling, our emergency line is always active. We prioritize urgent cases and can usually see you the same day.',
       },
     ],
   },
@@ -720,13 +720,13 @@ export const clinicConfig = {
   //  BOOKING / APPOINTMENT
   // ══════════════════════════════════════
   booking: {
-    heading: 'Schedule Your Private',
-    headingAccent: 'Consultation.',
+    heading: 'Book Your Dental',
+    headingAccent: 'Appointment Today.',
     subtitle:
-      'Begin your journey towards a clinical masterpiece. Our coordinators will contact you within 12 hours.',
-    sidebarHeading: 'Premium Consultation.',
+      'Get instant confirmation via call or WhatsApp. Limited slots available — book now.',
+    sidebarHeading: 'Free Consultation.',
     sidebarSubtitle:
-      'Entrust your smile to experts. Select your preferred slot and we will handle the rest.',
+      'Tell us what you need and we\'ll get back to you within minutes. No obligations.',
     timeSlots: [
       '09:00 AM – 10:00 AM',
       '10:00 AM – 11:00 AM',
@@ -752,7 +752,7 @@ export const clinicConfig = {
   footer: {
     ctaHeading: 'Ready for a Brighter Smile?',
     ctaDescription:
-      'Join thousands of satisfied patients. Book your comprehensive consultation today and experience premium dental care.',
+      'Join 10,000+ satisfied patients. Book your free consultation today and take the first step toward a healthier smile.',
   },
 
   // ══════════════════════════════════════

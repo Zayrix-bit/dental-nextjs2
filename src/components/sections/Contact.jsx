@@ -30,16 +30,17 @@ const CONTACT_METHODS = [
 /* ── Validation ── */
 function validate(form) {
   const errors = {};
-  if (!form.name.trim()) errors.name = "Please enter your full name.";
-  if (!form.email.trim()) errors.email = "We need your email to send the confirmation.";
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-    errors.email = "That doesn't look like a valid email address.";
-  if (!form.phone.trim()) errors.phone = "A valid phone number is required.";
+  if (!form.name.trim()) errors.name = "Please enter your name.";
+  if (!form.phone.trim()) errors.phone = "We need your phone number to confirm.";
   else if (!/^\+?[0-9\s\-()]{7,20}$/.test(form.phone))
-    errors.phone = "Please enter a standard phone number (7+ digits).";
-  if (!form.service) errors.service = "Selecting a service helps us prepare for your visit.";
-  if (!form.date) errors.date = "Please choose a date from our calendar.";
-  if (!form.time) errors.time = "Choosing a time slot is mandatory for scheduling.";
+    errors.phone = "Please enter a valid phone number.";
+
+  // Email is optional, but if entered, validate it
+  if (form.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+    errors.email = "Please enter a valid email address.";
+  }
+
+  if (!form.service) errors.service = "Select a treatment so we can prepare.";
   return errors;
 }
 
@@ -116,9 +117,8 @@ const inputError =
 
 export default function Contact({ className = "" }) {
   const [form, setForm] = useState({
-    name: "", email: "", phone: "",
-    service: "", date: "", time: "",
-    contactMethod: "phone", message: "",
+    name: "", phone: "", email: "",
+    service: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -189,9 +189,6 @@ export default function Contact({ className = "" }) {
         email: form.email.trim(),
         phone: form.phone.trim(),
         service: form.service,
-        date: form.date,
-        time: form.time,
-        message: form.message.trim(),
       };
 
       const res = await fetch("/api/send-email", {
@@ -201,11 +198,13 @@ export default function Contact({ className = "" }) {
       });
 
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data?.error || data?.message || "Failed to send email");
+      if (!res.ok || !data?.success) {
+        throw new Error("Something went wrong. Please try again.");
+      }
 
       setSubmitted(true);
     } catch (err) {
-      setApiError(err.message || "Unable to submit appointment. Please try again.");
+      setApiError(err.message || "Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -216,25 +215,28 @@ export default function Contact({ className = "" }) {
     setErrors({});
     setApiError("");
     setForm({
-      name: "", email: "", phone: "",
-      service: "", date: "", time: "",
-      contactMethod: "phone", message: "",
+      name: "", phone: "", email: "",
+      service: "",
     });
   };
 
   if (submitted) {
     return (
-      <section id="appointment" className="py-12 lg:py-20 bg-clinical px-4">
+      <section id="appointment" className="py-12 lg:py-20 bg-clinical px-4 relative overflow-hidden">
+        {/* Lavender Donut Ring Accents */}
+        <ParallaxRing className="absolute -top-16 right-1/3 w-[300px] h-[300px] opacity-60" ringStyle="bg-donut-ring-lg" speed={0.16} animation="animate-spin-extra-slow" />
+        <ParallaxRing className="absolute -bottom-20 -left-16 w-[350px] h-[350px] opacity-50" ringStyle="bg-donut-ring" speed={0.22} animation="animate-float-slow" />
+        <ParallaxRing className="absolute top-1/4 left-1/4 w-[120px] h-[120px] opacity-20" ringStyle="bg-donut-ring" speed={0.1} animation="animate-float-slow" />
         <div className={`max-w-md mx-auto bg-white rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100 p-10 flex flex-col items-center text-center animate-[fadeInUp_0.5s_ease] ${className}`}>
-          <div className="w-16 h-16 rounded-full bg-emerald-50 border-2 border-emerald-100 flex items-center justify-center mb-6 text-emerald-500">
+          <div className="w-16 h-16 rounded-full bg-emerald-50 border-2 border-emerald-100 flex items-center justify-center mb-6 text-emerald-500 shadow-sm">
             <CheckCircleIcon />
           </div>
           <h3 className="text-2xl lg:text-3xl font-black text-text-dark mb-3 tracking-tight">
-            Consultation Scheduled!
+            Request Received.
           </h3>
-          <p className="text-[15px] text-text-light leading-relaxed mb-8">
-            Thank you, <strong className="text-primary-dark font-bold">{form.name}</strong>. We will reach out via{" "}
-            <strong className="text-secondary-dark font-bold underline decoration-accent/30">{form.contactMethod}</strong> shortly to finalize your visit.
+          <p className="text-[15px] text-text-light leading-relaxed mb-8 font-medium">
+            Thank you, <strong className="text-primary-dark font-bold">{form.name}</strong>. Our team will contact you shortly via{" "}
+            <strong className="text-secondary-dark font-bold underline decoration-accent/30">call or WhatsApp</strong>.
           </p>
           <button
             onClick={resetForm}
@@ -248,34 +250,35 @@ export default function Contact({ className = "" }) {
   }
 
   return (
-    <section className="py-10 lg:py-16 bg-clinical relative overflow-hidden">
+    <section id="appointment" className="scroll-mt-1 lg:scroll-mt-1 py-10 lg:py-16 bg-clinical relative overflow-hidden">
       {/* Lavender Donut Ring Accents */}
-      <ParallaxRing className="absolute -top-16 right-1/3 w-[300px] h-[300px]" ringStyle="bg-donut-ring-lg" speed={0.16} />
-      <ParallaxRing className="absolute -bottom-20 -left-16 w-[350px] h-[350px]" ringStyle="bg-donut-ring" speed={0.22} />
+      <ParallaxRing className="absolute -top-16 right-1/3 w-[300px] h-[300px] opacity-60" ringStyle="bg-donut-ring-lg" speed={0.16} animation="animate-spin-extra-slow" />
+      <ParallaxRing className="absolute -bottom-20 -left-16 w-[350px] h-[350px] opacity-50" ringStyle="bg-donut-ring" speed={0.22} animation="animate-float-slow" />
+      <ParallaxRing className="absolute top-1/2 left-1/4 w-[180px] h-[180px] opacity-30" ringStyle="bg-donut-ring" speed={0.1} animation="animate-float-slow" />
+
 
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10 mb-14 text-left">
         <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark leading-[1.1] tracking-tight mb-6">
-          Schedule Your Private <span className="text-primary">Consultation.</span>
+          Start Your Smile <span className="text-primary">Transformation.</span>
         </h2>
         <p className="text-slate-500 text-[0.9rem] md:text-[1rem] leading-relaxed font-medium mb-8 max-w-2xl">
-          Begin your journey towards a clinical masterpiece. Our coordinators will contact you within 12 hours.
+          Takes less than 30 seconds. Instant confirmation via call or WhatsApp. No obligation.
         </p>
       </div>
 
       <div
-        id="appointment"
         ref={sectionRef}
-        className={`scroll-mt-5 mx-6 md:mx-12 lg:mx-20 xl:mx-28 grid grid-cols-1 lg:grid-cols-[320px_1fr] bg-white rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-slate-100 transition-all duration-500 ${className}`}
+        className={`mx-6 md:mx-12 lg:mx-20 xl:mx-28 grid grid-cols-1 lg:grid-cols-[320px_1fr] bg-white rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-slate-100 transition-all duration-500 ${className}`}
       >
-
         <aside className="relative bg-linear-to-br from-primary to-primary-dark p-8 flex flex-col overflow-hidden">
-          <div className="absolute -bottom-20 -right-20 w-48 h-48 rounded-full bg-accent opacity-20 blur-[50px] pointer-events-none" />
+
+
 
           <h3 className="relative z-10 text-2xl lg:text-[26px] font-black text-white leading-tight mb-3">
-            Premium Consultation.
+            Start Your Smile Transformation.
           </h3>
           <p className="relative z-10 text-[13px] lg:text-[14px] text-white/75 leading-relaxed mb-10 font-medium">
-            Entrust your smile to experts. Select your preferred slot and we will handle the rest.
+            Receive a personalized assessment from our clinical experts. No obligation.
           </p>
 
           <div className="relative z-10 flex flex-col gap-6 flex-1">
@@ -301,7 +304,7 @@ export default function Contact({ className = "" }) {
             {/* Compact Professional WhatsApp CTA */}
             <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-1.5">
               <p className="text-[11px] text-white/50 font-medium tracking-wide leading-snug">
-                Quick inquiry? <span className="text-white/80">Skip the form</span> and chat now.
+                Prefer instant assistance? <span className="text-white/80">Chat with our team</span> on WhatsApp.
               </p>
               <a
                 href={siteInfo.whatsappUrl}
@@ -309,11 +312,11 @@ export default function Contact({ className = "" }) {
                 rel="noopener noreferrer"
                 className={`group relative flex items-center justify-center gap-2.5 bg-emerald-500 hover:bg-emerald-600 text-white py-2.5 rounded-xl text-[13px] font-bold tracking-tight shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 overflow-hidden ${hasTriggered ? 'animate-whatsapp-giggle' : ''}`}
               >
-                <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite] pointer-events-none" />
+
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
-                WhatsApp Chat
+                Chat on WhatsApp
               </a>
             </div>
           </div>
@@ -327,21 +330,22 @@ export default function Contact({ className = "" }) {
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <Field label="Patient Name" htmlFor="name" required error={errors.name}>
+            <Field label="Your Name" htmlFor="name" required error={errors.name}>
               <input
                 id="name"
                 name="name"
-                placeholder="Ex. Alexander Hamilton"
+                placeholder="e.g. John Smith"
                 value={form.name}
                 onChange={handleChange}
                 disabled={loading}
                 className={`${inputBase} ${errors.name ? inputError : ""}`}
               />
             </Field>
-            <Field label="Secure Phone" htmlFor="phone" required error={errors.phone}>
+            <Field label="Phone Number" htmlFor="phone" required error={errors.phone}>
               <input
                 id="phone"
                 name="phone"
+                type="tel"
                 placeholder="+1 (555) 000-0000"
                 value={form.phone}
                 onChange={handleChange}
@@ -352,7 +356,27 @@ export default function Contact({ className = "" }) {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <Field label="Email Address" htmlFor="email" required error={errors.email}>
+            <Field label="Treatment Needed" htmlFor="service" required error={errors.service}>
+              <div className="relative">
+                <select
+                  id="service"
+                  name="service"
+                  value={form.service}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className={`${inputBase} appearance-none cursor-pointer pr-10 ${errors.service ? inputError : ""}`}
+                >
+                  <option value="">What treatment are you interested in?</option>
+                  {ALL_SERVICES.map((s) => (
+                    <option key={s.label} value={s.label}>{s.label}</option>
+                  ))}
+                </select>
+                <span className="absolute right-4 top-1/2 -translate-y-1/2">
+                  <ChevronDownIcon />
+                </span>
+              </div>
+            </Field>
+            <Field label="Email Address" htmlFor="email" optional error={errors.email}>
               <input
                 id="email"
                 name="email"
@@ -364,112 +388,55 @@ export default function Contact({ className = "" }) {
                 className={`${inputBase} ${errors.email ? inputError : ""}`}
               />
             </Field>
-            <Field label="Service Selection" htmlFor="service" required error={errors.service}>
-              <div className="relative">
-                <select
-                  id="service"
-                  name="service"
-                  value={form.service}
-                  onChange={handleChange}
-                  disabled={loading}
-                  className={`${inputBase} appearance-none cursor-pointer pr-10 ${errors.service ? inputError : ""}`}
-                >
-                  <option value="">Choose a treatment...</option>
-                  {ALL_SERVICES.map((s) => (
-                    <option key={s.label} value={s.label}>{s.label}</option>
-                  ))}
-                </select>
-                <span className="absolute right-4 top-1/2 -translate-y-1/2">
-                  <ChevronDownIcon />
-                </span>
-              </div>
-            </Field>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <Field label="Consultation Date" htmlFor="date" required error={errors.date}>
-              <input
-                id="date"
-                type="date"
-                name="date"
-                value={form.date}
-                onChange={handleChange}
-                min={today}
-                disabled={loading}
-                className={`${inputBase} ${errors.date ? inputError : ""}`}
-              />
-            </Field>
-            <Field label="Available Time" htmlFor="time" required error={errors.time}>
-              <div className="relative">
-                <select
-                  id="time"
-                  name="time"
-                  value={form.time}
-                  onChange={handleChange}
-                  disabled={loading}
-                  className={`${inputBase} appearance-none cursor-pointer pr-10 ${errors.time ? inputError : ""}`}
-                >
-                  <option value="">Pick a slot...</option>
-                  {TIME_SLOTS.map((t) => (
-                    <option key={t} value={t}>{t}</option>
-                  ))}
-                </select>
-                <span className="absolute right-4 top-1/2 -translate-y-1/2">
-                  <ChevronDownIcon />
-                </span>
-              </div>
-            </Field>
+          {/* Urgency Element - Premium Subtle Alert */}
+          <div className="flex items-start gap-3 bg-amber-50/50 border border-amber-200/50 rounded-xl px-4 py-3 mt-2">
+            <svg className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <p className="text-[13px] font-bold text-amber-900 m-0 leading-tight">Private Consultations</p>
+              <p className="text-[12px] font-medium text-amber-700/80 m-0 mt-0.5 leading-tight">We accept a limited number of new patients each week to ensure personalized care.</p>
+            </div>
           </div>
 
-          <Field label="Messenger Preferences">
-            <div className="flex gap-4">
-              {CONTACT_METHODS.map((m) => (
-                <label
-                  key={m.id}
-                  className={`flex-1 flex flex-col justify-center items-center gap-2 py-3 px-2 rounded-xl border-2 cursor-pointer transition-all duration-300 text-[12px] font-bold select-none text-center
-                    ${form.contactMethod === m.id
-                      ? "border-accent bg-accent/5 text-primary-dark"
-                      : "border-slate-100 bg-slate-50/50 text-slate-500 hover:border-slate-200 hover:bg-slate-50"
-                    }`}
-                >
-                  <input type="radio" name="contactMethod" value={m.id} checked={form.contactMethod === m.id} onChange={handleChange} className="sr-only" />
-                  <span className={`transition-colors duration-300 ${form.contactMethod === m.id ? "text-accent" : "text-slate-400"}`}>
-                    {m.icon}
-                  </span>
-                  {m.label}
-                </label>
-              ))}
-            </div>
-          </Field>
-
-          <footer className="flex items-center justify-between gap-6 flex-wrap mt-4">
-            <div className="flex items-center gap-3 flex-1 min-w-[200px]">
-              <div className="w-8 h-8 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent shrink-0 shadow-sm">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="w-[14px] h-[14px]">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-              </div>
-              <p className="text-[12px] font-semibold text-slate-500 leading-tight">
-                Encrypted & <strong>Client-Confidential</strong>.
-              </p>
-            </div>
+          <footer className="mt-3 flex flex-col gap-3">
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center justify-center gap-2.5 bg-primary hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 text-white text-[14px] font-bold py-4 px-10 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-primary/20 active:scale-[0.98]"
+              className="w-full inline-flex items-center justify-center gap-2.5 bg-primary hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 text-white text-[15px] font-bold py-4.5 px-10 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-primary/20 active:scale-[0.98]"
             >
               {loading ? (
                 <>
                   <span className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
-                  Confirming...
+                  Submitting...
                 </>
               ) : (
                 <>
                   <SendIcon />
-                  Confirm Appointment
+                  Request Your Consultation
                 </>
               )}
             </button>
+
+            <div className="text-center mt-1">
+              <span className="text-[12.5px] font-semibold text-slate-500">Takes less than 30 seconds</span>
+              <span className="mx-2 text-slate-300">•</span>
+              <span className="text-[12.5px] font-semibold text-slate-500">No obligation</span>
+            </div>
+
+            {/* Trust Signals */}
+            <div className="flex items-center justify-center gap-3 text-center divide-x divide-slate-200 mt-2 bg-slate-50/50 rounded-xl py-3 border border-slate-100/50">
+              <div className="flex items-center gap-1.5 px-3">
+                <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                <span className="text-[11px] font-bold text-slate-500 tracking-wide uppercase">100% Secure • No Spam</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-3">
+                <ClockIcon />
+                <span className="text-[11px] font-bold text-slate-500 tracking-wide uppercase">Our team will contact you within 15–30 minutes</span>
+              </div>
+            </div>
           </footer>
         </form>
       </div>

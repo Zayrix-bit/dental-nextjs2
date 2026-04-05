@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { testimonials } from '@/data/siteData';
 import ScrollReveal from '@/components/ScrollReveal';
 import ParallaxRing from '@/components/ui/ParallaxRing';
@@ -7,19 +8,31 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="py-16 lg:py-24 bg-bg-light relative overflow-hidden">
-      {/* Premium Background Layer */}
-      <div className="absolute inset-0 bg-abstract-waves pointer-events-none bg-clinical-noise" />
-      <ParallaxRing className="absolute top-1/4 -right-20 w-[300px] h-[300px]" ringStyle="bg-donut-ring" speed={0.15} />
-      <ParallaxRing className="absolute -bottom-20 left-10 w-[350px] h-[350px]" ringStyle="bg-donut-ring-lg" speed={0.22} />
+
+      <ParallaxRing className="absolute top-1/4 -right-20 w-[300px] h-[300px] opacity-60" ringStyle="bg-donut-ring" speed={0.15} animation="animate-float-slow" />
+      <ParallaxRing className="absolute -bottom-20 left-10 w-[350px] h-[350px] opacity-50" ringStyle="bg-donut-ring-lg" speed={0.22} animation="animate-spin-extra-slow" />
+      <ParallaxRing className="absolute top-10 left-[40%] w-[120px] h-[120px] opacity-20" ringStyle="bg-donut-ring" speed={0.05} animation="animate-float-slow" />
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28">
         <ScrollReveal>
           <div className="max-w-3xl mb-16 md:mb-20 text-left">
             <h2 className="text-3xl md:text-4xl lg:text-[3.25rem] font-bold text-text-dark mb-6 tracking-tight leading-[1.1]">
-              Patient <span className="text-primary">Stories.</span>
+              What Our Patients <span className="text-primary">Say.</span>
             </h2>
-            <p className="text-text-light text-sm lg:text-base max-w-2xl leading-relaxed font-medium mb-8">
-              Don&apos;t just take our word for it. Hear from those who have experienced our clinical excellence firsthand.
+            <p className="text-text-light text-sm lg:text-base max-w-2xl leading-relaxed font-medium mb-6">
+              Exceptional care, consistent results. Discover why over 10,000 patients have trusted us with their smiles.
             </p>
+            {/* Rating Summary */}
+            <div className="inline-flex items-center gap-2.5 bg-white border border-slate-200 rounded-full px-4 py-2 shadow-sm">
+              <div className="flex gap-[2px]">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4 fill-[#FBBC04]" viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                  </svg>
+                ))}
+              </div>
+              <span className="text-sm font-bold text-text-dark">4.9</span>
+              <span className="text-xs text-slate-500 font-medium">from 500+ Google Reviews</span>
+            </div>
           </div>
         </ScrollReveal>
 
@@ -88,6 +101,19 @@ export default function Testimonials() {
             </div>
           ))}
           </div>
+        </div>
+      </ScrollReveal>
+
+      {/* CTA Below Testimonials */}
+      <ScrollReveal delay={200}>
+        <div className="mt-12 text-center">
+          <Link
+            href="#appointment"
+            className="inline-flex items-center gap-2.5 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl text-sm font-bold tracking-wide transition-all shadow-lg shadow-primary/20 hover:-translate-y-0.5 active:scale-95"
+          >
+            Book Your Consultation
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </Link>
         </div>
       </ScrollReveal>
     </div>

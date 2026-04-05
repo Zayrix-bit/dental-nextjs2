@@ -9,11 +9,13 @@ import { useRef, useEffect, useState } from 'react';
  * @param {string} className - Tailwind positioning & sizing classes
  * @param {string} ringStyle - 'donut-ring' | 'donut-ring-lg'
  * @param {number} speed     - Parallax intensity. 0 = no movement, 0.15 = subtle, 0.3 = noticeable
+ * @param {string} animation - Optional CSS animation class (e.g. 'animate-float-slow')
  */
 export default function ParallaxRing({
   className = '',
   ringStyle = 'bg-donut-ring',
   speed = 0.15,
+  animation = '',
 }) {
   const ringRef = useRef(null);
   const [offset, setOffset] = useState(0);
@@ -50,12 +52,14 @@ export default function ParallaxRing({
   return (
     <div
       ref={ringRef}
-      className={`${ringStyle} pointer-events-none ${className}`}
+      className={`pointer-events-none ${className}`}
       style={{
         transform: `translateY(${offset}px)`,
-        transition: 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
+        transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
         willChange: 'transform',
       }}
-    />
+    >
+      <div className={`${ringStyle} w-full h-full ${animation}`} />
+    </div>
   );
 }

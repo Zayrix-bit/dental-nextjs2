@@ -67,7 +67,7 @@ function ServicesDropdown({ scrolled }) {
             : 'opacity-0 scale-[0.97] -translate-y-1 pointer-events-none'
         }`}
       >
-        <div className="h-[3px] w-full bg-gradient-to-r from-primary to-accent" />
+        <div className="h-[2px] w-full bg-primary" />
         <div className="p-2 grid grid-cols-2 gap-1">
           {ALL_SERVICES.filter(s => s.label !== 'Other').slice(0, 8).map(({ href, label }) => (
             <Link
@@ -84,7 +84,7 @@ function ServicesDropdown({ scrolled }) {
           <Link
             href="/services"
             onClick={() => setOpen(false)}
-            className="flex items-center justify-center gap-1.5 text-[0.8rem] font-semibold text-accent hover:text-primary-dark transition-colors duration-150"
+            className="shrink-0 flex items-center justify-center gap-2 bg-primary text-white font-semibold text-[0.95rem] py-3 px-6 rounded-xl hover:-translate-y-0.5 active:scale-95 transition-all duration-150 w-full sm:w-auto"
           >
             View all services
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
@@ -192,7 +192,7 @@ export default function Header() {
           }`}
           aria-label={`${siteInfo.name} Home`}
         >
-          <div className="w-8.5 h-8.5 lg:w-8.5 lg:h-8.5 bg-linear-to-br from-accent to-primary rounded-full flex items-center justify-center shadow-lg shadow-accent/20">
+          <div className="w-8.5 h-8.5 lg:w-8.5 lg:h-8.5 bg-primary rounded-full flex items-center justify-center">
             <Activity className="w-5 h-5 lg:w-4.5 lg:h-4.5 text-white" strokeWidth={3} />
           </div>
           <span className="tracking-tighter">{config.logoText}</span>

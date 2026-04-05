@@ -4,8 +4,8 @@ import Hero from '@/components/sections/Hero';
 import Services from '@/components/sections/Services';
 import WhyChooseUs from '@/components/sections/WhyChooseUs';
 import FAQ from '@/components/sections/FAQ';
-import Footer from '@/components/layout/Footer';
-import Header from '@/components/layout/Header';
+
+
 
 
 import {
@@ -39,19 +39,14 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <Header />
       <Hero />
-      <main>
-        <Services isHomePage={true} />
-        <WhyChooseUs />
-        <Testimonials />
-        <BeforeAfter />
-        <FAQ />
-        <Contact />
-        <LocationMap />
-      </main>
-      <Footer />
-
+      <Services isHomePage={true} />
+      <WhyChooseUs />
+      <Testimonials />
+      <BeforeAfter />
+      <FAQ />
+      <Contact />
+      <LocationMap />
     </>
   );
 }

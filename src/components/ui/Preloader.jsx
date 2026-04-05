@@ -37,7 +37,7 @@ export default function Preloader() {
     <div className={`preloader-bg ${isFadingOut ? "animate-preloader-fade-out" : ""}`}>
       {/* Brand Logo Icon with entrance then exit animation */}
       <div className={`flex flex-col items-center mb-12 ${isFadingOut ? "animate-logo-pop-out" : "animate-logo-pop"}`}>
-        <div className="w-22 h-22 bg-linear-to-br from-accent to-primary rounded-full flex items-center justify-center shadow-xl shadow-accent/20">
+        <div className="w-22 h-22 bg-primary rounded-full flex items-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="44"
@@ -62,9 +62,7 @@ export default function Preloader() {
       {/* Progress Line Container (Compact & Bold) */}
       <div className="w-64 max-w-[85vw] h-[6px] bg-slate-100/90 rounded-full overflow-hidden relative shadow-inner">
         {/* Bidirectional Sweeping Segment (Matches Book Now Button) */}
-        <div className="absolute top-0 left-0 h-full w-1/2 bg-primary rounded-full animate-progress-sweep shadow-[0_0_15px_rgba(10,58,92,0.25)]">
-          {/* Subtle Shimmer for texture */}
-          <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent w-full" />
+        <div className="absolute top-0 left-0 h-full w-1/2 bg-primary rounded-full animate-progress-sweep">
         </div>
       </div>
     </div>

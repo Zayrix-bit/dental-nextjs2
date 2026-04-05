@@ -51,8 +51,7 @@ export default function Footer() {
     <footer className="relative bg-[#060d12] text-white/80 overflow-hidden">
 
       {/* ── Ambient Background Glows ── */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/6 rounded-full blur-[140px] pointer-events-none" />
+
 
       {/* ═══════════════════════════════════════════
           TOP CTA BANNER
@@ -86,7 +85,7 @@ export default function Footer() {
           {/* ── Brand Column ── */}
           <div className="col-span-2 lg:col-span-4">
             <Link href="/" className="inline-flex items-center gap-2.5 mb-4 lg:mb-5 group">
-              <div className="w-8 h-8 bg-linear-to-br from-accent to-primary rounded-lg flex items-center justify-center shrink-0">
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
                 <Activity className="w-4 h-4 text-white" strokeWidth={2.5} />
               </div>
               <span className="text-lg font-bold text-white tracking-tight">

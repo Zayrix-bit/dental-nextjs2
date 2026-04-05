@@ -5,8 +5,7 @@ export default function PageHeader({ title, description }) {
     <section className="relative pt-[100px] pb-[32px] md:pt-[120px] md:pb-[48px] overflow-hidden bg-linear-to-br from-primary-dark to-primary border-b border-white/10">
       {/* Subtle Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 right-[-10%] w-[300px] h-[300px] bg-primary/5 rounded-full blur-[80px]" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[250px] h-[250px] bg-accent/5 rounded-full blur-[80px]" />
+
       </div>
 
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10 text-center flex flex-col items-center">

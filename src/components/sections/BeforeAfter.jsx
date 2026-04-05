@@ -24,19 +24,19 @@ function GalleryCard({ item, onInteractionStart, onInteractionEnd }) {
 
   const handleMove = (e, clientX) => {
     if (!dragging.current) return;
-    
+
     // Professional interaction management
     if (e.cancelable) e.preventDefault();
     e.stopPropagation();
-    
+
     requestAnimationFrame(() => updatePosition(clientX));
   };
 
   const stopDragging = () => {
     if (dragging.current) {
-       dragging.current = false;
-       isInteracting.current = false;
-       onInteractionEnd?.();
+      dragging.current = false;
+      isInteracting.current = false;
+      onInteractionEnd?.();
     }
   };
 
@@ -104,9 +104,9 @@ function GalleryCard({ item, onInteractionStart, onInteractionEnd }) {
           style={{ left: `${position}%`, transform: 'translateX(-50%)' }}
         >
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-9 md:w-7 md:h-10 bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-slate-100 flex flex-col items-center justify-center gap-[2px] transition-transform duration-300 group-hover:scale-110">
-             <div className="w-[2px] h-[2px] bg-slate-400 rounded-full"></div>
-             <div className="w-[2px] h-[2px] bg-slate-400 rounded-full"></div>
-             <div className="w-[2px] h-[2px] bg-slate-400 rounded-full"></div>
+            <div className="w-[2px] h-[2px] bg-slate-400 rounded-full"></div>
+            <div className="w-[2px] h-[2px] bg-slate-400 rounded-full"></div>
+            <div className="w-[2px] h-[2px] bg-slate-400 rounded-full"></div>
           </div>
         </div>
 
@@ -121,14 +121,14 @@ function GalleryCard({ item, onInteractionStart, onInteractionEnd }) {
 
       {/* Card Content Area */}
       <div className="p-4 md:p-5 lg:p-6 flex flex-col justify-between grow bg-white relative z-5">
-        
+
         {/* Floating Star Badge over the image split */}
         <div className="absolute top-0 right-4 md:right-5 -translate-y-1/2 bg-white px-2.5 py-1 md:px-3 md:py-1.5 rounded-full shadow-sm border border-slate-50 flex items-center gap-0.5 z-20 transition-transform duration-300 group-hover:-translate-y-1">
-            <span className="flex gap-px">
-               {[1, 2, 3, 4, 5].map(i => (
-                 <Star key={i} className="w-2.5 h-2.5 md:w-3 md:h-3 fill-[#FBBC04] text-[#FBBC04]" />
-               ))}
-            </span>
+          <span className="flex gap-px">
+            {[1, 2, 3, 4, 5].map(i => (
+              <Star key={i} className="w-2.5 h-2.5 md:w-3 md:h-3 fill-[#FBBC04] text-[#FBBC04]" />
+            ))}
+          </span>
         </div>
 
         <div>
@@ -136,18 +136,18 @@ function GalleryCard({ item, onInteractionStart, onInteractionEnd }) {
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
             <span className="text-[9px] md:text-[10px] font-bold text-slate-400 tracking-widest uppercase">Verified</span>
           </div>
-          
+
           <h3 className="text-base md:text-lg lg:text-xl font-bold text-text-dark mb-2 leading-tight group-hover:text-primary transition-colors duration-300">
-             {item.category}
+            {item.category}
           </h3>
-          
+
           <p className="text-slate-500 text-[0.8rem] md:text-[0.85rem] leading-snug mb-4 line-clamp-3">
             {item.highlight}
           </p>
         </div>
-        
+
         <Link href={item.href || '/services'} className="inline-flex items-center gap-1.5 text-primary text-[10px] md:text-[11px] font-bold tracking-wider uppercase group-hover:gap-2 transition-all mt-auto w-fit">
-          View Details <ArrowRight className="w-3.5 h-3.5" />
+          Get This Result <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>
 
@@ -174,7 +174,7 @@ export default function BeforeAfter() {
 
     const scrollStep = () => {
       if (!isPaused && scrollContainer) {
-        scrollContainer.scrollLeft += 0.8; // Smooth agency-grade speed
+        scrollContainer.scrollLeft += 0.4; // Gentle scroll speed — pauses on hover
 
         // Silent reset logic for infinite manual/auto loop
         if (scrollContainer.scrollLeft >= singleSetWidth * 2) {
@@ -193,26 +193,31 @@ export default function BeforeAfter() {
   return (
     <section id="gallery" className="py-10 md:py-16 bg-clinical overflow-hidden relative">
       {/* Premium Background Accents */}
-      <ParallaxRing className="absolute -top-16 -left-16 w-[340px] h-[340px]" ringStyle="bg-donut-ring-lg" speed={0.18} />
-      <ParallaxRing className="absolute -bottom-24 right-1/4 w-[280px] h-[280px]" ringStyle="bg-donut-ring" speed={0.12} />
+      <ParallaxRing className="absolute -top-16 -left-16 w-[340px] h-[340px] opacity-60" ringStyle="bg-donut-ring-lg" speed={0.18} animation="animate-spin-extra-slow" />
+      <ParallaxRing className="absolute -bottom-24 right-1/4 w-[280px] h-[280px] opacity-50" ringStyle="bg-donut-ring" speed={0.12} animation="animate-float-slow" />
+      <ParallaxRing className="absolute top-1/2 left-1/3 w-[150px] h-[150px] opacity-30" ringStyle="bg-donut-ring" speed={0.15} animation="animate-float-slow" />
 
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10 overflow-hidden">
         <ScrollReveal>
           <div className="mb-10 lg:mb-14 flex flex-col gap-6 px-4">
             <div className="max-w-3xl text-left">
-              <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark leading-[1.1] tracking-tight mb-6">
-                Life-Changing <span className="text-primary">Smiles.</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark leading-[1.1] tracking-tight mb-4">
+                See Real Smile <span className="text-primary">Transformations.</span>
               </h2>
-              <p className="text-slate-500 text-[0.9rem] md:text-[1rem] leading-relaxed font-medium mb-8 max-w-2xl">
-                Explore our gallery of actual patient results. Transparency and excellence, showcased side-by-side.
+              <p className="text-slate-500 text-[0.9rem] md:text-[1rem] leading-relaxed font-medium mb-3 max-w-2xl">
+                Your transformation can start today. See what our patients achieved.
               </p>
+              <span className="inline-flex items-center gap-2 text-xs font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-3 py-1.5 rounded-full">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                Results in 6–12 Months
+              </span>
             </div>
           </div>
         </ScrollReveal>
 
         {/* Hybrid Interactive Loop Container */}
         <div className="w-full relative px-4">
-          <div 
+          <div
             ref={scrollRef}
             className="flex flex-nowrap gap-4 md:gap-8 pb-10 overflow-x-auto hide-scrollbar cursor-grab active:cursor-grabbing select-none"
             onMouseEnter={() => setIsPaused(true)}
@@ -223,27 +228,27 @@ export default function BeforeAfter() {
               setIsPaused(true);
               const startX = e.pageX - scrollRef.current.offsetLeft;
               const scrollLeft = scrollRef.current.scrollLeft;
-              
+
               const handleMouseMove = (moveE) => {
                 const x = moveE.pageX - scrollRef.current.offsetLeft;
                 const walk = (x - startX) * 2;
                 scrollRef.current.scrollLeft = scrollLeft - walk;
               };
-              
+
               const handleMouseUp = () => {
                 setIsPaused(false);
                 window.removeEventListener('mousemove', handleMouseMove);
                 window.removeEventListener('mouseup', handleMouseUp);
               };
-              
+
               window.addEventListener('mousemove', handleMouseMove);
               window.addEventListener('mouseup', handleMouseUp);
             }}
           >
             {tripleData.map((item, index) => (
               <div key={`${item.id}-${index}`} className="w-[85vw] sm:w-[40vw] lg:w-[380px] shrink-0">
-                <GalleryCard 
-                  item={item} 
+                <GalleryCard
+                  item={item}
                   onInteractionStart={() => setIsPaused(true)}
                   onInteractionEnd={() => setIsPaused(false)}
                 />

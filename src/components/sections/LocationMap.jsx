@@ -34,67 +34,72 @@ export default function LocationMap({ className = "" }) {
   return (
     <section className={`pt-10 pb-20 lg:pt-16 lg:pb-24 bg-white relative overflow-hidden ${className}`}>
       {/* Lavender Donut Ring Accents */}
-      <ParallaxRing className="absolute top-1/3 -left-20 w-[320px] h-[320px]" ringStyle="bg-donut-ring" speed={0.18} />
-      <ParallaxRing className="absolute -top-20 -right-16 w-[280px] h-[280px]" ringStyle="bg-donut-ring-lg" speed={0.1} />
+      <ParallaxRing className="absolute top-1/2 -left-20 w-[320px] h-[320px] opacity-60" ringStyle="bg-donut-ring" speed={0.18} animation="animate-float-slow" />
+      <ParallaxRing className="absolute -top-20 -right-16 w-[280px] h-[280px] opacity-50" ringStyle="bg-donut-ring-lg" speed={0.1} animation="animate-spin-extra-slow" />
+      <ParallaxRing className="absolute bottom-10 right-1/4 w-[150px] h-[150px] opacity-30" ringStyle="bg-donut-ring" speed={0.2} animation="animate-float-slow" />
 
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 overflow-hidden relative z-10">
 
         {/* Header */}
         <div className="mb-10 lg:mb-14 max-w-3xl text-left">
-          <h2 className="text-3xl md:text-4xl lg:text-[3.25rem] font-bold text-text-dark tracking-tight leading-[1.1] mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-[3.25rem] font-bold text-text-dark tracking-tight leading-[1.1] mb-4">
             Find Our <span className="text-primary">Clinic.</span>
           </h2>
-          <p className="text-slate-500 text-[0.9rem] md:text-[1rem] leading-relaxed font-medium mb-8 max-w-2xl">
-            Visit our state-of-the-art facility located in the heart of the city. We provide a sanctuary of clinical excellence and patient comfort.
+          <p className="text-slate-500 text-[0.9rem] md:text-[1rem] leading-relaxed font-medium mb-4 max-w-2xl">
+            Visit our modern facility for a comfortable, stress-free dental experience.
           </p>
+          {/* Practical Info Badges */}
+          <div className="flex flex-wrap gap-2">
+            {['Easy parking', 'Near metro', 'Open 6 days'].map((badge) => (
+              <span key={badge} className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-1.5 rounded-full">
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                {badge}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Content Container */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-6 lg:gap-8 items-stretch">
 
           {/* Map Preview (Privacy-Friendly, No Cookies) */}
-          <div className="w-full h-[300px] lg:h-[420px] rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-md border border-slate-100 bg-slate-900 relative group transition-shadow duration-300">
-            {/* Background Image / Placeholder */}
-            <div
-              className="absolute inset-0 bg-cover bg-center grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
-              style={{ backgroundImage: `url('/images/hero-bg.png')`, opacity: 0.4 }}
-            />
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-slate-900/40 to-transparent" />
-
-            {/* Content Over Map */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
-              <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-4 transform group-hover:scale-110 transition-transform duration-500">
-                <MapPinIcon />
-              </div>
-              <h4 className="text-white text-lg lg:text-xl font-bold mb-2">Google Maps Tracking Blocked</h4>
-              <p className="text-white/70 text-xs lg:text-sm max-w-[280px] mb-6 leading-relaxed">
-                To protect your privacy, we don't load third-party maps directly. Click below to view our location safely.
-              </p>
-              <a
-                href={mapsLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-2.5 rounded-full text-xs lg:text-sm font-bold hover:bg-accent hover:text-white transition-all duration-300 shadow-xl"
-              >
-                View on Google Maps
-                <NavigationIcon />
-              </a>
-            </div>
-
-            {/* Address Badge */}
-            <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-auto z-10">
-              <div className="bg-white/10 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
-                  <MapPinIcon />
+          <div className="w-full h-[300px] lg:h-[420px] rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-md border border-slate-100 bg-slate-100 relative group transition-shadow duration-300">
+            {siteInfo.mapEmbedUrl ? (
+              <iframe
+                src={siteInfo.mapEmbedUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Clinic Location Map"
+                className="absolute inset-0 w-full h-full"
+              />
+            ) : (
+              /* Fallback if no embed URL */
+              <>
+                <div
+                  className="absolute inset-0 bg-cover bg-center grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                  style={{ backgroundImage: `url('/images/hero-bg.png')`, opacity: 0.4 }}
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-slate-900/40 to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
+                  <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-4">
+                    <MapPinIcon />
+                  </div>
+                  <a
+                    href={mapsLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-2.5 rounded-full text-xs lg:text-sm font-bold hover:bg-accent hover:text-white transition-all duration-300 shadow-xl"
+                  >
+                    View on Google Maps
+                    <NavigationIcon />
+                  </a>
                 </div>
-                <div className="text-left">
-                  <p className="text-[10px] uppercase tracking-widest font-bold text-accent">Location</p>
-                  <p className="text-white text-xs font-medium">{siteInfo.address.street}, NY</p>
-                </div>
-              </div>
-            </div>
+              </>
+            )}
           </div>
 
           {/* Location Details Card */}
@@ -129,9 +134,9 @@ export default function LocationMap({ className = "" }) {
                   <strong className="block text-xs lg:text-[13px] font-extrabold text-text-dark tracking-wider uppercase mb-0.5">
                     Phone
                   </strong>
-                  <span className="text-[13px] lg:text-[14px] text-text-light">
+                  <a href={`tel:${siteInfo.phoneRaw}`} className="text-[13px] lg:text-[14px] text-primary hover:text-primary-dark font-semibold transition-colors">
                     {siteInfo.phone}
-                  </span>
+                  </a>
                 </div>
               </div>
 

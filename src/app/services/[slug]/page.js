@@ -7,9 +7,6 @@ import {
   CheckCircle2, ArrowRight, Clock, Star, PhoneCall, 
   ChevronRight, Activity, CalendarDays, ShieldCheck 
 } from 'lucide-react';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-
 import ScrollReveal from '@/components/ScrollReveal';
 
 export async function generateStaticParams() {
@@ -67,9 +64,8 @@ export default async function TreatmentPage({ params }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       )}
-      <Header />
       
-      <main className="bg-zinc-50 pt-16 md:pt-20 lg:pt-24 pb-16 min-h-screen">
+      <div className="bg-zinc-50 pt-16 md:pt-20 lg:pt-24 pb-16 min-h-screen">
         {/* Breadcrumb */}
         <div className="max-w-[1200px] mx-auto px-6 py-4 relative z-20">
           <div className="flex items-center text-[0.7rem] md:text-sm text-slate-500 font-medium tracking-wide">
@@ -87,7 +83,7 @@ export default async function TreatmentPage({ params }) {
             
             {/* Image Side (Shows at Top on Mobile, Right on Desktop) */}
             <div className="relative w-full md:w-1/2 h-[220px] md:h-auto md:min-h-full order-1 md:order-2 overflow-hidden bg-slate-900/10">
-              <div className="hidden md:block absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-primary via-primary/50 to-transparent z-10 w-full md:w-[40%] h-1/2 md:h-full bottom-0 md:bottom-auto pointer-events-none"></div>
+              <div className="hidden md:block absolute inset-0 bg-primary/40 z-10 w-full md:w-[35%] h-full pointer-events-none"></div>
               <Image 
                 src={service.image} 
                 alt={service.title}
@@ -299,10 +295,7 @@ export default async function TreatmentPage({ params }) {
           </section>
         )}
 
-      </main>
-      
-      <Footer />
-
+      </div>
     </>
   );
 }

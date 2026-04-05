@@ -9,10 +9,10 @@ import ParallaxRing from '@/components/ui/ParallaxRing';
 export default function Services({ isHomePage = false }) {
   return (
     <section id="services" className="pt-8 pb-16 lg:pt-6 lg:pb-24 bg-white relative overflow-hidden">
-      {/* Subtle Background Patterns */}
-      <div className="absolute inset-0 bg-abstract-waves pointer-events-none" />
-      <ParallaxRing className="absolute -top-20 -right-20 w-[350px] h-[350px]" ringStyle="bg-donut-ring" speed={0.12} />
-      <ParallaxRing className="absolute bottom-10 -left-28 w-[300px] h-[300px]" ringStyle="bg-donut-ring-lg" speed={0.18} />
+
+      <ParallaxRing className="absolute -top-20 -right-20 w-[350px] h-[350px] opacity-60" ringStyle="bg-donut-ring" speed={0.12} animation="animate-spin-extra-slow" />
+      <ParallaxRing className="absolute bottom-10 -left-28 w-[300px] h-[300px] opacity-50" ringStyle="bg-donut-ring-lg" speed={0.18} animation="animate-float-slow" />
+      <ParallaxRing className="absolute top-1/2 right-[5%] w-[150px] h-[150px] opacity-30" ringStyle="bg-donut-ring" speed={0.1} animation="animate-float-slow" />
       <div className="absolute inset-0 bg-radial-soft pointer-events-none" />
 
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10">
@@ -20,17 +20,17 @@ export default function Services({ isHomePage = false }) {
           <div className="mb-10 lg:mb-14 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div className="max-w-2xl text-left">
               <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark leading-[1.1] tracking-tight mb-6">
-                Signature <span className="text-primary">Treatments.</span>
+                Treatments Designed for <span className="text-primary">Real Results.</span>
               </h2>
               <p className="text-slate-500 text-[0.92rem] md:text-[1rem] leading-relaxed font-medium max-w-xl">
-                Bespoke dental care designed to elevate your aesthetic, restore optimal function, and prioritize your comfort.
+                Personalized dental solutions focused on improving your smile, health, and confidence.
               </p>
             </div>
-            
+
             {isHomePage && (
               <div className="flex shrink-0 pb-1">
-                <Link 
-                  href="/services" 
+                <Link
+                  href="/services"
                   className="group flex items-center gap-2.5 text-primary font-bold text-[0.85rem] uppercase tracking-widest transition-all hover:text-primary-dark"
                 >
                   <span className="relative">
@@ -66,7 +66,7 @@ export default function Services({ isHomePage = false }) {
                     {service.isHighlighted && (
                       <div className="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 z-30 flex items-center gap-1.5 bg-white text-primary px-2.5 py-1 rounded-md sm:rounded-lg text-[9px] sm:text-[11px] font-black tracking-tighter uppercase shadow-md border border-slate-100">
                         <Star className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 fill-primary" />
-                        FEATURED
+                        MOST POPULAR
                       </div>
                     )}
 
@@ -116,9 +116,16 @@ export default function Services({ isHomePage = false }) {
                       )}
 
                       {/* Action Link */}
-                      <div className="flex items-center text-primary font-bold text-[8px] sm:text-[9px] lg:text-[10px] mt-auto relative group-hover:gap-1.5 transition-all duration-300 gap-1 tracking-wider uppercase">
-                        <span>Explore</span>
-                        <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 stroke-[2.5]" />
+                      <div className="flex items-center justify-between mt-auto relative">
+                        <div className="flex items-center text-primary font-bold text-[8px] sm:text-[9px] lg:text-[10px] group-hover:gap-1.5 transition-all duration-300 gap-1 tracking-wider uppercase">
+                          <span>Book Now</span>
+                          <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 stroke-[2.5]" />
+                        </div>
+                        {service.isHighlighted && (
+                          <span className="hidden sm:inline text-[8px] lg:text-[9px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded-md">
+                            From $99
+                          </span>
+                        )}
                       </div>
                     </div>
 

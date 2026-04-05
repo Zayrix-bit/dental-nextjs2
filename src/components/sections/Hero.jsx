@@ -1,10 +1,11 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { heroStats } from '@/data/siteData';
 import config from '@/config';
 import ScrollReveal from '@/components/ScrollReveal';
+import ParallaxRing from '@/components/ui/ParallaxRing';
 
 const TRUST_AVATARS = config.images.trustAvatars;
 
@@ -23,15 +24,21 @@ export default function Hero() {
         quality={90}
       />
 
-      {/* ── Dark Gradient Overlay ── */}
+      {/* Decorative Background Accents */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        <ParallaxRing className="absolute top-[15%] left-[5%] w-[280px] h-[280px] opacity-40" ringStyle="bg-donut-ring" speed={0.12} animation="animate-float-slow" />
+        <ParallaxRing className="absolute bottom-[20%] right-[10%] w-[320px] h-[320px] opacity-30" ringStyle="bg-donut-ring-lg" speed={0.2} animation="animate-spin-extra-slow" />
+        <ParallaxRing className="absolute top-[40%] right-[25%] w-[180px] h-[180px] opacity-20" ringStyle="bg-donut-ring" speed={0.08} animation="animate-float-slow" />
+      </div>
+
+      {/* ── Overlay Gradient for Premium Depth ── */}
       <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/65 to-black/40" />
       <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-black/30" />
 
       {/* ── Accent Glow & Patterns ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div className="absolute inset-0 bg-smile-curve opacity-10" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[400px] bg-primary/20 rounded-full blur-[120px]" />
-        <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] bg-accent/15 rounded-full blur-[100px]" />
+
         <div className="absolute inset-0 bg-radial-hero opacity-30" />
       </div>
 
@@ -63,6 +70,15 @@ export default function Hero() {
             </div>
           </ScrollReveal>
 
+          {/* Trust Indicators Line */}
+          {config.hero.trustLine && (
+            <ScrollReveal>
+              <p className="text-[0.7rem] sm:text-xs md:text-sm text-white/50 font-semibold tracking-wide mt-4 md:mt-5">
+                {config.hero.trustLine}
+              </p>
+            </ScrollReveal>
+          )}
+
           {/* Heading */}
           <ScrollReveal>
             <h1 className="text-[2.5rem] sm:text-[2.75rem] md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-black tracking-[-0.02em] leading-[1.05] mt-7 md:mt-7 text-white">
@@ -91,8 +107,8 @@ export default function Hero() {
                 href={config.hero.ctaSecondary.href}
                 className="flex items-center justify-center gap-2.5 px-8 py-4 sm:py-3.5 rounded-2xl sm:rounded-xl font-bold text-[0.95rem] sm:text-[0.9rem] text-white bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:-translate-y-0.5 transition-all"
               >
-                <Play className="w-4 h-4 fill-white" />
                 {config.hero.ctaSecondary.text}
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </ScrollReveal>

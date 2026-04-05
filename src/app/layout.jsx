@@ -4,6 +4,7 @@ import { Roboto } from 'next/font/google';
 import './globals.css';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],
@@ -44,6 +45,8 @@ export const metadata = {
 
 import SmoothScrollProvider from '@/components/ui/SmoothScrollProvider';
 import Preloader from '@/components/ui/Preloader';
+import FloatingCTA from '@/components/ui/FloatingCTA';
+import StickyMobileCTA from '@/components/ui/StickyMobileCTA';
 
 export default function RootLayout({ children }) {
   const jsonLd = {
@@ -87,9 +90,17 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className={roboto.className}>
+        {/* Global Background Accents */}
+        <div className="fixed inset-0 bg-abstract-waves pointer-events-none -z-10" />
         <Preloader />
         <SmoothScrollProvider>
-          {children}
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Footer />
+          <FloatingCTA />
+          <StickyMobileCTA />
         </SmoothScrollProvider>
         <SpeedInsights />
         <script
