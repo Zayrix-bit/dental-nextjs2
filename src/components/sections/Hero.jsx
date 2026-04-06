@@ -135,7 +135,13 @@ export default function Hero() {
                   <span className="text-sm font-bold text-white">{config.hero.rating}</span>
                 </div>
               </div>
-              <p className="text-xs text-white/60 font-medium">Trusted by 5,000+ patients in New York</p>
+              <p className="text-xs text-white/60 font-medium">
+                {(() => {
+                  const patientStat = config.hero.stats?.find(s => s.label === 'Happy Patients');
+                  const count = patientStat ? `${patientStat.number}${patientStat.suffix}` : '5,000+';
+                  return `Trusted by ${count} patients in ${config.contact.address.city}`;
+                })()}
+              </p>
             </div>
 
             {/* Quick Stats Badge */}

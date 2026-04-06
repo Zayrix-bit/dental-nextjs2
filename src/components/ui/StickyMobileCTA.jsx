@@ -22,7 +22,7 @@ export default function StickyMobileCTA() {
   return (
     <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 safe-area-inset-bottom">
       <div className="bg-white/95 backdrop-blur-xl border-t border-slate-200/80 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
-        <div className="grid grid-cols-3 gap-0">
+        <div className={`grid ${siteInfo.whatsappUrl ? 'grid-cols-3' : 'grid-cols-2'} gap-0`}>
           {/* Call */}
           <a
             href={`tel:${siteInfo.phoneRaw}`}
@@ -35,19 +35,21 @@ export default function StickyMobileCTA() {
             <span className="text-[10px] font-bold text-text-dark tracking-wide uppercase">Call</span>
           </a>
 
-          {/* WhatsApp */}
-          <a
-            href={siteInfo.whatsappUrl}
-            onClick={() => trackEvent(EVENTS.CTA_STICKY_MOBILE_WHATSAPP)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center justify-center gap-1 py-3 min-h-[60px] active:bg-accent/5 transition-colors border-x border-slate-100"
-          >
-            <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center animate-whatsapp-giggle">
-              <MessageCircle className="w-5 h-5 text-accent" strokeWidth={2.5} />
-            </div>
-            <span className="text-[10px] font-bold text-text-dark tracking-wide uppercase">WhatsApp</span>
-          </a>
+          {/* WhatsApp — only if URL is configured */}
+          {siteInfo.whatsappUrl && (
+            <a
+              href={siteInfo.whatsappUrl}
+              onClick={() => trackEvent(EVENTS.CTA_STICKY_MOBILE_WHATSAPP)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center gap-1 py-3 min-h-[60px] active:bg-accent/5 transition-colors border-x border-slate-100"
+            >
+              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center animate-whatsapp-giggle">
+                <MessageCircle className="w-5 h-5 text-accent" strokeWidth={2.5} />
+              </div>
+              <span className="text-[10px] font-bold text-text-dark tracking-wide uppercase">WhatsApp</span>
+            </a>
+          )}
 
           {/* Book */}
           <a

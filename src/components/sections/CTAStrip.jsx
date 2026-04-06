@@ -56,7 +56,7 @@ export default function CTAStrip() {
           <div className="mt-4 text-center lg:text-left">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/40">
               <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Average response time: 12 minutes
+              Average response time: 15 minutes
             </span>
           </div>
         </ScrollReveal>

@@ -52,7 +52,7 @@ export default function OfferHook() {
 
                 {/* Feature checklist */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                  {offerData.features.map((feature, i) => (
+                  {(offerData.features ?? []).map((feature, i) => (
                     <div key={i} className="flex items-center gap-2.5">
                       <CheckCircle className="w-4 h-4 text-accent shrink-0" strokeWidth={2.5} />
                       <span className="text-sm font-semibold text-text-dark">{feature}</span>

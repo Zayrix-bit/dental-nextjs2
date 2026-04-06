@@ -44,8 +44,8 @@ export const clinicConfig = {
   //  SEO & URLs
   // ══════════════════════════════════════
   seo: {
-    metadataBase: 'https://dental-nextjs-agency.vercel.app',
-    siteUrl: 'https://dentalclinic.com',
+    metadataBase: 'https://dental-nextjs2.vercel.app',
+    siteUrl: 'https://dental-nextjs2.vercel.app',
     defaultDescription:
       'Providing exceptional dental care with modern technology and compassionate service.',
   },

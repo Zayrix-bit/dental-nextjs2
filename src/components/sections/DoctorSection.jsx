@@ -51,7 +51,7 @@ export default function DoctorSection() {
 
               {/* Credentials */}
               <div className="flex flex-col gap-3 mb-8">
-                {doctorData.credentials.map((cred, i) => (
+                {(doctorData.credentials ?? []).map((cred, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-accent shrink-0" strokeWidth={2.5} />
                     <span className="text-sm font-semibold text-text-dark">{cred}</span>

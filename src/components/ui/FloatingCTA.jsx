@@ -14,6 +14,7 @@ export default function FloatingCTA() {
     const handleScroll = () => {
       setIsVisible(window.scrollY > window.innerHeight * 0.5);
     };
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
