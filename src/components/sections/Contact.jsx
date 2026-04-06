@@ -270,40 +270,37 @@ export default function Contact({ className = "" }) {
         ref={sectionRef}
         className={`mx-6 md:mx-12 lg:mx-20 xl:mx-28 grid grid-cols-1 lg:grid-cols-[320px_1fr] bg-white rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-slate-100 transition-all duration-500 ${className}`}
       >
-        <aside className="relative bg-linear-to-br from-primary to-primary-dark p-8 flex flex-col overflow-hidden">
-
-
-
-          <h3 className="relative z-10 text-2xl lg:text-[26px] font-black text-white leading-tight mb-3">
+        <aside className="relative bg-linear-to-br from-primary to-primary-dark p-6 sm:p-8 flex flex-col overflow-hidden">
+          <h3 className="relative z-10 text-xl sm:text-2xl lg:text-[26px] font-black text-white leading-tight mb-2 sm:mb-3">
             Start Your Smile Transformation.
           </h3>
-          <p className="relative z-10 text-[13px] lg:text-[14px] text-white/75 leading-relaxed mb-10 font-medium">
+          <p className="relative z-10 text-[12.5px] sm:text-[13px] lg:text-[14px] text-white/75 leading-relaxed mb-6 sm:mb-10 font-medium tracking-tight sm:tracking-normal">
             Receive a personalized assessment from our clinical experts. No obligation.
           </p>
 
-          <div className="relative z-10 flex flex-col gap-6 flex-1">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 shadow-inner">
+          <div className="relative z-10 flex flex-col gap-4 sm:gap-6 flex-1">
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 shadow-inner">
                 <MapPinIcon />
               </div>
               <div className="pt-0.5">
-                <strong className="block text-[11px] font-black text-accent tracking-widest uppercase mb-1">Our Studio</strong>
-                <span className="text-[13px] lg:text-[14px] text-white/95 leading-relaxed font-medium">{siteInfo.address.street}, {siteInfo.address.city}</span>
+                <strong className="block text-[10px] sm:text-[11px] font-black text-accent tracking-widest uppercase mb-0.5 sm:mb-1">Our Studio</strong>
+                <span className="text-[12.5px] sm:text-[13px] lg:text-[14px] text-white/95 leading-snug sm:leading-relaxed font-medium block pr-4 sm:pr-0">{siteInfo.address.street}, {siteInfo.address.city}</span>
               </div>
             </div>
-            <div className="flex items-start gap-4 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 shadow-inner text-white">
-                <PhoneIcon className="w-5 h-5" />
+            <div className="flex items-start gap-3 sm:gap-4 mb-2 sm:mb-5">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 shadow-inner text-white">
+                <PhoneIcon className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
               <div className="pt-0.5">
-                <strong className="block text-[11px] font-black text-accent tracking-widest uppercase mb-1">Inquiries</strong>
-                <span className="text-[14px] lg:text-[15px] text-white font-bold">{siteInfo.phone}</span>
+                <strong className="block text-[10px] sm:text-[11px] font-black text-accent tracking-widest uppercase mb-0.5 sm:mb-1">Inquiries</strong>
+                <span className="text-[13px] sm:text-[14px] lg:text-[15px] text-white font-bold">{siteInfo.phone}</span>
               </div>
             </div>
 
             {/* Compact Professional WhatsApp CTA */}
-            <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-1.5">
-              <p className="text-[11px] text-white/50 font-medium tracking-wide leading-snug">
+            <div className="mt-2 sm:mt-4 pt-4 border-t border-white/10 flex flex-col gap-1.5 sm:gap-1.5">
+              <p className="text-[10px] sm:text-[11px] text-white/50 font-medium tracking-wide leading-snug">
                 Prefer instant assistance? <span className="text-white/80">Chat with our team</span> on WhatsApp.
               </p>
               <a
@@ -427,14 +424,14 @@ export default function Contact({ className = "" }) {
             </div>
 
             {/* Trust Signals */}
-            <div className="flex items-center justify-center gap-3 text-center divide-x divide-slate-200 mt-2 bg-slate-50/50 rounded-xl py-3 border border-slate-100/50">
-              <div className="flex items-center gap-1.5 px-3">
-                <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-                <span className="text-[11px] font-bold text-slate-500 tracking-wide uppercase">100% Secure • No Spam</span>
+            <div className="flex flex-col sm:flex-row items-center justify-center text-center sm:divide-x divide-slate-200 mt-2 bg-slate-50/50 rounded-xl py-1.5 sm:py-3 border border-slate-100/50">
+              <div className="hidden sm:flex justify-center items-center gap-1.5 px-3 py-2 sm:py-0 w-full sm:w-auto">
+                <svg className="w-3.5 h-3.5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 tracking-wide uppercase">100% Secure • No Spam</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3">
-                <ClockIcon />
-                <span className="text-[11px] font-bold text-slate-500 tracking-wide uppercase">Our team will contact you within 15–30 minutes</span>
+              <div className="flex justify-center items-center gap-1.5 px-3 py-2 sm:py-0 w-full sm:w-auto">
+                <div className="shrink-0"><ClockIcon /></div>
+                <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 tracking-wide uppercase">Response in 15–30 mins</span>
               </div>
             </div>
           </footer>

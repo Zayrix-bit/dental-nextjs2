@@ -32,6 +32,9 @@ const Contact = dynamic(() => import('@/components/sections/Contact'), {
 const LocationMap = dynamic(() => import('@/components/sections/LocationMap'), {
   loading: () => <SectionSkeleton height="h-64" />,
 });
+const ClinicGallery = dynamic(() => import('@/components/sections/ClinicGallery'), {
+  loading: () => <SectionSkeleton height="h-96" />,
+});
 
 export const metadata = {
   title: config.pages?.home?.title || `${config.name} — ${config.tagline}`,
@@ -76,6 +79,9 @@ export default function HomePage() {
 
       {/* 14. Location Map */}
       <LocationMap />
+
+      {/* 15. Clinic Gallery — final trust mechanism before footer */}
+      <ClinicGallery />
     </>
   );
 }

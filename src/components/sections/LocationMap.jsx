@@ -171,13 +171,6 @@ export default function LocationMap({ className = "" }) {
 
         </div>
       </div>
-
-      {/* ── Curved transition into Footer ── */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
-        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-[40px] sm:h-[50px] lg:h-[48px] block">
-          <path d="M0,80 L0,40 Q360,0 720,40 Q1080,80 1440,40 L1440,80 Z" fill="#060d12" />
-        </svg>
-      </div>
     </section>
   );
 }
