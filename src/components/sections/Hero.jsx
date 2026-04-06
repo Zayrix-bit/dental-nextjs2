@@ -33,17 +33,53 @@ export default function Hero() {
       {/* ── Content ── */}
       <div className="relative z-10 flex-1 flex flex-col justify-center max-w-[1300px] mx-auto w-full px-6 md:px-8 lg:px-12 pt-24 pb-8 sm:pt-28 sm:pb-12">
 
-        {/* Top Banner */}
-        {config.hero.topBanner && (
+        {/* Mobile Badges (Replaces Top Banner) */}
+        <div className="flex lg:hidden flex-col gap-3 mb-6 max-w-fit">
           <ScrollReveal>
-            <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 mb-6 max-w-fit shadow-lg shadow-black/5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-emergency-pulse shrink-0" />
-              <span className="text-xs sm:text-sm font-medium text-white/95 tracking-wide">
-                {config.hero.topBanner}
-              </span>
+            <div className="bg-white/10 backdrop-blur-xl border border-white/15 rounded-2xl px-5 py-3.5 shadow-lg w-fit">
+              <div className="flex items-center gap-2.5 mb-1.5 mt-0.5">
+                <div className="flex -space-x-2">
+                  {(config.images.trustAvatars || []).slice(0, 4).map((src, i) => (
+                    <Image
+                      key={`mob-${i}`}
+                      src={src}
+                      alt={`Patient ${i + 1}`}
+                      width={28}
+                      height={28}
+                      className="w-7 h-7 rounded-full border-2 border-white/30 object-cover"
+                    />
+                  ))}
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={`star-mob-${i}`} className="w-3.5 h-3.5 fill-amber-400" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-[13px] font-bold text-white">{config.hero.rating}</span>
+                </div>
+              </div>
+              <p className="text-xs text-white/70 font-medium">
+                {(() => {
+                  const patientStat = config.hero.stats?.find(s => s.label === 'Happy Patients');
+                  const count = patientStat ? `${patientStat.number}${patientStat.suffix}` : '5,000+';
+                  return `Trusted by ${count} patients in ${config.contact.address.city}`;
+                })()}
+              </p>
             </div>
           </ScrollReveal>
-        )}
+
+          <ScrollReveal>
+            <div className="bg-emerald-900/40 backdrop-blur-xl border border-emerald-500/20 rounded-2xl px-4 py-2.5 shadow-lg w-fit">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-emergency-pulse shrink-0" />
+                <span className="text-[13px] font-bold text-emerald-50 whitespace-nowrap">Same-Day Appointments Available</span>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
