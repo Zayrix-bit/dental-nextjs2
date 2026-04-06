@@ -80,10 +80,10 @@ export const clinicConfig = {
   //  HERO SECTION
   // ══════════════════════════════════════
   hero: {
-    title: 'Fix Broken, Missing, or Painful Teeth — In Just 1 Visit.',
+    title: 'Fix Broken, Missing, or Painful Teeth In Just 1 Visit.',
     subtitle:
       'Pain-free treatments by board-certified specialists. 5,000+ happy patients across New York.',
-    emergencyLine: '🚨 Emergency Dentist Available Today — Call for Immediate Relief',
+    topBanner: 'Now Welcoming New Patients — Experience Gentle, Pain-Free Care',
     ctaPrimary: { text: 'Book Your Appointment in 30 Seconds', href: '#appointment' },
     ctaSecondary: { text: 'Call for Immediate Help', href: 'tel:+15551234567' },
     trustBullets: [

@@ -33,13 +33,13 @@ export default function Hero() {
       {/* ── Content ── */}
       <div className="relative z-10 flex-1 flex flex-col justify-center max-w-[1300px] mx-auto w-full px-6 md:px-8 lg:px-12 pt-24 pb-8 sm:pt-28 sm:pb-12">
 
-        {/* Emergency Banner */}
-        {config.hero.emergencyLine && (
+        {/* Top Banner */}
+        {config.hero.topBanner && (
           <ScrollReveal>
-            <div className="inline-flex items-center gap-2 bg-red-500/15 backdrop-blur-md border border-red-400/30 rounded-full px-4 py-2 mb-6 max-w-fit">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-emergency-pulse shrink-0" />
-              <span className="text-xs sm:text-sm font-bold text-red-300 tracking-wide">
-                {config.hero.emergencyLine}
+            <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 mb-6 max-w-fit shadow-lg shadow-black/5">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-emergency-pulse shrink-0" />
+              <span className="text-xs sm:text-sm font-medium text-white/95 tracking-wide">
+                {config.hero.topBanner}
               </span>
             </div>
           </ScrollReveal>
