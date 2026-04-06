@@ -27,7 +27,7 @@ export const clinicConfig = {
     email: 'info@dentalclinic.com',
     address: {
       street: '123 Dental Street, Medical District',
-      city: 'New York, NY 10001, USA',
+      city: 'New York',
     },
     hours: {
       weekdays: 'Mon – Fri: 9:00 AM – 7:00 PM',
@@ -63,7 +63,7 @@ export const clinicConfig = {
   // ══════════════════════════════════════
   images: {
     heroBg: '/images/hero-bg.png',
-    teamPhoto: '/images/team.png',
+    teamPhoto: '/images/team-photo.png',
     beforeAfter: {
       before: '/images/before.png',
       after: '/images/after.png',
@@ -80,16 +80,21 @@ export const clinicConfig = {
   //  HERO SECTION
   // ══════════════════════════════════════
   hero: {
-    title: 'Advanced Dental Care, Designed Around You.',
+    title: 'Fix Broken, Missing, or Painful Teeth — In Just 1 Visit.',
     subtitle:
-      'Experience precision dentistry where your comfort and long-term results are our ultimate priority.',
-    ctaPrimary: { text: 'Schedule Your Private Consultation', href: '#appointment' },
-    ctaSecondary: { text: 'Discover Our Expertise', href: '#services' },
-    trustLine: 'Board-Certified Specialists • 15+ Years Expertise • 4.9★ Rated',
+      'Pain-free treatments by board-certified specialists. 5,000+ happy patients across New York.',
+    emergencyLine: '🚨 Emergency Dentist Available Today — Call for Immediate Relief',
+    ctaPrimary: { text: 'Book Your Appointment in 30 Seconds', href: '#appointment' },
+    ctaSecondary: { text: 'Call for Immediate Help', href: 'tel:+15551234567' },
+    trustBullets: [
+      '4.9★ Google Rating (500+ Reviews)',
+      'Board-Certified Specialists',
+      'Emergency & Same-Day Available',
+    ],
     rating: '4.9/5 Rating',
     stats: [
       { number: 15, suffix: '+', label: 'Years Experience' },
-      { number: 10, suffix: 'K+', label: 'Happy Patients' },
+      { number: 5, suffix: 'K+', label: 'Happy Patients' },
       { number: 25, suffix: '+', label: 'Expert Dentists' },
       { number: 98, suffix: '%', label: 'Satisfaction' },
     ],
@@ -814,5 +819,99 @@ export const clinicConfig = {
           "We're here for you. Reach out to schedule an appointment or ask any questions.",
       },
     },
+  },
+
+  // ══════════════════════════════════════
+  //  TRUST BAR (immediate social proof)
+  // ══════════════════════════════════════
+  trustBar: [
+    { icon: 'star', number: '4.9', label: 'Google Rating', sublabel: '500+ Verified Reviews' },
+    { icon: 'users', number: '5,000+', label: 'Happy Patients', sublabel: 'Across New York' },
+    { icon: 'award', number: '15+', label: 'Years Experience', sublabel: 'Since 2009' },
+    { icon: 'shield-check', number: '100%', label: 'Certified Clinic', sublabel: 'ADA Approved' },
+  ],
+
+  // ══════════════════════════════════════
+  //  PROBLEM → SOLUTION MAPPING (homepage services)
+  // ══════════════════════════════════════
+  problemSolution: [
+    { problem: 'Missing Teeth?', solution: 'Dental Implants', description: 'Permanent, natural-looking replacements that last a lifetime.', serviceSlug: 'dental-implants', iconKey: 'shield-plus' },
+    { problem: 'Yellow or Stained Teeth?', solution: 'Professional Whitening', description: 'Up to 8 shades whiter in a single painless session.', serviceSlug: 'teeth-whitening', iconKey: 'heart-pulse' },
+    { problem: 'Crooked or Misaligned?', solution: 'Invisible Braces', description: 'Discreet clear aligners — no metal, no hassle.', serviceSlug: 'orthodontics-invisalign', iconKey: 'activity' },
+    { problem: 'Chipped or Damaged?', solution: 'Cosmetic Restoration', description: 'Porcelain veneers and bonding for a flawless smile.', serviceSlug: 'cosmetic-dentistry', iconKey: 'sparkles' },
+    { problem: 'Severe Tooth Pain?', solution: 'Emergency Root Canal', description: 'Immediate pain relief with gentle, modern techniques.', serviceSlug: 'root-canal-therapy', iconKey: 'microscope' },
+    { problem: 'Need a Dentist Today?', solution: 'Emergency Care', description: 'Walk-in & same-day emergency appointments available.', serviceSlug: 'emergency-dentistry', iconKey: 'clock-alert' },
+  ],
+
+  // ══════════════════════════════════════
+  //  DOCTOR SECTION (personal trust)
+  //  Replace with real doctor data
+  // ══════════════════════════════════════
+  doctor: {
+    name: 'Dr. Sarah Mitchell',
+    title: 'Lead Dental Surgeon & Founder',
+    image: '/images/doctor-portrait.png',
+    credentials: [
+      '15+ Years Clinical Experience',
+      'Board-Certified Prosthodontist',
+      '5,000+ Successful Treatments',
+      'Member, American Dental Association',
+    ],
+    story: 'Dr. Mitchell founded DentalCare with a simple belief: everyone deserves access to pain-free, world-class dental care without the fear or the hefty price tag. Her patient-first philosophy has earned DentalCare a 4.9★ Google rating and the trust of over 5,000 families across New York.',
+    ctaText: 'Book with Dr. Mitchell',
+    ctaHref: '#appointment',
+  },
+
+  // ══════════════════════════════════════
+  //  PROCESS SECTION (fear-reducing steps)
+  // ══════════════════════════════════════
+  process: {
+    heading: 'Your Visit, Simplified.',
+    headingAccent: 'No Surprises.',
+    subtitle: 'From booking to your brand-new smile — here\'s exactly what to expect.',
+    steps: [
+      { number: '01', title: 'Book Online', description: 'Pick a time that works. It takes 30 seconds. No phone tag.', iconKey: 'calendar' },
+      { number: '02', title: 'Free Consultation', description: 'Meet your dentist, discuss your goals, and get a clear treatment plan — no obligation.', iconKey: 'stethoscope' },
+      { number: '03', title: 'Painless Treatment', description: 'Relax while our specialists work. Advanced sedation means you feel nothing.', iconKey: 'heart-pulse' },
+      { number: '04', title: 'Smile Transformation', description: 'Walk out with the smile you\'ve always wanted. Follow-up care included.', iconKey: 'smile' },
+    ],
+  },
+
+  // ══════════════════════════════════════
+  //  OFFER / PRICING HOOK (conversion trigger)
+  //  Update with real clinic promotions
+  // ══════════════════════════════════════
+  offer: {
+    badge: 'Limited Time Offer',
+    headline: 'Free Smile Assessment + Digital X-Ray',
+    value: 'Worth $350',
+    description: 'Get a comprehensive dental evaluation, digital X-rays, and a personalized treatment plan — completely free. No hidden fees, no obligation.',
+    urgency: 'Only 8 slots remaining this week',
+    ctaText: 'Claim Your Free Assessment',
+    ctaHref: '#appointment',
+    features: [
+      'Full oral health evaluation',
+      'Digital X-Ray included',
+      'Personalized treatment plan',
+      'Zero obligation — walk away anytime',
+    ],
+  },
+
+  // ══════════════════════════════════════
+  //  FINAL CTA (strong close before footer)
+  // ══════════════════════════════════════
+  finalCta: {
+    headline: 'Ready to Fix Your Smile?',
+    subtitle: 'Join 5,000+ patients who chose DentalCare. Your transformation starts with one click.',
+    urgency: 'Limited slots available today',
+    primaryCta: { text: 'Book Your Appointment Now', href: '#appointment' },
+    secondaryCta: { text: 'Call Now for Immediate Help', href: 'tel:+15551234567' },
+  },
+
+  // ══════════════════════════════════════
+  //  ANALYTICS (set GA measurement ID)
+  // ══════════════════════════════════════
+  analytics: {
+    gaId: process.env.NEXT_PUBLIC_GA_ID || '',
   },
 };

@@ -265,7 +265,7 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {mobileOpen && (
-          <nav className="fixed inset-0 bg-linear-to-br from-[#0d2733] to-[#1a3a4a] flex flex-col justify-center items-center gap-8 z-[999] overflow-y-auto pt-24 pb-12 animate-[fadeIn_0.3s_ease]">
+          <nav className="fixed inset-0 bg-linear-to-br from-[#0a4a44] to-[#0d5f56] flex flex-col justify-center items-center gap-8 z-[999] overflow-y-auto pt-24 pb-12 animate-[fadeIn_0.3s_ease]">
             {/* Topbar Info (In-Menu mobile only) */}
             <div className="flex flex-col items-center gap-2 mb-4">
                <span className="text-white/60 text-[10px] tracking-widest uppercase font-bold">Quick Contact</span>

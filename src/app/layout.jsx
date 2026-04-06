@@ -1,17 +1,16 @@
 import { siteInfo } from '@/data/siteData';
 import config from '@/config';
-import { Roboto } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-const roboto = Roboto({
-  weight: ['400', '500', '700'],
-  style: ['normal', 'italic'],
+const inter = Inter({
+  weight: ['400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-roboto',
+  variable: '--font-inter',
 });
 
 export const metadata = {
@@ -84,12 +83,30 @@ export default function RootLayout({ children }) {
     ]
   };
 
+  const gaId = config.analytics?.gaId;
+
   return (
-    <html lang="en" className={roboto.variable} data-scroll-behavior="smooth">
+    <html lang="en" className={inter.variable} data-scroll-behavior="smooth">
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        {/* Google Analytics */}
+        {gaId && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaId}');
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
-      <body className={roboto.className}>
+      <body className={inter.className}>
         {/* Global Background Accents */}
         <div className="fixed inset-0 bg-abstract-waves pointer-events-none -z-10" />
         <Preloader />

@@ -62,3 +62,36 @@ export const footerQuickLinks = config.footerQuickLinks;
 
 // ── Social Links ──
 export const socialLinks = config.social;
+
+// ══════════════════════════════════════
+//  NEW DATA EXPORTS (Conversion Redesign)
+// ══════════════════════════════════════
+
+// ── Trust Bar ──
+export const trustBarData = config.trustBar;
+
+// ── Problem → Solution (homepage services) ──
+export const problemSolutionData = (config.problemSolution || []).map((item) => ({
+  ...item,
+  icon: resolveIcon(item.iconKey),
+}));
+
+// ── Doctor Section ──
+export const doctorData = config.doctor;
+
+// ── Process Steps ──
+export const processData = config.process
+  ? {
+      ...config.process,
+      steps: config.process.steps.map((step) => ({
+        ...step,
+        icon: resolveIcon(step.iconKey),
+      })),
+    }
+  : null;
+
+// ── Offer / Pricing Hook ──
+export const offerData = config.offer;
+
+// ── Final CTA ──
+export const finalCtaData = config.finalCta;

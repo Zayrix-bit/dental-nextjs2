@@ -1,84 +1,95 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { Phone, MessageCircle, X } from 'lucide-react';
 import { siteInfo } from '@/data/siteData';
-
-const PhoneIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.2 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-  </svg>
-);
-
-const WhatsAppIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-  </svg>
-);
+import { trackEvent, EVENTS } from '@/lib/analytics';
 
 export default function FloatingCTA() {
-  const [visible, setVisible] = useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show after scrolling past 400px (past hero)
-      setVisible(window.scrollY > 400);
+      setIsVisible(window.scrollY > window.innerHeight * 0.5);
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!visible) return null;
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
+
+  if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 hidden md:flex flex-col items-end gap-3 transition-all duration-500">
+    <div
+      ref={ref}
+      className="hidden lg:block fixed bottom-8 right-8 z-50"
+    >
       {/* Expanded options */}
-      {expanded && (
-        <div className="flex flex-col gap-2.5 animate-[fadeInUp_0.2s_ease]">
-          {/* Phone */}
-          <a
-            href={`tel:${siteInfo.phoneRaw}`}
-            className="group flex items-center gap-3 bg-white text-slate-800 pl-4 pr-5 py-3 rounded-full shadow-xl border border-slate-100 hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300"
-          >
-            <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-              <PhoneIcon />
-            </div>
-            <span className="text-sm font-bold">Call Now</span>
-          </a>
-
-          {/* WhatsApp */}
-          <a
-            href={siteInfo.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-3 bg-white text-slate-800 pl-4 pr-5 py-3 rounded-full shadow-xl border border-slate-100 hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300"
-          >
-            <div className="w-9 h-9 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500 shrink-0">
-              <WhatsAppIcon />
-            </div>
-            <span className="text-sm font-bold">WhatsApp</span>
-          </a>
-        </div>
-      )}
-
-      {/* Main toggle button */}
-      <button
-        onClick={() => setExpanded(!expanded)}
-        aria-label="Contact options"
-        className={`w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 ${
-          expanded
-            ? 'bg-slate-800 text-white rotate-45'
-            : 'bg-emerald-500 text-white shadow-emerald-500/30 animate-[bounce_2s_infinite]'
+      <div
+        className={`absolute bottom-16 right-0 flex flex-col gap-2.5 transition-all duration-300 ${
+          isOpen
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
       >
-        {expanded ? (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-            <line x1="12" y1="5" x2="12" y2="19" />
-            <line x1="5" y1="12" x2="19" y2="12" />
-          </svg>
+        {/* Call */}
+        <a
+          href={`tel:${siteInfo.phoneRaw}`}
+          onClick={() => trackEvent(EVENTS.CTA_FLOATING_CALL)}
+          className="group flex items-center gap-3 bg-white rounded-2xl px-5 py-3.5 shadow-xl border border-slate-100 hover:border-primary/20 hover:shadow-2xl transition-all hover:-translate-y-0.5"
+        >
+          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors">
+            <Phone className="w-5 h-5 text-primary group-hover:text-white transition-colors" strokeWidth={2.5} />
+          </div>
+          <div>
+            <div className="text-xs font-bold text-text-dark">Call Us Now</div>
+            <div className="text-[10px] text-slate-400 font-semibold">{siteInfo.phone}</div>
+          </div>
+        </a>
+
+        {/* WhatsApp */}
+        <a
+          href={siteInfo.whatsappUrl}
+          onClick={() => trackEvent(EVENTS.CTA_FLOATING_WHATSAPP)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center gap-3 bg-white rounded-2xl px-5 py-3.5 shadow-xl border border-slate-100 hover:border-accent/20 hover:shadow-2xl transition-all hover:-translate-y-0.5"
+        >
+          <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent transition-colors">
+            <MessageCircle className="w-5 h-5 text-accent group-hover:text-white transition-colors" strokeWidth={2.5} />
+          </div>
+          <div>
+            <div className="text-xs font-bold text-text-dark">WhatsApp Us</div>
+            <div className="text-[10px] text-slate-400 font-semibold">Responds in ~12 min</div>
+          </div>
+        </a>
+      </div>
+
+      {/* Main FAB Button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-xl transition-all duration-300 hover:-translate-y-0.5 active:scale-95 ${
+          isOpen
+            ? 'bg-slate-800 rotate-0'
+            : 'btn-cta-green animate-btn-jiggle'
+        }`}
+        aria-label={isOpen ? 'Close contact menu' : 'Contact us'}
+      >
+        {isOpen ? (
+          <X className="w-5 h-5 text-white" strokeWidth={2.5} />
         ) : (
-          <WhatsAppIcon />
+          <MessageCircle className="w-5 h-5 text-white" strokeWidth={2.5} />
         )}
       </button>
     </div>

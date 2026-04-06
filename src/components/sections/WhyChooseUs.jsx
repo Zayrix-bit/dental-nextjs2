@@ -1,87 +1,134 @@
+import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowRight, ShieldCheck, Zap, CreditCard, Percent } from 'lucide-react';
 import { features } from '@/data/siteData';
 import config from '@/config';
 import ScrollReveal from '@/components/ScrollReveal';
 
-import ParallaxRing from '@/components/ui/ParallaxRing';
+const differentiators = [
+  {
+    icon: ShieldCheck,
+    title: 'No Pain Guarantee',
+    description: 'Advanced sedation & numbing — feel nothing during your procedure, or your visit is free.',
+    color: 'bg-emerald-50 border-emerald-100 text-emerald-600',
+    hoverColor: 'group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600',
+  },
+  {
+    icon: Zap,
+    title: 'Same-Day Results',
+    description: 'Whitening in 60 minutes. Emergency care within hours. Walk in, walk out with a smile.',
+    color: 'bg-amber-50 border-amber-100 text-amber-600',
+    hoverColor: 'group-hover:bg-amber-500 group-hover:text-white group-hover:border-amber-500',
+  },
+  {
+    icon: CreditCard,
+    title: 'Transparent Pricing',
+    description: 'Know exactly what you pay before treatment. No surprise bills, no hidden fees. Ever.',
+    color: 'bg-sky-50 border-sky-100 text-sky-600',
+    hoverColor: 'group-hover:bg-sky-600 group-hover:text-white group-hover:border-sky-600',
+  },
+  {
+    icon: Percent,
+    title: '0% EMI Available',
+    description: 'Premium dental care shouldn\'t break the bank. Spread the cost with flexible payment plans.',
+    color: 'bg-violet-50 border-violet-100 text-violet-600',
+    hoverColor: 'group-hover:bg-violet-600 group-hover:text-white group-hover:border-violet-600',
+  },
+];
 
 export default function WhyChooseUs() {
   return (
-    <section id="about" className="py-10 lg:py-16 bg-clinical relative overflow-hidden">
-      {/* Subtle Background Patterns */}
-      <div className="absolute inset-0 bg-svg-grid pointer-events-none opacity-40" />
-      <ParallaxRing className="absolute -bottom-16 -right-16 w-[320px] h-[320px] opacity-60" ringStyle="bg-donut-ring-lg" speed={0.2} animation="animate-spin-extra-slow" />
-      <ParallaxRing className="absolute -top-20 left-1/3 w-[280px] h-[280px] opacity-50" ringStyle="bg-donut-ring" speed={0.1} animation="animate-float-slow" />
-      <ParallaxRing className="absolute top-1/4 -left-10 w-[200px] h-[200px] opacity-30" ringStyle="bg-donut-ring" speed={0.15} animation="animate-float-slow" />
+    <section id="why-choose-us" className="relative py-14 lg:py-20 bg-clinical overflow-hidden">
+      <div className="absolute inset-0 bg-dot-mesh pointer-events-none opacity-40" />
+      <div className="absolute inset-0 bg-radial-soft pointer-events-none" />
 
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10">
+        {/* Header */}
+        <ScrollReveal>
+          <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-14">
+            <span className="inline-block text-xs font-bold text-primary uppercase tracking-[0.2em] mb-3">Why Patients Choose Us</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark tracking-tight leading-[1.1] mb-4">
+              {config.about.heading} <span className="text-primary">{config.about.headingAccent}</span>
+            </h2>
+            <p className="text-slate-500 text-sm md:text-[0.95rem] leading-relaxed font-medium">
+              {config.about.description}
+            </p>
+          </div>
+        </ScrollReveal>
+
+        {/* Differentiators Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mb-12 lg:mb-16">
+          {differentiators.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <ScrollReveal key={idx} delay={idx * 100}>
+                <div className="group bg-white rounded-2xl p-6 lg:p-7 border border-slate-100 hover:border-primary/15 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 h-full text-center">
+                  <div className={`w-13 h-13 rounded-xl flex items-center justify-center mx-auto mb-4 border transition-all duration-300 ${item.color} ${item.hoverColor}`}>
+                    <Icon className="w-6 h-6" strokeWidth={1.8} />
+                  </div>
+                  <h3 className="text-base font-bold text-text-dark tracking-tight mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-text-light leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </ScrollReveal>
+            );
+          })}
+        </div>
+
+        {/* Features + Image Split */}
         <ScrollReveal>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-
-            {/* Left Content Column */}
-            <div className="order-2 lg:order-1 flex flex-col justify-center">
-              <div className="mb-6 lg:mb-8">
-                <h2 className="text-3xl md:text-4xl lg:text-[3.25rem] font-bold text-text-dark mb-6 tracking-tight leading-[1.1]">
-                  {config.about.heading} <br />
-                  <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">{config.about.headingAccent}</span>
-                </h2>
-                <p className="text-text-light text-sm lg:text-base max-w-lg leading-relaxed font-medium mb-8">
-                  {config.about.description}
-                </p>
-              </div>
-
-              {/* Compact 2x2 Features Grid */}
-              <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:gap-4">
-                {features.map((feature) => (
-                  <div
-                    key={feature.title}
-                    className="group relative flex flex-col p-3 sm:p-4 bg-white rounded-xl border border-slate-100/80 hover:border-transparent hover:shadow-[0_8px_20px_-10px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 overflow-hidden"
-                  >
-                    {/* Hover Glow */}
-                    <div className="absolute inset-0 bg-linear-to-br from-primary/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                    <div className="relative z-10">
-                      <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-bg-section group-hover:bg-primary rounded-md sm:rounded-lg flex items-center justify-center text-primary group-hover:text-white transition-all duration-300 mb-2 lg:mb-3 shadow-sm border border-slate-100 group-hover:border-transparent">
-                        <feature.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5" strokeWidth={2} />
-                      </div>
-                      <h3 className="font-bold text-text-dark text-xs sm:text-sm lg:text-base mb-1 group-hover:text-primary transition-colors duration-300 tracking-tight leading-tight">
-                        {feature.title}
-                      </h3>
-                      <p className="text-text-light text-[0.6rem] sm:text-[0.7rem] lg:text-[0.8rem] leading-tight sm:leading-snug">
-                        {feature.description}
-                      </p>
+            {/* Feature List */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {features.map((feat, idx) => {
+                const FeatIcon = feat.icon;
+                return (
+                  <div key={idx} className="flex gap-3.5 p-4 rounded-xl bg-white border border-slate-50 hover:border-primary/10 hover:shadow-sm transition-all">
+                    <div className="w-10 h-10 rounded-lg bg-primary/8 border border-primary/10 flex items-center justify-center shrink-0">
+                      <FeatIcon className="w-4.5 h-4.5 text-primary" strokeWidth={2} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-text-dark tracking-tight">{feat.title}</h4>
+                      <p className="text-xs text-text-light mt-1 leading-relaxed">{feat.description}</p>
                     </div>
                   </div>
-                ))}
-              </div>
+                );
+              })}
             </div>
 
-            {/* Right Image Column - Very Tightly Controlled Height */}
-            <div className="order-1 lg:order-2 relative w-full aspect-video lg:h-[min(480px,65vh)] rounded-2xl lg:rounded-4xl overflow-hidden shadow-[0_15px_40px_-10px_rgba(0,0,0,0.15)] group">
-              <div className="absolute inset-0 bg-linear-to-tr from-black/50 via-transparent to-transparent z-10" />
+            {/* Team Image */}
+            <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-primary/10 group">
               <Image
                 src={config.images.teamPhoto}
-                alt={`${config.name} expert dental team`}
+                alt={`The ${config.name} team`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-out"
-                priority
+                className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
               />
+              <div className="absolute inset-0 bg-linear-to-t from-primary/30 via-transparent to-transparent" />
 
-              {/* Premium Floating Badge (Smaller) */}
-              <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6 z-20">
-                <div className="bg-white/95 backdrop-blur-xl px-4 py-3 lg:px-6 lg:py-4 rounded-xl lg:rounded-2xl shadow-xl border border-white/60 flex items-center gap-3 lg:gap-4 transform group-hover:-translate-y-1 transition-transform duration-500">
-                  <div className="relative w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl bg-primary flex items-center justify-center text-white shadow-inner">
-                    <span className="text-lg lg:text-2xl font-black tracking-tighter">{config.about.yearsBadge.number}<span className="text-base lg:text-lg">{config.about.yearsBadge.suffix}</span></span>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-sm lg:text-base font-extrabold text-text-dark leading-tight">{config.about.yearsBadge.label}</span>
-                    <span className="text-[0.6rem] lg:text-[0.7rem] font-bold text-text-light uppercase tracking-widest mt-0.5">{config.about.yearsBadge.sublabel}</span>
-                  </div>
-                </div>
+              {/* Years Badge */}
+              <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-xl px-4 py-3 rounded-xl shadow-lg border border-white/60">
+                <div className="text-2xl font-black text-primary leading-none">{config.about.yearsBadge.number}{config.about.yearsBadge.suffix}</div>
+                <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mt-0.5">{config.about.yearsBadge.label} {config.about.yearsBadge.sublabel}</div>
               </div>
             </div>
+          </div>
+        </ScrollReveal>
 
+        {/* Bottom CTA */}
+        <ScrollReveal>
+          <div className="text-center mt-10">
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:gap-3 transition-all group"
+            >
+              Learn More About Our Team
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </ScrollReveal>
       </div>

@@ -19,6 +19,10 @@ import {
   Eye,
   Zap,
   HandHeart,
+  Calendar,
+  Star,
+  Award,
+  ShieldCheck,
 } from 'lucide-react';
 
 /**
@@ -47,6 +51,10 @@ export const iconMap = {
   eye: Eye,
   zap: Zap,
   'hand-heart': HandHeart,
+  calendar: Calendar,
+  star: Star,
+  award: Award,
+  'shield-check': ShieldCheck,
 };
 
 /**

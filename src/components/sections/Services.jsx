@@ -1,137 +1,161 @@
-import { services } from '@/data/siteData';
-import ScrollReveal from '@/components/ScrollReveal';
-import { ArrowRight, Star } from 'lucide-react';
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { services, problemSolutionData } from '@/data/siteData';
+import ScrollReveal from '@/components/ScrollReveal';
+import { trackEvent, EVENTS } from '@/lib/analytics';
 
-import ParallaxRing from '@/components/ui/ParallaxRing';
+/**
+ * Services Section
+ * ─────────────────
+ * - Homepage: Shows Problem → Solution cards (high conversion)
+ * - Services Page: Shows full image-based service cards
+ *
+ * Pass `variant="full"` from the services page to show all cards.
+ */
+export default function Services({ variant = 'homepage' }) {
+  if (variant === 'homepage') {
+    return <HomepageServices />;
+  }
+  return <FullServices />;
+}
 
-const truncateText = (text, maxLength = 24) => {
-  if (text.length <= maxLength) return text;
-  return text.substring(0, maxLength).trim() + "...";
-};
+// ══════════════════════════════════════
+//  HOMEPAGE — Problem → Solution Format
+// ══════════════════════════════════════
 
-export default function Services({ isHomePage = false }) {
+function HomepageServices() {
+  const items = problemSolutionData;
+
   return (
-    <section id="services" className="pt-8 pb-16 lg:pt-6 lg:pb-24 bg-white relative overflow-hidden">
-
-      <ParallaxRing className="absolute -top-20 -right-20 w-[350px] h-[350px] opacity-60" ringStyle="bg-donut-ring" speed={0.12} animation="animate-spin-extra-slow" />
-      <ParallaxRing className="absolute bottom-10 -left-28 w-[300px] h-[300px] opacity-50" ringStyle="bg-donut-ring-lg" speed={0.18} animation="animate-float-slow" />
-      <ParallaxRing className="absolute top-1/2 right-[5%] w-[150px] h-[150px] opacity-30" ringStyle="bg-donut-ring" speed={0.1} animation="animate-float-slow" />
+    <section id="services" className="relative py-14 lg:py-20 bg-white overflow-hidden">
       <div className="absolute inset-0 bg-radial-soft pointer-events-none" />
 
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10">
+        {/* Header */}
         <ScrollReveal>
-          <div className="mb-10 lg:mb-14 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-            <div className="max-w-2xl text-left">
-              <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark leading-[1.1] tracking-tight mb-6">
-                Treatments Designed for <span className="text-primary">Real Results.</span>
-              </h2>
-              <p className="text-slate-500 text-[0.92rem] md:text-[1rem] leading-relaxed font-medium max-w-xl">
-                Personalized dental solutions focused on improving your smile, health, and confidence.
-              </p>
-            </div>
-
-            {isHomePage && (
-              <div className="flex shrink-0 pb-1">
-                <Link
-                  href="/services"
-                  className="group flex items-center gap-2.5 text-primary font-bold text-[0.85rem] uppercase tracking-widest transition-all hover:text-primary-dark"
-                >
-                  <span className="relative">
-                    View All Services
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
-                  </span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.5} />
-                </Link>
-              </div>
-            )}
+          <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-14">
+            <span className="inline-block text-xs font-bold text-primary uppercase tracking-[0.2em] mb-3">What We Fix</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-text-dark tracking-tight leading-[1.1] mb-4">
+              Tell Us Your Problem. <span className="text-primary">We&apos;ll Fix It.</span>
+            </h2>
+            <p className="text-slate-500 text-sm md:text-[0.95rem] leading-relaxed font-medium">
+              Every smile deserves a solution. Find yours below — or call us to discuss options.
+            </p>
           </div>
         </ScrollReveal>
 
-        <div className={`grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8 lg:gap-10 mt-12 pb-10`}>
-          {[...services]
-            .filter(s => !isHomePage || (s.id !== 'pediatric' && s.id !== 'root-canal'))
-            .sort((a, b) => (b.isHighlighted ? 1 : 0) - (a.isHighlighted ? 1 : 0))
-            .slice(0, isHomePage ? 6 : undefined)
-            .map((service, idx) => (
-              <ScrollReveal
-                key={service.id || service.slug || service.title}
-                delay={(idx % 3) * 100}
-                className="h-full"
-              >
-                <Link href={`/services/${service.slug}`} className="group block h-full outline-none">
-                  <div className="h-full bg-white rounded-[20px] md:rounded-[24px] border border-slate-100 shadow-[0_4px_24px_rgba(0,0,0,0.02)] transition-all duration-500 flex flex-col overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1">
-                    
-                    {/* Image Area (Dominant Hero) */}
-                    <div className="relative w-full aspect-video overflow-hidden bg-slate-50 z-0">
-                      <Image
-                        src={service.image}
-                        alt={service.altText || service.title}
-                        fill
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 50vw, 33vw"
-                        priority={idx < 2}
-                      />
-                      {/* Premium Subtle Gradient */}
-                      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/5 to-transparent opacity-40" />
-                      
-                      {/* Refined Curved Transition SVG (Premium Balanced Curve) */}
-                      <div className="absolute -bottom-px left-0 w-full overflow-hidden leading-0 z-10 pointer-events-none">
-                        <svg 
-                          viewBox="0 0 100 20" 
-                          preserveAspectRatio="none" 
-                          className="w-full h-4 lg:h-6"
-                        >
-                          <path 
-                            d="M0 20 C 25 10 75 10 100 20 V 20 H 0 Z" 
-                            fill="white"
-                          />
-                        </svg>
-                      </div>
+        {/* Problem → Solution Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+          {items.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <ScrollReveal key={idx} delay={idx * 80}>
+                <Link
+                  href={`/services/${item.serviceSlug}`}
+                  onClick={() => trackEvent(EVENTS.SERVICE_CARD_CLICK, { service: item.solution })}
+                  className="group block bg-white rounded-2xl border border-slate-100 p-6 lg:p-7 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 h-full"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-11 h-11 rounded-xl bg-primary/8 border border-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
+                      <Icon className="w-5 h-5 text-primary group-hover:text-white transition-colors" strokeWidth={2} />
                     </div>
-
-                    {/* Content Area (Refined Spacing) */}
-                    <div className="px-6 pb-6 pt-6 sm:px-8 sm:pb-8 sm:pt-10 relative z-20 flex flex-col grow bg-white">
-                      
-                      {/* Category Label (Small + Subtle) */}
-                      <span className="text-[8px] sm:text-[10px] lg:text-xs font-bold tracking-[0.2em] uppercase text-slate-400 mb-2 sm:mb-3">
-                        Specialist Care
-                      </span>
-
-                      {/* Title (Primary Focus) */}
-                      <h3 className="text-sm sm:text-2xl lg:text-3xl font-semibold text-slate-900 tracking-tight leading-tight mb-3 sm:mb-6 group-hover:text-primary transition-colors duration-300">
-                        {service.title}
+                    <div className="flex-1 min-w-0">
+                      {/* Problem */}
+                      <span className="text-xs font-bold text-red-500/80 uppercase tracking-wider">{item.problem}</span>
+                      {/* Solution */}
+                      <h3 className="text-base lg:text-lg font-bold text-text-dark mt-1 tracking-tight group-hover:text-primary transition-colors">
+                        {item.solution}
                       </h3>
-
-                      {/* Benefit Stack (Outcome-Driven) */}
-                      <ul className="space-y-1.5 sm:space-y-3 mb-4 sm:mb-8">
-                        {(service.benefits || []).slice(0, 3).map((benefit, bIdx) => (
-                          <li key={bIdx} className="flex items-start gap-1.5 sm:gap-2.5 text-[10px] sm:text-sm text-slate-600 leading-snug">
-                            <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-primary/40 mt-1.5 shrink-0" />
-                            {benefit}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <div className="mt-auto">
-                        {/* Micro Trust Line */}
-                        <p className="text-[11px] text-slate-500 mb-5 font-medium">
-                          Performed by board-certified specialists
-                        </p>
-
-                        {/* CTA (Minimal Apple-Style) */}
-                        <div className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all duration-300 group-hover:gap-2.5">
-                          View Treatment
-                          <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={2.5} />
-                          <div className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100" />
-                        </div>
-                      </div>
+                      {/* Description */}
+                      <p className="text-sm text-text-light leading-relaxed mt-1.5 line-clamp-2">
+                        {item.description}
+                      </p>
                     </div>
+                    <ArrowUpRight className="w-4 h-4 text-slate-300 group-hover:text-primary shrink-0 mt-1 transition-colors" />
                   </div>
                 </Link>
               </ScrollReveal>
-            ))}
+            );
+          })}
+        </div>
+
+        {/* View All CTA */}
+        <ScrollReveal>
+          <div className="text-center mt-10">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:gap-3 transition-all group"
+            >
+              View All Services & Treatments
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+}
+
+// ══════════════════════════════════════
+//  FULL SERVICES PAGE — Image Cards
+// ══════════════════════════════════════
+
+function FullServices() {
+  return (
+    <section id="services" className="relative py-14 lg:py-20 bg-clinical overflow-hidden">
+      <div className="absolute inset-0 bg-dot-mesh pointer-events-none opacity-40" />
+
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+          {services.map((service, idx) => (
+            <ScrollReveal key={service.id} delay={idx * 80}>
+              <Link
+                href={`/services/${service.slug}`}
+                onClick={() => trackEvent(EVENTS.SERVICE_CARD_CLICK, { service: service.title })}
+                className="group block bg-white rounded-2xl border border-slate-100 overflow-hidden hover:border-primary/15 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 h-full"
+              >
+                {/* Image */}
+                <div className="relative w-full aspect-[16/10] bg-slate-50 overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.altText}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {service.isHighlighted && (
+                    <span className="absolute top-3 right-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                      Popular
+                    </span>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="p-5 lg:p-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    {service.tags?.slice(0, 2).map((tag) => (
+                      <span key={tag} className="text-[10px] font-bold text-primary/70 bg-primary/5 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <h3 className="text-lg font-bold text-text-dark tracking-tight group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-text-light leading-relaxed mt-2 line-clamp-2">
+                    {service.shortDescription}
+                  </p>
+                  <div className="flex items-center gap-1.5 mt-4 text-primary font-semibold text-sm group-hover:gap-2.5 transition-all">
+                    Learn More
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+              </Link>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>
