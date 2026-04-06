@@ -9,7 +9,7 @@ export default function LeadPopup() {
   const [isExitIntent, setIsExitIntent] = useState(false);
 
   const POPUP_SEEN_KEY = 'dental_lead_popup_seen';
-  const POPUP_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 hours
+  const POPUP_COOLDOWN_MS = 12 * 60 * 60 * 1000; // 12 hours
 
   const canShowPopup = useCallback(() => {
     if (typeof window === 'undefined') return false;

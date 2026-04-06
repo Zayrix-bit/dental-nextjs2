@@ -21,9 +21,7 @@ const Testimonials = dynamic(() => import('@/components/sections/Testimonials'),
 const ProcessSection = dynamic(() => import('@/components/sections/ProcessSection'), {
   loading: () => <SectionSkeleton height="h-64" />,
 });
-const OfferHook = dynamic(() => import('@/components/sections/OfferHook'), {
-  loading: () => <SectionSkeleton height="h-64" />,
-});
+
 const FAQ = dynamic(() => import('@/components/sections/FAQ'), {
   loading: () => <SectionSkeleton height="h-80" />,
 });
@@ -69,9 +67,6 @@ export default function HomePage() {
 
       {/* 9. Process — fear-reducing steps */}
       <ProcessSection />
-
-      {/* 10. Offer Hook — conversion trigger */}
-      <OfferHook />
 
       {/* 11. FAQ — objection handling */}
       <FAQ />
