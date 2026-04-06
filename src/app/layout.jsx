@@ -46,6 +46,7 @@ import SmoothScrollProvider from '@/components/ui/SmoothScrollProvider';
 import Preloader from '@/components/ui/Preloader';
 import FloatingCTA from '@/components/ui/FloatingCTA';
 import StickyMobileCTA from '@/components/ui/StickyMobileCTA';
+import LeadPopup from '@/components/LeadPopup';
 
 export default function RootLayout({ children }) {
   const jsonLd = {
@@ -118,6 +119,7 @@ export default function RootLayout({ children }) {
           <Footer />
           <FloatingCTA />
           <StickyMobileCTA />
+          <LeadPopup />
         </SmoothScrollProvider>
         <SpeedInsights />
         <script
