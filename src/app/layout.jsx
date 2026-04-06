@@ -45,7 +45,6 @@ export const metadata = {
 import SmoothScrollProvider from '@/components/ui/SmoothScrollProvider';
 import Preloader from '@/components/ui/Preloader';
 import FloatingCTA from '@/components/ui/FloatingCTA';
-import StickyMobileCTA from '@/components/ui/StickyMobileCTA';
 import LeadPopup from '@/components/LeadPopup';
 
 export default function RootLayout({ children }) {
@@ -118,7 +117,6 @@ export default function RootLayout({ children }) {
           </main>
           <Footer />
           <FloatingCTA />
-          <StickyMobileCTA />
           <LeadPopup />
         </SmoothScrollProvider>
         <SpeedInsights />
