@@ -27,9 +27,7 @@ const OfferHook = dynamic(() => import('@/components/sections/OfferHook'), {
 const FAQ = dynamic(() => import('@/components/sections/FAQ'), {
   loading: () => <SectionSkeleton height="h-80" />,
 });
-const FinalCTA = dynamic(() => import('@/components/sections/FinalCTA'), {
-  loading: () => <SectionSkeleton height="h-64" />,
-});
+
 const Contact = dynamic(() => import('@/components/sections/Contact'), {
   loading: () => <SectionSkeleton height="h-96" />,
 });
@@ -77,9 +75,6 @@ export default function HomePage() {
 
       {/* 11. FAQ — objection handling */}
       <FAQ />
-
-      {/* 12. Final CTA — strong close */}
-      <FinalCTA />
 
       {/* 13. Contact Form — lead capture */}
       <Contact />

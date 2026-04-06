@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight, Users, Award, ShieldCheck, Activity } from 'lucide-react';
 import { doctorData } from '@/data/siteData';
 import ScrollReveal from '@/components/ScrollReveal';
 

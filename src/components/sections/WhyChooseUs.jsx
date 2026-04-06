@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ShieldCheck, Zap, CreditCard, Percent } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Zap, CreditCard, Percent, Users, Microscope, Smile } from 'lucide-react';
 import { features } from '@/data/siteData';
 import config from '@/config';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -57,19 +57,19 @@ export default function WhyChooseUs() {
         </ScrollReveal>
 
         {/* Differentiators Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mb-12 lg:mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 lg:gap-5 mb-12 lg:mb-16">
           {differentiators.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <ScrollReveal key={idx} delay={idx * 100}>
-                <div className="group bg-white rounded-2xl p-6 lg:p-7 border border-slate-100 hover:border-primary/15 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 h-full text-center">
-                  <div className={`w-13 h-13 rounded-xl flex items-center justify-center mx-auto mb-4 border transition-all duration-300 ${item.color} ${item.hoverColor}`}>
-                    <Icon className="w-6 h-6" strokeWidth={1.8} />
+              <ScrollReveal key={idx} delay={idx * 50}>
+                <div className="group bg-white rounded-xl lg:rounded-2xl p-4 lg:p-7 border border-slate-100 hover:border-primary/15 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 h-full flex flex-col justify-center items-center text-center">
+                  <div className={`w-10 h-10 lg:w-13 lg:h-13 rounded-lg lg:rounded-xl flex items-center justify-center mb-3 border transition-all duration-300 ${item.color} ${item.hoverColor}`}>
+                    <Icon className="w-5 h-5 lg:w-6 lg:h-6" strokeWidth={1.8} />
                   </div>
-                  <h3 className="text-base font-bold text-text-dark tracking-tight mb-2">
+                  <h3 className="text-[0.85rem] lg:text-base font-bold text-text-dark tracking-tight mb-1.5 leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-text-light leading-relaxed">
+                  <p className="text-[11px] lg:text-sm text-text-light leading-[1.5] lg:leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -81,8 +81,8 @@ export default function WhyChooseUs() {
         {/* Features + Image Split */}
         <ScrollReveal>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Feature List */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Feature List (Hidden on Mobile, moved to bottom) */}
+            <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 gap-4">
               {features.map((feat, idx) => {
                 const FeatIcon = feat.icon;
                 return (
@@ -118,6 +118,45 @@ export default function WhyChooseUs() {
             </div>
           </div>
         </ScrollReveal>
+
+        {/* Mobile-Only Feature Stats (Appears under Doctor Team Photo & above Testimonials) */}
+        <div className="grid grid-cols-2 lg:hidden gap-2 mt-8 mb-4 max-w-2xl mx-auto w-full">
+          {[
+            {
+              icon: Microscope,
+              title: "10,000+ Successful Treatments",
+              desc: "Proven track record with thousands of happy, returning patients.",
+            },
+            {
+              icon: Users,
+              title: "Certified & Experienced Dentists",
+              desc: "Board-certified specialists with 15+ years of hands-on experience.",
+            },
+            {
+              icon: Smile,
+              title: "Pain-Free Procedures",
+              desc: "Advanced anesthesia and sedation so you feel nothing during treatment.",
+            },
+            {
+              icon: CreditCard,
+              title: "State-of-the-Art Technology",
+              desc: "Utilizing 3D imaging and precision diagnostics to craft the perfect treatment plan.",
+            },
+          ].map((feature, i) => {
+            const Icon = feature.icon;
+            return (
+              <div key={i} className="bg-white rounded-xl p-3 shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-slate-50 flex flex-col items-start gap-2.5 w-full hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-shadow">
+                <div className="shrink-0 w-9 h-9 rounded-xl bg-[#E8F3F1] flex items-center justify-center text-primary">
+                  <Icon className="w-4 h-4" strokeWidth={2.2} />
+                </div>
+                <div className="w-full">
+                  <h4 className="text-[12px] font-extrabold text-slate-900 leading-snug mb-1">{feature.title}</h4>
+                  <p className="text-[10.5px] text-slate-500 leading-relaxed font-medium">{feature.desc}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
         {/* Bottom CTA */}
         <ScrollReveal>

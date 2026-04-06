@@ -23,12 +23,12 @@ export default function ProcessSection() {
           </div>
         </ScrollReveal>
 
-        {/* Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
+        {/* Steps (Desktop & Tablet) */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
           {processData.steps.map((step, idx) => {
             const StepIcon = step.icon;
             return (
-              <ScrollReveal key={idx} delay={idx * 100}>
+              <ScrollReveal key={`d-${idx}`} delay={idx * 100}>
                 <div className="relative group">
                   {/* Connector line (desktop only) */}
                   {idx < processData.steps.length - 1 && (
@@ -59,6 +59,29 @@ export default function ProcessSection() {
                   </div>
                 </div>
               </ScrollReveal>
+            );
+          })}
+        </div>
+
+        {/* Steps 2x2 Grid (Mobile Only) */}
+        <div className="grid md:hidden grid-cols-2 gap-2 mt-2 w-full">
+          {processData.steps.map((step, idx) => {
+            const StepIcon = step.icon;
+            return (
+              <div key={`m-${idx}`} className="bg-white rounded-xl p-3 shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-slate-50 flex flex-col items-start gap-2.5 w-full hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-shadow">
+                <div className="flex items-center gap-2 mb-0.5">
+                  <div className="shrink-0 w-8 h-8 rounded-xl bg-[#E8F3F1] flex items-center justify-center text-primary">
+                    <StepIcon className="w-4 h-4" strokeWidth={2.2} />
+                  </div>
+                  <span className="text-xl font-black text-primary/15">
+                    {step.number}
+                  </span>
+                </div>
+                <div className="w-full">
+                  <h4 className="text-[12px] font-extrabold text-slate-900 leading-snug mb-1">{step.title}</h4>
+                  <p className="text-[10.5px] text-slate-500 leading-relaxed font-medium">{step.description}</p>
+                </div>
+              </div>
             );
           })}
         </div>
