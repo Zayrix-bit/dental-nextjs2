@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { X, Star, CheckCircle2, Clock, Sparkles } from 'lucide-react';
+import { Star, CheckCircle2, Clock, Sparkles } from 'lucide-react';
 
 export default function LeadPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -96,16 +96,6 @@ export default function LeadPopup() {
         role="dialog"
         aria-modal="true"
       >
-        <button
-          onClick={handleClose}
-          onMouseEnter={() => setIsHoveringClose(true)}
-          onMouseLeave={() => setIsHoveringClose(false)}
-          className="absolute right-3 top-3 sm:right-4 sm:top-4 z-60 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100/90 backdrop-blur-sm text-slate-500 hover:bg-slate-200 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 shadow-sm"
-          aria-label="Close dialog"
-        >
-          <X className="w-4 h-4 sm:w-5 sm:h-5" />
-        </button>
-
         <div className="p-5 sm:p-6 md:p-7 overflow-y-auto overscroll-contain flex-1 custom-scrollbar">
           
           <div className="flex flex-col sm:flex-row flex-wrap gap-2 mb-4 sm:mb-5 pr-6 sm:pr-8">
